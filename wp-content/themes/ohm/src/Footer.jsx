@@ -1,35 +1,18 @@
 import React from 'react';
+import { ArrowUpRight, Clock3, Mail, MapPin, Phone } from 'lucide-react';
+
+const fallbackItems = ['Home', 'About', 'Services', 'Contact'].map((title, id) => ({ id, title, url: '#' }));
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  return (
-    <footer className="w-full bg-zinc-900 dark:bg-black text-zinc-400 py-12 border-t border-zinc-800 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h4 className="text-white font-bold text-base mb-4 uppercase tracking-widest">Ohm Core Engineering</h4>
-          <p className="text-sm text-zinc-500 leading-relaxed">
-            Integrated mechanical, electrical, civil, structural, BIM, and project-management solutions from inception through handover.
-          </p>
-        </div>
-        <div>
-          <h4 className="text-white font-bold text-base mb-4 uppercase tracking-widest">Links</h4>
-          <ul className="space-y-2 text-sm">
-            <li><a href="/about" className="hover:text-accent transition-colors">About</a></li>
-            <li><a href="/services" className="hover:text-accent transition-colors">Engineering Services</a></li>
-            <li><a href="/contact" className="hover:text-accent transition-colors">Contact Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-white font-bold text-base mb-4 uppercase tracking-widest">Contact</h4>
-          <ul className="space-y-2 text-sm text-zinc-500">
-            <li>Email: hello@reallygreatsite.com</li>
-            <li>32 Northampton Cres, Harare, Zimbabwe</li>
-          </ul>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-zinc-800 text-xs text-zinc-600 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p>&copy; {currentYear} Ohm Core Engineering. All rights reserved.</p>
-      </div>
-    </footer>
-  );
+  const menuItems = window.ohmThemeData?.menuItems?.length ? window.ohmThemeData.menuItems : fallbackItems;
+  return <footer id="contact" className="ohm-footer">
+    <div className="ohm-footer-promo"><div className="ohm-container ohm-footer-promo-inner"><div><p className="ohm-kicker">OHM CORE ENGINEERING</p><h2>Let&apos;s build what matters.</h2></div><a className="ohm-button ohm-button-orange" href="#">Contact us <ArrowUpRight size={17} /></a></div></div>
+    <div className="ohm-container ohm-footer-grid">
+      <div><h3>OHM CORE<br />ENGINEERING</h3><p>Integrated mechanical, electrical, civil, structural, BIM, and project-management solutions from inception through handover.</p></div>
+      <div><h4>Explore</h4><nav className="ohm-footer-links">{menuItems.map((item) => <a key={item.id} href={item.url || '#'}>{item.title}<ArrowUpRight size={13} /></a>)}</nav></div>
+      <div><h4>Contact</h4><ul className="ohm-contact-list"><li><Phone size={16} />+263 (0) 000 000 000</li><li><Mail size={16} />info@ohmcore.co.zw</li><li><MapPin size={16} />32 Northampton Cres, Harare, Zimbabwe</li><li><Clock3 size={16} />Mon - Fri 8:00 - 17:00</li></ul></div>
+    </div>
+    <div className="ohm-container ohm-footer-bottom"><span>© {currentYear} OHM Core Engineering. All rights reserved.</span><span>Designing dreams, building realities.</span></div>
+  </footer>;
 }

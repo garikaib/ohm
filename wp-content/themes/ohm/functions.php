@@ -202,6 +202,20 @@ add_action(
 			array(
 				'menuItems'  => ohm_get_menu_items_by_location( 'main-menu' ),
 				'currentUrl' => home_url( $_SERVER['REQUEST_URI'] ),
+                'pageSlug' => is_singular() ? get_post_field( 'post_name', get_queried_object_id() ) : '',
+                'serviceImages' => array(
+                    'cover' => ohm_get_attachment_url_by_slug( 'ohm-services-cover' ),
+                    'mechanical-engineering' => ohm_get_attachment_url_by_slug( 'ohm-mechanical-engineering', 'png' ),
+                    'electrical-engineering' => ohm_get_attachment_url_by_slug( 'ohm-electrical-engineering', 'png' ),
+                    'civil-engineering' => ohm_get_attachment_url_by_slug( 'ohm-civil-engineering', 'png' ),
+                    'structural-engineering' => ohm_get_attachment_url_by_slug( 'ohm-structural-engineering', 'png' ),
+                    'project-management' => ohm_get_attachment_url_by_slug( 'ohm-project-management', 'png' ),
+                ),
+                'companyImages' => array(
+                    'about' => ohm_get_attachment_url_by_slug( 'ohm-about' ),
+                    'contact' => ohm_get_attachment_url_by_slug( 'ohm-contact' ),
+                    'team' => ohm_get_attachment_url_by_slug( 'ohm-team' ),
+                ),
 				'logoUrl'    => ohm_get_attachment_url_by_slug( 'ohm-core-engineering', 'webp' ),
 				'slides'     => array(
 					array(

@@ -107,8 +107,8 @@ export default function HeroSlider() {
                 Multidisciplinary engineering solutions designed for safe, efficient, and dependable project delivery.
               </p>
               <div className="ohm-hero-actions">
-                <a className="ohm-button ohm-button-orange" href="#read-more">Read More</a>
-                <a className="ohm-button ohm-button-navy" href="#contact-us">Contact Us</a>
+                <a className="ohm-button ohm-button-orange" href="/services">Read More</a>
+                <a className="ohm-button ohm-button-navy" href="/contact">Contact Us</a>
               </div>
             </div>
           </div>

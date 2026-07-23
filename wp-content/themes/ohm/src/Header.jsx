@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { Clock3, Mail, Menu, Phone, X } from 'lucide-react';
 
-const fallbackItems = ['Home', 'About', 'Blog', 'Services', 'Team', 'Contact'].map((title, id) => ({ id, title, url: '#' }));
+const fallbackItems = [
+  { id: 1, title: 'Home', url: '/' },
+  { id: 2, title: 'About', url: '/about' },
+  { id: 3, title: 'Blog', url: '/blog' },
+  { id: 4, title: 'Services', url: '/services' },
+  { id: 5, title: 'Team', url: '/team' },
+  { id: 6, title: 'Contact', url: '/contact' }
+];
 const socials = [
   { label: 'Facebook', mark: 'f' },
   { label: 'TikTok', mark: '♪' },
@@ -18,8 +25,8 @@ export default function Header() {
     <header className="ohm-site-header">
       <div className="ohm-utility-bar">
         <div className="ohm-utility-contact">
-          <a href="#" aria-label="Phone"><Phone size={17} strokeWidth={1.7} /><span>+263 (0) 000 000 000</span></a>
-          <a href="#" aria-label="Email"><Mail size={17} strokeWidth={1.7} /><span>info@ohmcore.co.zw</span></a>
+          <a href="tel:+263000000000" aria-label="Phone"><Phone size={17} strokeWidth={1.7} /><span>+263 (0) 000 000 000</span></a>
+          <a href="mailto:info@ohmcore.co.zw" aria-label="Email"><Mail size={17} strokeWidth={1.7} /><span>info@ohmcore.co.zw</span></a>
           <span><Clock3 size={17} strokeWidth={1.7} /><span>Mon - Fri 8:00 - 17:00</span></span>
         </div>
         <div className="ohm-utility-socials" aria-label="Social media">
@@ -28,7 +35,7 @@ export default function Header() {
       </div>
 
       <div className="ohm-header-row">
-        <a className="ohm-brand-panel" href="#" aria-label="OHM Core Engineering home">
+        <a className="ohm-brand-panel" href="/" aria-label="OHM Core Engineering home">
           <img src={logoUrl} alt="OHM Core Engineering" width="172" height="49" />
         </a>
         <div className="ohm-header-main">

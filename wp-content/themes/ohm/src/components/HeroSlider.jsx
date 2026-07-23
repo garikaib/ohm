@@ -4,18 +4,21 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const fallbackSlides = [
   {
     image: '/wp-content/uploads/2026/07/hero-build.jpg',
-    eyebrow: 'DOLOR AMET SOCINIUS',
-    title: 'BUILD A BETTER TOMORROW',
+    overlay: '/wp-content/uploads/2026/07/hero-outline-build.png',
+    eyebrow: 'INTEGRATED ENGINEERING SERVICES',
+    title: 'ENGINEERING BETTER TOMORROWS',
   },
   {
     image: '/wp-content/uploads/2026/07/hero-schedule.jpg',
-    eyebrow: 'DOLOR AMET SOCINIUS',
-    title: 'STAYING AHEAD OF SCHEDULE',
+    overlay: '/wp-content/uploads/2026/07/hero-outline-schedule.png',
+    eyebrow: 'INTEGRATED ENGINEERING SERVICES',
+    title: 'BUILT FOR PERFORMANCE',
   },
   {
     image: '/wp-content/uploads/2026/07/hero-foundations.jpg',
-    eyebrow: 'DOLOR AMET SOCINIUS',
-    title: 'ALWAYS STRONG FOUNDATIONS',
+    overlay: '/wp-content/uploads/2026/07/hero-outline-foundations.png',
+    eyebrow: 'INTEGRATED ENGINEERING SERVICES',
+    title: 'DESIGNING DREAMS',
   },
 ];
 
@@ -107,12 +110,20 @@ export default function HeroSlider() {
               loading={index === 0 ? 'eager' : 'lazy'}
             />
             <div className="ohm-hero-overlay" />
+            {slide.overlay && (
+              <img 
+                src={slide.overlay} 
+                alt="" 
+                className="ohm-hero-outline" 
+                fetchpriority={index === 0 ? 'high' : 'low'}
+                loading={index === 0 ? 'eager' : 'lazy'}
+              />
+            )}
             <div className="ohm-hero-copy">
               <div className="ohm-hero-eyebrow">{slide.eyebrow}</div>
               <h1>{formatTitle(slide.title)}</h1>
               <p>
-                Lorem ipsum dolor sit amet messa. Consectetuer adipiscing elit. 
-                Aenean commodo ligula eget dolor.
+                Multidisciplinary engineering solutions designed for safe, efficient, and dependable project delivery.
               </p>
               <div className="ohm-hero-actions">
                 <a className="ohm-button ohm-button-orange" href="#read-more">Read More</a>

@@ -386,3 +386,35 @@ button {
     bottom: 22px;
   }
 }
+
+/* Reference-style utility bar and header row */
+.ohm-site-header { height: 131px; display: block; }
+.ohm-utility-bar { height: 53px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; border-bottom: 1px solid #e7e7e7; background: #fff; color: var(--ohm-navy); font-size: 14px; }
+.ohm-utility-contact, .ohm-utility-socials { display: flex; align-items: center; }
+.ohm-utility-contact { gap: 28px; }
+.ohm-utility-contact a, .ohm-utility-contact > span { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; }
+.ohm-utility-contact a:hover, .ohm-utility-socials a:hover { color: var(--ohm-orange); }
+.ohm-utility-socials { gap: 21px; font-weight: 700; font-size: 16px; }
+.ohm-utility-socials a { min-width: 15px; text-align: center; }
+.ohm-header-row { height: 78px; display: flex; background: #fff; }
+@media (max-width: 700px) { .ohm-site-header { height: 68px; } .ohm-utility-bar { display: none; } .ohm-header-row { height: 68px; } }
+
+/* Compact reference proportions */
+.ohm-site-header { height: 115px; }
+.ohm-utility-bar { height: 45px; }
+.ohm-header-row { height: 70px; }
+.ohm-brand-panel img { width: 172px; }
+@media (max-width: 900px) { .ohm-brand-panel img { width: 165px; } }
+@media (max-width: 700px) { .ohm-site-header, .ohm-header-row { height: 68px; } .ohm-brand-panel img { width: 165px; } }
+
+/* Bottom-align the brand block within the main navigation row */
+@media (min-width: 701px) {
+  .ohm-site-header { height: 123px; }
+  .ohm-header-row { height: 78px; align-items: flex-end; }
+  .ohm-brand-panel { height: 70px; }
+  .ohm-header-main, .ohm-menu-toggle { height: 78px; }
+}
+
+.ohm-hero-outline { position: absolute; z-index: 1; top: 29%; left: max(10vw, calc((100vw - 1300px) / 2 + 0px)); width: 791px; max-width: 58vw; height: auto; opacity: .55; pointer-events: none; }
+.ohm-hero-copy { z-index: 2; }
+@media (max-width: 700px) { .ohm-hero-outline { top: 27%; left: 22px; width: 620px; max-width: none; opacity: .42; } }

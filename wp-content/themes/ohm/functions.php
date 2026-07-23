@@ -154,9 +154,15 @@ function ohm_get_menu_items_by_location( $location ) {
 }
 
 /**
- * Helper to retrieve attachment URL by slug.
+ * Helper to retrieve attachment URL by slug with transient caching.
  */
 function ohm_get_attachment_url_by_slug( $slug, $extension = 'jpg' ) {
+	$cache_key   = 'ohm_attachment_url_' . sanitize_key( $slug );
+	$cached_url  = get_transient( $cache_key );
+	if ( false !== $cached_url ) {
+		return $cached_url;
+	}
+
 	$args = array(
 		'post_type'      => 'attachment',
 		'name'           => sanitize_title( $slug ),
@@ -165,11 +171,24 @@ function ohm_get_attachment_url_by_slug( $slug, $extension = 'jpg' ) {
 	);
 	$attachments = get_posts( $args );
 	if ( $attachments ) {
-		return wp_get_attachment_url( $attachments[0]->ID );
+		$url = wp_get_attachment_url( $attachments[0]->ID );
+		set_transient( $cache_key, $url, DAY_IN_SECONDS );
+		return $url;
 	}
 	$upload_dir = wp_upload_dir();
-	return $upload_dir['baseurl'] . '/2026/07/' . $slug . '.' . $extension;
+	return $upload_dir['url'] . '/' . $slug . '.' . $extension;
 }
+
+// Clear attachment cache when attachments are saved/deleted
+add_action( 'save_post_attachment', 'ohm_clear_attachment_transients' );
+add_action( 'delete_post', 'ohm_clear_attachment_transients' );
+function ohm_clear_attachment_transients( $post_id ) {
+	$post = get_post( $post_id );
+	if ( $post && 'attachment' === $post->post_type ) {
+		delete_transient( 'ohm_attachment_url_' . sanitize_key( $post->post_name ) );
+	}
+}
+
 
 /**
  * Pass menu data and assets to the React app.
@@ -187,18 +206,21 @@ add_action(
 				'slides'     => array(
 					array(
 						'image'   => ohm_get_attachment_url_by_slug( 'hero-build' ),
-						'eyebrow' => 'DOLOR AMET SOCINIUS',
-						'title'   => 'BUILD A BETTER TOMORROW',
+						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-build', 'png' ),
+						'eyebrow' => 'INTEGRATED ENGINEERING SERVICES',
+						'title'   => 'ENGINEERING BETTER TOMORROWS',
 					),
 					array(
 						'image'   => ohm_get_attachment_url_by_slug( 'hero-schedule' ),
-						'eyebrow' => 'DOLOR AMET SOCINIUS',
-						'title'   => 'STAYING AHEAD OF SCHEDULE',
+						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-schedule', 'png' ),
+						'eyebrow' => 'INTEGRATED ENGINEERING SERVICES',
+						'title'   => 'BUILT FOR PERFORMANCE',
 					),
 					array(
 						'image'   => ohm_get_attachment_url_by_slug( 'hero-foundations' ),
-						'eyebrow' => 'DOLOR AMET SOCINIUS',
-						'title'   => 'ALWAYS STRONG FOUNDATIONS',
+						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-foundations', 'png' ),
+						'eyebrow' => 'INTEGRATED ENGINEERING SERVICES',
+						'title'   => 'DESIGNING DREAMS',
 					),
 				),
 			)

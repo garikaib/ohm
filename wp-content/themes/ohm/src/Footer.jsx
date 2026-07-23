@@ -8,22 +8,22 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-bold text-base mb-4 uppercase tracking-widest">Ohm Core Engineering</h4>
           <p className="text-sm text-zinc-500 leading-relaxed">
-            High performance engineering and electrical systems solutions designed for industrial efficiency.
+            Integrated mechanical, electrical, civil, structural, BIM, and project-management solutions from inception through handover.
           </p>
         </div>
         <div>
           <h4 className="text-white font-bold text-base mb-4 uppercase tracking-widest">Links</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="/about" className="hover:text-accent transition-colors">About Us</a></li>
-            <li><a href="/services" className="hover:text-accent transition-colors">Services</a></li>
-            <li><a href="/contact" className="hover:text-accent transition-colors">Contact</a></li>
+            <li><a href="/about" className="hover:text-accent transition-colors">About</a></li>
+            <li><a href="/services" className="hover:text-accent transition-colors">Engineering Services</a></li>
+            <li><a href="/contact" className="hover:text-accent transition-colors">Contact Us</a></li>
           </ul>
         </div>
         <div>
           <h4 className="text-white font-bold text-base mb-4 uppercase tracking-widest">Contact</h4>
           <ul className="space-y-2 text-sm text-zinc-500">
-            <li>Email: info@ohmcore.com</li>
-            <li>Harare, Zimbabwe</li>
+            <li>Email: hello@reallygreatsite.com</li>
+            <li>32 Northampton Cres, Harare, Zimbabwe</li>
           </ul>
         </div>
       </div>

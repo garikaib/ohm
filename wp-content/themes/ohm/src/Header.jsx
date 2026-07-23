@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Clock3, Mail, Menu, Phone, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowUpRight, Clock3, Mail, MapPin, Menu, Phone, X } from 'lucide-react';
 
 const fallbackItems = [
   { id: 1, title: 'Home', url: '/' },
@@ -20,6 +20,18 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const items = window.ohmThemeData?.menuItems?.length ? window.ohmThemeData.menuItems : fallbackItems;
   const logoUrl = window.ohmThemeData?.logoUrl || '/wp-content/uploads/2026/07/ohm-core-engineering.webp';
+
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', closeOnEscape);
+    document.body.classList.toggle('ohm-menu-open', open);
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape);
+      document.body.classList.remove('ohm-menu-open');
+    };
+  }, [open]);
 
   return (
     <header className="ohm-site-header">
@@ -43,10 +55,35 @@ export default function Header() {
             {items.map((item) => <a key={item.id} href={item.url || '#'} onClick={() => setOpen(false)}>{item.title}</a>)}
           </nav>
         </div>
-        <button className="ohm-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)}>
-          {open ? <X size={25} /> : <Menu size={25} />}
+        <button className="ohm-menu-toggle" type="button" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(true)}>
+          <Menu size={25} />
         </button>
       </div>
+      <button className={`ohm-mobile-backdrop ${open ? 'is-open' : ''}`} type="button" aria-label="Close menu" onClick={() => setOpen(false)} />
+      <aside className={`ohm-mobile-drawer ${open ? 'is-open' : ''}`} aria-label="Mobile navigation" aria-hidden={!open}>
+        <button className="ohm-drawer-close" type="button" aria-label="Close menu" onClick={() => setOpen(false)}><X size={25} /></button>
+        <div className="ohm-drawer-content">
+          <p className="ohm-drawer-kicker">OHM CORE ENGINEERING</p>
+          <h2>Quick contact info</h2>
+          <p className="ohm-drawer-intro">Integrated engineering solutions designed for performance, safety, sustainability, and dependable delivery.</p>
+          <div className="ohm-drawer-contact">
+            <span><Clock3 size={18} /><span>Mon - Fri 8:00 - 17:00</span></span>
+            <span><MapPin size={18} /><span>Harare, Zimbabwe</span></span>
+            <a href="tel:+263000000000"><Phone size={18} /><span>+263 (0) 000 000 000</span></a>
+            <a href="mailto:info@ohmcore.co.zw"><Mail size={18} /><span>info@ohmcore.co.zw</span></a>
+          </div>
+          <div className="ohm-drawer-socials" aria-label="Social media">
+            {socials.map((social) => <a key={social.label} href="#" aria-label={social.label}>{social.mark}</a>)}
+          </div>
+          <div className="ohm-drawer-explore">
+            <p className="ohm-drawer-kicker">EXPLORE</p>
+            <nav aria-label="Mobile primary navigation">
+              {items.map((item) => <a key={item.id} href={item.url || '#'} onClick={() => setOpen(false)}><span>{item.title}</span><ArrowUpRight size={16} /></a>)}
+            </nav>
+          </div>
+          <p className="ohm-drawer-hint">Tap outside or press Esc to close</p>
+        </div>
+      </aside>
     </header>
   );
 }

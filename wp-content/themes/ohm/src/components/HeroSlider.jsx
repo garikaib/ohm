@@ -1,35 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const fallbackSlides = [
-  {
-    image: '/wp-content/uploads/2026/07/hero-build.jpg',
-    overlay: '/wp-content/uploads/2026/07/hero-outline-build.png',
-    eyebrow: 'INTEGRATED ENGINEERING SERVICES',
-    title: 'ENGINEERING BETTER TOMORROWS',
-  },
-  {
-    image: '/wp-content/uploads/2026/07/hero-schedule.jpg',
-    overlay: '/wp-content/uploads/2026/07/hero-outline-schedule.png',
-    eyebrow: 'INTEGRATED ENGINEERING SERVICES',
-    title: 'BUILT FOR PERFORMANCE',
-  },
-  {
-    image: '/wp-content/uploads/2026/07/hero-foundations.jpg',
-    overlay: '/wp-content/uploads/2026/07/hero-outline-foundations.png',
-    eyebrow: 'INTEGRATED ENGINEERING SERVICES',
-    title: 'DESIGNING DREAMS',
-  },
-];
-
 export default function HeroSlider() {
   const [active, setActive] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const autoPlayTimer = useRef(null);
 
-  const slides = window.ohmThemeData?.slides?.length
-    ? window.ohmThemeData.slides
-    : fallbackSlides;
+  const slides = window.ohmThemeData?.slides || [];
+
+  if (slides.length === 0) {
+    return null;
+  }
 
   // Move slide index
   const move = useCallback((amount) => {

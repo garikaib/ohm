@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #F97316;
+  --color-ink: #0F172A;
+  --color-paper: #F8FAFC;
+}
+
+#ohm-tools-root {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 20px 20px 0 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}

@@ -27,6 +27,20 @@ a {
   text-decoration: none;
 }
 
+a:focus, button:focus {
+  outline: none;
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--ohm-orange);
+  outline-offset: 4px;
+}
+
+.ohm-brand-panel:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
 button {
   font: inherit;
 }

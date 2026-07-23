@@ -38,7 +38,12 @@ const isItemActive = (itemUrl) => {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const items = window.ohmThemeData?.menuItems?.length ? window.ohmThemeData.menuItems : fallbackItems;
+  const items = (window.ohmThemeData?.menuItems?.length ? window.ohmThemeData.menuItems : fallbackItems).map(item => {
+    if ((item.url === '#' || item.url === '') && item.title?.toLowerCase() === 'home') {
+      return { ...item, url: '/' };
+    }
+    return item;
+  });
   const logoUrl = window.ohmThemeData?.logoUrl || '/wp-content/uploads/2026/07/ohm-core-engineering.webp';
 
   useEffect(() => {

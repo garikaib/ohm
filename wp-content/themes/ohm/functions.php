@@ -202,7 +202,8 @@ add_action(
 			array(
 				'menuItems'  => ohm_get_menu_items_by_location( 'main-menu' ),
 				'currentUrl' => home_url( $_SERVER['REQUEST_URI'] ),
-                'pageSlug' => is_singular() ? get_post_field( 'post_name', get_queried_object_id() ) : '',
+				'pageSlug'     => is_singular() ? get_post_field( 'post_name', get_queried_object_id() ) : ( is_home() ? 'blog' : '' ),
+				'isSinglePost' => is_single() && 'post' === get_post_type(),
                 'serviceImages' => array(
                     'cover' => ohm_get_attachment_url_by_slug( 'ohm-services-cover' ),
                     'mechanical-engineering' => ohm_get_attachment_url_by_slug( 'ohm-mechanical-engineering', 'png' ),
@@ -250,15 +251,22 @@ add_action(
 	'wp_head',
 	function () {
 		?>
+		<?php $ohm_favicon_light = wp_get_attachment_url( 40 ); $ohm_favicon_dark = wp_get_attachment_url( 37 ); $ohm_apple_light = wp_get_attachment_url( 41 ); $ohm_apple_dark = wp_get_attachment_url( 38 ); ?>
+		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( $ohm_favicon_light ); ?>" data-ohm-favicon-light>
+		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( $ohm_favicon_dark ); ?>" data-ohm-favicon-dark disabled>
+		<link rel="apple-touch-icon" href="<?php echo esc_url( $ohm_apple_light ); ?>" data-ohm-apple-light>
+		<link rel="apple-touch-icon" href="<?php echo esc_url( $ohm_apple_dark ); ?>" data-ohm-apple-dark disabled>
 		<script>
 			(function() {
 				const saved = localStorage.getItem('theme');
 				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				if (saved === 'dark' || (!saved && prefersDark)) {
-					document.documentElement.classList.add('dark');
-				} else {
-					document.documentElement.classList.remove('dark');
-				}
+				const isDark = saved === 'dark' || (!saved && prefersDark);
+				if (isDark) document.documentElement.classList.add('dark');
+				else document.documentElement.classList.remove('dark');
+				document.querySelector('[data-ohm-favicon-light]').disabled = isDark;
+				document.querySelector('[data-ohm-favicon-dark]').disabled = !isDark;
+				document.querySelector('[data-ohm-apple-light]').disabled = isDark;
+				document.querySelector('[data-ohm-apple-dark]').disabled = !isDark;
 			})();
 		</script>
 		<?php

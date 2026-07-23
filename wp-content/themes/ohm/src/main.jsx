@@ -6,10 +6,16 @@ import HeroSlider from './components/HeroSlider.jsx';
 import HomepageSections from './components/HomepageSections.jsx';
 import ServicesPage from './components/ServicesPage.jsx';
 import CompanyPages from './components/CompanyPages.jsx';
+import BlogPage from './components/BlogPage.jsx';
+import SinglePostPage from './components/SinglePostPage.jsx';
 import './index.css';
 
 function Home() {
   const slug = window.ohmThemeData?.pageSlug || '';
+  const isSinglePost = window.ohmThemeData?.isSinglePost || false;
+
+  if (isSinglePost) return <SinglePostPage slug={slug} />;
+  if (slug === 'blog') return <BlogPage />;
   if (slug === 'services' || ['mechanical-engineering','electrical-engineering','civil-engineering','structural-engineering','project-management'].includes(slug)) return <ServicesPage slug={slug} />;
   if (['about','contact','team'].includes(slug)) return <CompanyPages slug={slug} />;
   return (

@@ -16,6 +16,26 @@ const socials = [
   { label: 'X', mark: '𝕏' },
 ];
 
+const getPathname = (url) => {
+  if (!url) return '';
+  try {
+    const path = new URL(url, window.location.origin).pathname;
+    return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
+  } catch (e) {
+    return url;
+  }
+};
+
+const isItemActive = (itemUrl) => {
+  const currentPath = getPathname(window.location.href);
+  const itemPath = getPathname(itemUrl);
+  if (!itemPath) return false;
+  if (itemPath === '/') {
+    return currentPath === '/' || currentPath === '';
+  }
+  return currentPath === itemPath || currentPath.startsWith(itemPath + '/');
+};
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const items = window.ohmThemeData?.menuItems?.length ? window.ohmThemeData.menuItems : fallbackItems;
@@ -52,7 +72,16 @@ export default function Header() {
         </a>
         <div className="ohm-header-main">
           <nav className={`ohm-desktop-nav ${open ? 'is-open' : ''}`} aria-label="Primary navigation">
-            {items.map((item) => <a key={item.id} href={item.url || '#'} onClick={() => setOpen(false)}>{item.title}</a>)}
+            {items.map((item) => (
+              <a 
+                key={item.id} 
+                href={item.url || '#'} 
+                onClick={() => setOpen(false)}
+                className={isItemActive(item.url) ? 'is-active' : ''}
+              >
+                {item.title}
+              </a>
+            ))}
           </nav>
         </div>
         <button className="ohm-menu-toggle" type="button" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(true)}>
@@ -78,7 +107,17 @@ export default function Header() {
           <div className="ohm-drawer-explore">
             <p className="ohm-drawer-kicker">EXPLORE</p>
             <nav aria-label="Mobile primary navigation">
-              {items.map((item) => <a key={item.id} href={item.url || '#'} onClick={() => setOpen(false)}><span>{item.title}</span><ArrowUpRight size={16} /></a>)}
+              {items.map((item) => (
+                <a 
+                  key={item.id} 
+                  href={item.url || '#'} 
+                  onClick={() => setOpen(false)}
+                  className={isItemActive(item.url) ? 'is-active' : ''}
+                >
+                  <span>{item.title}</span>
+                  <ArrowUpRight size={16} />
+                </a>
+              ))}
             </nav>
           </div>
           <p className="ohm-drawer-hint">Tap outside or press Esc to close</p>

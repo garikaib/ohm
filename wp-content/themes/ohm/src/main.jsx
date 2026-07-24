@@ -16,7 +16,7 @@ function Home() {
 
   if (isSinglePost) return <SinglePostPage slug={slug} />;
   if (slug === 'blog') return <BlogPage />;
-  if (slug === 'services' || ['mechanical-engineering','electrical-engineering','civil-engineering','structural-engineering','project-management'].includes(slug)) return <ServicesPage slug={slug} />;
+  if (slug === 'services' || ['mechanical-engineering','electrical-engineering','civil-engineering','structural-engineering','project-management','bim-technology'].includes(slug)) return <ServicesPage slug={slug} />;
   if (['about','contact','team'].includes(slug)) return <CompanyPages slug={slug} />;
   return (
     <div className="ohm-home">

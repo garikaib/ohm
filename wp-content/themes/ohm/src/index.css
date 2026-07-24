@@ -680,6 +680,8 @@ button {
   background: #ff5a14;
   color: #fff;
   cursor: pointer;
+  z-index: 20;
+  pointer-events: auto;
   transition: background .2s ease, transform .2s ease;
 }
 .ohm-drawer-close:hover, .ohm-drawer-close:focus-visible {
@@ -1369,3 +1371,41 @@ button {
   .ohm-header-main, .ohm-menu-toggle { height: 64px; }
   .ohm-site-header { height: 109px; }
 }
+
+
+@media (min-width: 701px) {
+  /* Remove the utility-bar space once the primary row is fixed. */
+  .ohm-site-header.has-stuck-nav { height: 64px; }
+}
+
+
+/* The parent block theme adds a default top margin before main content. */
+.ohm-app,
+.wp-site-blocks > .ohm-app,
+.ohm-site-header + .ohm-app { margin-block-start: 0 !important; }
+
+
+/* Restore the desktop primary navigation and keep the menu action at the far right. */
+@media (min-width: 991px) {
+  .ohm-header-main { display: flex !important; flex: 1 1 auto; justify-content: center; align-items: center; min-width: 0; }
+  .ohm-desktop-nav { display: flex !important; align-items: center; justify-content: center; gap: 44px; }
+  .ohm-menu-toggle { margin-left: auto; }
+}
+
+/* The drawer must also work across tablet-sized mobile layouts. */
+@media (max-width: 990px) {
+  .ohm-mobile-backdrop { display: block; position: fixed; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: rgba(5, 12, 30, .62); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s ease; z-index: 80; }
+  .ohm-mobile-backdrop.is-open { opacity: 1; visibility: visible; }
+  .ohm-mobile-drawer { display: block; position: fixed; top: 0; right: 0; bottom: 0; width: min(88vw, 430px); overflow-y: auto; background: #091229; color: #fff; transform: translateX(102%); transition: transform .45s cubic-bezier(.22, .61, .36, 1); z-index: 90; box-shadow: -18px 0 50px rgba(0,0,0,.25); }
+  .ohm-mobile-drawer.is-open { transform: translateX(0); }
+  .ohm-drawer-close { position: absolute; top: 20px; right: 25px; display: grid; place-items: center; width: 70px; height: 70px; border: 0; background: #ff5a14; color: #fff; cursor: pointer; }
+}
+
+@keyframes ohm-logo-menu-pulse { 0% { transform: scale(1); } 45% { transform: scale(.94) rotate(-2deg); } 100% { transform: scale(1); } }
+.ohm-site-header.is-menu-open .ohm-brand-panel img { animation: ohm-logo-menu-pulse .45s ease both; }
+@media (prefers-reduced-motion: reduce) { .ohm-site-header.is-menu-open .ohm-brand-panel img { animation: none; } }
+
+
+.ohm-drawer-close { transition: background .2s ease, transform .35s cubic-bezier(.22,.61,.36,1); }
+.ohm-drawer-close:active { transform: rotate(90deg) scale(.88); background: #ff7134; }
+.ohm-mobile-drawer.is-closing { transform: translateX(102%); }

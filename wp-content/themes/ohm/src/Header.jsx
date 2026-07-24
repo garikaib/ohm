@@ -46,6 +46,8 @@ export default function Header() {
     return item;
   });
   const logoUrl = window.ohmThemeData?.logoUrl || '/wp-content/uploads/2026/07/ohm-core-engineering.webp';
+  const closeMenu = () => setOpen(false);
+
 
   useEffect(() => {
     const updateStickyState = () => setIsStuck(window.scrollY > 45);
@@ -56,7 +58,7 @@ export default function Header() {
 
   useEffect(() => {
     const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setOpen(false);
+      if (event.key === 'Escape') closeMenu();
     };
     document.addEventListener('keydown', closeOnEscape);
     document.body.classList.toggle('ohm-menu-open', open);
@@ -67,7 +69,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="ohm-site-header">
+    <header className={`ohm-site-header ${isStuck ? 'has-stuck-nav' : ''} ${open ? 'is-menu-open' : ''}`}>
       <div className="ohm-utility-bar">
         <div className="ohm-utility-contact">
           <a href="tel:+263000000000" aria-label="Phone"><Phone size={17} strokeWidth={1.7} /><span>+263 (0) 000 000 000</span></a>
@@ -101,9 +103,9 @@ export default function Header() {
           <Menu size={25} />
         </button>
       </div>
-      <button className={`ohm-mobile-backdrop ${open ? 'is-open' : ''}`} type="button" aria-label="Close menu" onClick={() => setOpen(false)} />
+      <button className={`ohm-mobile-backdrop ${open ? 'is-open' : ''}`} type="button" aria-label="Close menu" onClick={closeMenu} />
       <aside className={`ohm-mobile-drawer ${open ? 'is-open' : ''}`} aria-label="Mobile navigation" aria-hidden={!open}>
-        <button className="ohm-drawer-close" type="button" aria-label="Close menu" onClick={() => setOpen(false)}><X size={25} /></button>
+        <button className="ohm-drawer-close" type="button" aria-label="Close menu" onClick={(e) => { e.stopPropagation(); closeMenu(); }}><X size={25} /></button>
         <div className="ohm-drawer-content">
           <p className="ohm-drawer-kicker">OHM CORE ENGINEERING</p>
 
@@ -114,7 +116,7 @@ export default function Header() {
                 <a 
                   key={item.id} 
                   href={item.url || '#'} 
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenu}
                   className={isItemActive(item.url) ? 'is-active' : ''}
                 >
                   <span>{item.title}</span>

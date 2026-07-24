@@ -425,7 +425,7 @@ button {
 @media (min-width: 701px) {
   .ohm-site-header { height: 123px; }
   .ohm-header-row { height: 78px; align-items: flex-end; }
-  .ohm-brand-panel { height: 70px; margin-top: auto !important; margin-bottom: 0 !important; }
+  .ohm-brand-panel { height: 78px !important; margin-top: 0 !important; margin-bottom: 0 !important; }
   .ohm-header-main, .ohm-menu-toggle { height: 78px; }
 }
 

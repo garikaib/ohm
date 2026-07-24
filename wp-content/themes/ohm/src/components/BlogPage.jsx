@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Calendar, FolderOpen, Search, User } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Calendar, FolderOpen, Search, User } from 'lucide-react';
 
 export default function BlogPage() {
   const [posts, setPosts] = useState([]);
@@ -9,11 +9,13 @@ export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [activeSearch, setActiveSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   // Fetch posts based on filters
   useEffect(() => {
     setLoading(true);
-    let url = `/wp-json/wp/v2/posts?_embed&per_page=8`;
+    let url = `/wp-json/wp/v2/posts?_embed&per_page=5&page=${currentPage}`;
     if (selectedCategory) {
       url += `&categories=${selectedCategory}`;
     }
@@ -22,7 +24,11 @@ export default function BlogPage() {
     }
 
     fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        const pages = Number(res.headers.get('X-WP-TotalPages')) || 1;
+        setTotalPages(pages);
+        return res.json();
+      })
       .then((data) => {
         if (Array.isArray(data)) {
           setPosts(data);
@@ -36,7 +42,7 @@ export default function BlogPage() {
         setPosts([]);
         setLoading(false);
       });
-  }, [selectedCategory, activeSearch]);
+  }, [selectedCategory, activeSearch, currentPage]);
 
   // Fetch sidebar data on mount
   useEffect(() => {
@@ -60,6 +66,7 @@ export default function BlogPage() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    setCurrentPage(1);
     setActiveSearch(searchQuery);
   };
 
@@ -131,6 +138,7 @@ export default function BlogPage() {
               )}
             </div>
           ) : (
+            <>
             <div className="ohm-blog-posts-holder">
               {posts.map((post) => {
                 const dateObj = formatDate(post.date);
@@ -170,6 +178,16 @@ export default function BlogPage() {
                 );
               })}
             </div>
+            {totalPages > 1 && (
+              <nav className="ohm-blog-pagination" aria-label="Blog pagination">
+                <button type="button" disabled={currentPage === 1} onClick={() => setCurrentPage((page) => page - 1)} aria-label="Previous page"><ArrowLeft size={16} /></button>
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                  <button key={page} type="button" className={currentPage === page ? 'is-active' : ''} onClick={() => setCurrentPage(page)} aria-current={currentPage === page ? 'page' : undefined}>{page}</button>
+                ))}
+                <button type="button" disabled={currentPage === totalPages} onClick={() => setCurrentPage((page) => page + 1)} aria-label="Next page"><ArrowRight size={16} /></button>
+              </nav>
+            )}
+            </>
           )}
         </div>
 
@@ -202,7 +220,7 @@ export default function BlogPage() {
               <li>
                 <button
                   className={selectedCategory === null ? 'is-active' : ''}
-                  onClick={() => setSelectedCategory(null)}
+                  onClick={() => { setSelectedCategory(null); setCurrentPage(1); }}
                 >
                   All Categories
                 </button>
@@ -211,7 +229,7 @@ export default function BlogPage() {
                 <li key={cat.id}>
                   <button
                     className={selectedCategory === cat.id ? 'is-active' : ''}
-                    onClick={() => setSelectedCategory(cat.id)}
+                    onClick={() => { setSelectedCategory(cat.id); setCurrentPage(1); }}
                   >
                     {cat.name} <span>({cat.count})</span>
                   </button>

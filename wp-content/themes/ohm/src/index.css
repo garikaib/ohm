@@ -425,7 +425,7 @@ button {
 @media (min-width: 701px) {
   .ohm-site-header { height: 123px; }
   .ohm-header-row { height: 78px; align-items: flex-end; }
-  .ohm-brand-panel { height: 70px; align-self: flex-end !important; }
+  .ohm-brand-panel { height: 70px; margin-top: auto !important; margin-bottom: 0 !important; }
   .ohm-header-main, .ohm-menu-toggle { height: 78px; }
 }
 
@@ -1217,3 +1217,19 @@ button {
 .ohm-sidebar-follow a:hover, .ohm-sidebar-follow a:focus-visible { background: var(--ohm-orange); transform: translateY(-3px); }
 @media (max-width: 1000px) { .ohm-blog-grid-layout { width: min(100% - 48px, 760px); } .ohm-blog-sidebar-col { position: static; } }
 @media (max-width: 700px) { .ohm-blog-grid-layout { width: min(100% - 42px, 600px); padding: 58px 0 72px; } }
+
+
+/* Blog pagination and motion */
+.ohm-blog-card { animation: ohm-blog-card-in .55s both; }
+.ohm-blog-card:nth-child(2) { animation-delay: .08s; }
+.ohm-blog-card:nth-child(3) { animation-delay: .16s; }
+.ohm-blog-card:nth-child(4) { animation-delay: .24s; }
+.ohm-blog-card:nth-child(5) { animation-delay: .32s; }
+.ohm-blog-card:nth-child(6) { animation-delay: .40s; }
+.ohm-blog-card-image a { display: block; height: 100%; }
+.ohm-blog-pagination { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 54px; }
+.ohm-blog-pagination button { display: grid; place-items: center; min-width: 38px; height: 38px; padding: 0 10px; border: 1px solid #e0e5eb; background: #fff; color: var(--ohm-navy); font-size: 13px; cursor: pointer; transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease; }
+.ohm-blog-pagination button:hover:not(:disabled), .ohm-blog-pagination button:focus-visible, .ohm-blog-pagination button.is-active { border-color: var(--ohm-orange); background: var(--ohm-orange); color: #fff; transform: translateY(-2px); }
+.ohm-blog-pagination button:disabled { cursor: not-allowed; opacity: .35; }
+@keyframes ohm-blog-card-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .ohm-blog-card { animation: none; } }

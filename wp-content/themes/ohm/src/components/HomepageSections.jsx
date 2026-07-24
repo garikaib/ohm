@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Building2, ClipboardCheck, Cpu, Droplets, HardHat, Lightbulb, Settings2 } from 'lucide-react';
+import { ArrowRight, Building2, ClipboardCheck, Cpu, Droplets, HardHat, Lightbulb, Settings2, ShieldCheck, Target, Award, CheckCircle2 } from 'lucide-react';
 
 const services = [
   { slug: 'mechanical-engineering', icon: Settings2, title: 'Mechanical Engineering', text: 'HVAC&R, plumbing, fire protection, boiler plants, fuel systems, and lifts for complex modern buildings.' },
@@ -9,19 +9,156 @@ const services = [
   { slug: 'project-management', icon: ClipboardCheck, title: 'Project Management', text: 'Feasibility, procurement, contracts, supervision, commissioning, and handover coordination.' },
   { slug: 'bim-technology', icon: Cpu, title: 'BIM Technology', text: 'Coordinated digital models and LOD 600 information for precise project delivery.' },
 ];
+
 const sectors = [
-  { title: 'Commercial', text: 'Coordinated building services, electrical systems, structures, and BIM for workplaces and public-facing facilities.' },
-  { title: 'Industrial', text: 'Robust utilities, process support, power, storage structures, and infrastructure for demanding operations.' },
-  { title: 'Healthcare', text: 'Safe, reliable building systems and compliant infrastructure designed around continuity and occupant wellbeing.' },
-  { title: 'Residential', text: 'Practical mechanical, electrical, civil, and structural solutions for single- and multi-storey developments.' },
+  { title: 'Commercial', text: 'Coordinated building services, electrical systems, structures, and BIM for workplaces, retail, and public-facing facilities.' },
+  { title: 'Industrial', text: 'Robust utilities, process support, backup power, storage structures, and bulk civil infrastructure for demanding operations.' },
+  { title: 'Healthcare', text: 'Safe, resilient building systems and compliant infrastructure designed around continuity, cleanroom safety, and occupant wellbeing.' },
+  { title: 'Residential', text: 'Practical mechanical, electrical, civil, and structural engineering for single- and multi-storey developments.' },
+];
+
+const pillars = [
+  { icon: ShieldCheck, title: 'Safe & Code-Compliant', text: 'Every design strictly meets international building standards, local Zimbabwean codes, and statutory safety protocols.' },
+  { icon: Target, title: 'Energy-Efficient & Low Carbon', text: 'Infrastructure engineered to reduce long-term operational footprint, lower utility costs, and empower local communities.' },
+  { icon: Award, title: 'On Time & Within Budget', text: 'Transparent project management controls that keep scope, procurement, and site execution strictly aligned.' }
 ];
 
 export default function HomepageSections() {
-  return <main className="ohm-content">
-    <section className="ohm-intro ohm-section"><div className="ohm-container ohm-intro-grid"><div><p className="ohm-kicker">INTEGRATED ENGINEERING SERVICES GROUP</p><h2>Engineering with purpose.<br /><span>Building for tomorrow.</span></h2></div><div className="ohm-intro-copy"><p>OHM Core Engineering is a dynamic multidisciplinary consulting firm delivering mechanical, electrical, civil, structural, BIM, and project-management solutions.</p><p>From project inception through final handover, we keep decisions precise, systems compliant, and delivery focused on safety, quality, time, and cost.</p><a className="ohm-text-link" href="/about">Discover OHM <ArrowRight size={17} /></a></div></div></section>
-    <section id="services" className="ohm-services ohm-section"><div className="ohm-container"><div className="ohm-section-heading"><div><p className="ohm-kicker">WHAT WE DO</p><h2><a href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>Engineering services</a></h2></div><p>One coordinated team for the systems, structures, infrastructure, and decisions that make projects work.</p></div><div className="ohm-service-grid">{services.map(({ slug, icon: Icon, title, text }) => <article className="ohm-service-card" key={title}><div className="ohm-service-icon"><Icon size={31} strokeWidth={1.35} /></div><p className="ohm-card-kicker">EXPLORE THE CAPABILITY</p><h3><a href={`/${slug}/`} style={{ color: 'inherit', textDecoration: 'none' }}>{title}</a></h3><p>{text}</p><a href={`/${slug}/`} aria-label={`Explore ${title} capability`}><ArrowRight size={18} /></a></article>)}</div></div></section>
-    <section id="about" className="ohm-feature ohm-section"><div className="ohm-feature-panel"><div className="ohm-feature-mark"><HardHat size={48} strokeWidth={1.1} /></div><p className="ohm-kicker">FROM CONCEPT TO HANDOVER</p><h2>Precision at every stage of the project.</h2><p>We combine practical engineering expertise with advanced BIM coordination to deliver safe, energy-efficient, code-compliant designs that remain on schedule and within budget.</p><a className="ohm-button ohm-button-orange" href="/contact">Start a conversation</a></div><div className="ohm-feature-side"><div className="ohm-feature-stat"><strong>MEP + CIVIL</strong><span>Integrated building and infrastructure systems</span></div><div className="ohm-feature-stat"><strong>STRUCTURES</strong><span>Resilient designs for buildings, storage, bridges, and utilities</span></div><div className="ohm-feature-stat"><strong>LOD 600</strong><span>Advanced BIM coordination for precise project delivery</span></div></div></section>
-    <section className="ohm-sectors ohm-section"><div className="ohm-container"><div className="ohm-section-heading"><div><p className="ohm-kicker">WHERE WE WORK</p><h2>Engineering for the environments you operate in.</h2></div><p>We adapt our multidisciplinary expertise to the performance, compliance, and operational needs of each project.</p></div><div className="ohm-sector-list">{sectors.map((sector, index) => <div className="ohm-sector-item" key={sector.title}><span>0{index + 1}</span><strong>{sector.title}</strong><p>{sector.text}</p><ArrowRight size={20} /></div>)}</div></div></section>
-    <section className="ohm-promise"><div className="ohm-container ohm-promise-inner"><div><p className="ohm-kicker">OUR PROMISE</p><h2>Designing dreams,<br />building realities.</h2></div><div><p>We are results-driven and committed to delivering safe, energy-efficient, and code-compliant designs that remain on time and within budget.</p><a className="ohm-button ohm-button-navy" href="/contact">Talk to OHM</a></div></div></section>
-  </main>;
+  return (
+    <main className="ohm-content">
+      {/* Intro Section */}
+      <section className="ohm-intro ohm-section">
+        <div className="ohm-container ohm-intro-grid">
+          <div>
+            <p className="ohm-kicker">INTEGRATED ENGINEERING SERVICES GROUP</p>
+            <h2>Engineering with purpose.<br /><span>Building for tomorrow.</span></h2>
+          </div>
+          <div className="ohm-intro-copy">
+            <p>OHM Core Engineering is a dynamic multidisciplinary consulting firm delivering mechanical, electrical, civil, structural, BIM, and project-management solutions from inception through final handover.</p>
+            <p>We combine practical engineering judgment with precise digital coordination to keep decisions clear, systems compliant, and projects focused on safety, quality, time, and cost.</p>
+            <a className="ohm-text-link" href="/about">Discover OHM Core Engineering <ArrowRight size={17} /></a>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="ohm-services ohm-section">
+        <div className="ohm-container">
+          <div className="ohm-section-heading">
+            <div>
+              <p className="ohm-kicker">WHAT WE DO</p>
+              <h2><a href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>Engineering services</a></h2>
+            </div>
+            <p>One coordinated team for the building systems, structures, infrastructure, and controls that make projects work.</p>
+          </div>
+          <div className="ohm-service-grid">
+            {services.map(({ slug, icon: Icon, title, text }) => (
+              <article className="ohm-service-card" key={title}>
+                <div className="ohm-service-icon"><Icon size={31} strokeWidth={1.35} /></div>
+                <p className="ohm-card-kicker">EXPLORE THE CAPABILITY</p>
+                <h3><a href={`/${slug}/`} style={{ color: 'inherit', textDecoration: 'none' }}>{title}</a></h3>
+                <p>{text}</p>
+                <a href={`/${slug}/`} aria-label={`Explore ${title} capability`} className="ohm-card-arrow"><ArrowRight size={18} /></a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Panel */}
+      <section id="about" className="ohm-feature ohm-section">
+        <div className="ohm-feature-panel">
+          <div className="ohm-feature-mark"><HardHat size={48} strokeWidth={1.1} /></div>
+          <p className="ohm-kicker">FROM CONCEPT TO HANDOVER</p>
+          <h2>Precision at every stage of the project.</h2>
+          <p>We combine hands-on technical expertise with advanced LOD 600 BIM coordination to deliver safe, energy-efficient, code-compliant designs that remain strictly on schedule and within budget.</p>
+          <a className="ohm-button ohm-button-orange" href="/contact">Start a conversation <ArrowRight size={17} /></a>
+        </div>
+        <div className="ohm-feature-side">
+          <div className="ohm-feature-stat">
+            <strong>MEP + CIVIL</strong>
+            <span>Integrated building systems and site infrastructure design</span>
+          </div>
+          <div className="ohm-feature-stat">
+            <strong>STRUCTURES</strong>
+            <span>Resilient frameworks for buildings, storage, bridges, and utilities</span>
+          </div>
+          <div className="ohm-feature-stat">
+            <strong>LOD 600</strong>
+            <span>Advanced BIM spatial coordination & clash-free digital models</span>
+          </div>
+          <div className="ohm-feature-stat">
+            <strong>PROJECT CONTROLS</strong>
+            <span>Feasibility, procurement, contractor adjudication & handover</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Engineering Pillars Section */}
+      <section className="ohm-pillars-section ohm-section">
+        <div className="ohm-container">
+          <div className="ohm-section-heading">
+            <div>
+              <p className="ohm-kicker">OUR COMMITMENT</p>
+              <h2>The pillars of OHM engineering.</h2>
+            </div>
+            <p>Results-driven consulting designed around technical rigor, safety, and client accountability.</p>
+          </div>
+          <div className="ohm-pillars-grid">
+            {pillars.map((pillar) => {
+              const PillarIcon = pillar.icon;
+              return (
+                <div className="ohm-pillar-card" key={pillar.title}>
+                  <div className="ohm-pillar-icon"><PillarIcon size={32} strokeWidth={1.25} /></div>
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.text}</p>
+                  <span className="ohm-pillar-check"><CheckCircle2 size={16} /> Verified Quality</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Sectors Section */}
+      <section className="ohm-sectors ohm-section">
+        <div className="ohm-container">
+          <div className="ohm-section-heading">
+            <div>
+              <p className="ohm-kicker">WHERE WE WORK</p>
+              <h2>Engineering for the environments you operate in.</h2>
+            </div>
+            <p>We adapt our multidisciplinary expertise to the performance, compliance, and operational demands of each sector.</p>
+          </div>
+          <div className="ohm-sector-list">
+            {sectors.map((sector, index) => (
+              <div className="ohm-sector-item" key={sector.title}>
+                <span>0{index + 1}</span>
+                <strong>{sector.title}</strong>
+                <p>{sector.text}</p>
+                <a href="/contact" aria-label={`Contact us regarding ${sector.title} sector`}><ArrowRight size={20} /></a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Brand Promise Banner */}
+      <section className="ohm-promise">
+        <div className="ohm-container ohm-promise-inner">
+          <div>
+            <p className="ohm-kicker">OUR BRAND PROMISE</p>
+            <h2>Designing dreams,<br />building realities.</h2>
+          </div>
+          <div>
+            <p>We are results-driven and dedicated to delivering safe, energy-efficient, and code-compliant designs that consistently remain on time and within budget.</p>
+            <div className="ohm-promise-actions">
+              <a className="ohm-button ohm-button-navy" href="/contact">Talk to OHM <ArrowRight size={17} /></a>
+              <a className="ohm-button ohm-button-orange" href="/services">View All Services</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }

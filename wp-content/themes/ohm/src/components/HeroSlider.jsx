@@ -104,7 +104,7 @@ export default function HeroSlider() {
               <div className="ohm-hero-eyebrow">{slide.eyebrow}</div>
               <h1>{formatTitle(slide.title)}</h1>
               <p>
-                Multidisciplinary engineering solutions designed for safe, efficient, and dependable project delivery.
+                {slide.body || 'Multidisciplinary engineering solutions designed for safe, efficient, and dependable project delivery.'}
               </p>
               <div className="ohm-hero-actions">
                 <a className="ohm-button ohm-button-orange" href="/services">Read More</a>

@@ -224,18 +224,21 @@ add_action(
 						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-build', 'png' ),
 						'eyebrow' => 'INTEGRATED ENGINEERING SERVICES',
 						'title'   => 'ENGINEERING BETTER TOMORROWS',
+						'body'    => 'Multidisciplinary engineering solutions designed for safe, efficient, and dependable project delivery.',
 					),
 					array(
 						'image'   => ohm_get_attachment_url_by_slug( 'hero-schedule' ),
 						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-schedule', 'png' ),
-						'eyebrow' => 'INTEGRATED ENGINEERING SERVICES',
+						'eyebrow' => 'FROM CONCEPT TO HANDOVER',
 						'title'   => 'BUILT FOR PERFORMANCE',
+						'body'    => 'We bring mechanical, electrical, civil, structural, BIM, and project-management expertise together under one team.',
 					),
 					array(
 						'image'   => ohm_get_attachment_url_by_slug( 'hero-foundations' ),
 						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-foundations', 'png' ),
-						'eyebrow' => 'INTEGRATED ENGINEERING SERVICES',
+						'eyebrow' => 'SAFE. EFFICIENT. COMPLIANT.',
 						'title'   => 'DESIGNING DREAMS',
+						'body'    => 'Energy-efficient, code-compliant designs that keep projects on schedule and within budget.',
 					),
 				),
 			)

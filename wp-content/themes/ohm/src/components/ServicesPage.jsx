@@ -1,41 +1,307 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, Check, ClipboardCheck, Cpu, Droplets, Lightbulb, Settings2, Building2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ClipboardCheck, Cpu, Droplets, Lightbulb, Settings2, Building2, ShieldCheck, Compass, Layers, FileCheck2 } from 'lucide-react';
 
 const services = [
-  { slug: 'mechanical-engineering', title: 'Mechanical Engineering', short: 'Reliable building systems engineered for comfort, safety, and efficiency.', intro: 'We design robust mechanical systems for complex modern buildings and specialised facilities.', icon: Settings2, points: ['HVAC&R and thermal control systems', 'Hot and cold water plumbing, sanitary drainage, and greywater recycling', 'Fire protection, suppression, sprinklers, standpipes, and fire pumps', 'Reverse osmosis, boiler plants, fuel systems, and LP gas systems', 'Passenger and goods lifts, escalators, and vertical transportation'] },
-  { slug: 'electrical-engineering', title: 'Electrical Engineering', short: 'Safe, resilient electrical and ELV systems for modern facilities.', intro: 'Our electrical team delivers efficient power, lighting, protection, and communications systems with safety and continuity at the centre.', icon: Lightbulb, points: ['Low-voltage power distribution', 'Standby generators, ATS, and UPS systems', 'Interior, exterior, LED, and emergency egress lighting', 'Earthing, bonding, surge, and lightning protection', 'Fire alarms, structured cabling, CCTV, access control, and ELV security'] },
-  { slug: 'civil-engineering', title: 'Civil Engineering', short: 'Water, transport, drainage, and infrastructure for sustainable communities.', intro: 'We plan and engineer the civil systems that make rural, urban, and industrial developments reliable and resilient.', icon: Droplets, points: ['Water reticulation, dams, and irrigation design', 'Rural and urban infrastructure development', 'Water and sewer treatment plants', 'Pump stations, pumping mains, and hydraulic infrastructure', 'Geotechnical, drainage, environmental, groundwater, and road design'] },
-  { slug: 'structural-engineering', title: 'Structural Engineering', short: 'Resilient structures for buildings, storage, utilities, and transport.', intro: 'We engineer durable structural frameworks and assessments with a focus on safety, load capacity, longevity, and code compliance.', icon: Building2, points: ['Steel structures, transmission grids, cellular towers, and mast frames', 'Storage structures including silos and tanks', 'Liquid-retaining structures, reservoirs, and basins', 'Road and rail bridges', 'Site investigations, structural assessments, and building frames'] },
-  { slug: 'project-management', title: 'Project Management', short: 'Clear controls from initiation and feasibility through final handover.', intro: 'We coordinate scope, decisions, people, and site activity so projects move forward with confidence.', icon: ClipboardCheck, points: ['Project initiation and feasibility studies', 'Scope, time, cost, quality, and risk management', 'Procurement strategy and tender documentation', 'Contractor adjudication and contract administration', 'Site supervision, progress monitoring, commissioning, snagging, and handover'] },
-  { slug: 'bim-technology', title: 'BIM Technology', short: 'Coordinated digital models and LOD 600 information for precise project delivery.', intro: 'We deploy advanced Building Information Modeling (BIM) to coordinate multidisciplinary designs, reduce site clashes, and deliver asset-ready data.', icon: Cpu, points: ['3D multidisciplinary design coordination and spatial clash detection', 'LOD 100 through LOD 600 digital model development', '4D construction scheduling and 5D cost estimation integration', 'BIM execution plans (BEP) and information management standards', 'As-built digital twin modeling for facility operations and maintenance'] },
+  { 
+    slug: 'mechanical-engineering', 
+    title: 'Mechanical Engineering', 
+    short: 'Reliable building systems engineered for comfort, safety, and operational efficiency.', 
+    intro: 'We design robust mechanical systems for complex modern buildings, industrial plants, and specialised commercial facilities.', 
+    icon: Settings2, 
+    points: [
+      'Heating, ventilation, air conditioning, and refrigeration (HVAC&R)',
+      'Hot and cold water plumbing, sanitary drainage, and greywater recycling',
+      'Fire protection, suppression, sprinklers, standpipes, and gaseous systems',
+      'Reverse osmosis, water treatment, and boiler plants',
+      'Fuel service station infrastructure and LP gas systems',
+      'Passenger and goods lifts, escalators, and vertical transportation'
+    ] 
+  },
+  { 
+    slug: 'electrical-engineering', 
+    title: 'Electrical Engineering', 
+    short: 'Safe, resilient electrical and ELV systems designed for continuous operation.', 
+    intro: 'Our electrical team delivers efficient power, lighting, surge protection, and communications systems with safety and operational continuity at the core.', 
+    icon: Lightbulb, 
+    points: [
+      'Low-voltage (LV) power distribution & switchgear design',
+      'Standby generators, automatic transfer switches (ATS), and UPS systems',
+      'Interior, exterior, architectural LED, and emergency egress lighting',
+      'Earthing, bonding, surge protection, and lightning protection grids',
+      'Fire alarm, smoke detection, and voice evacuation systems',
+      'Structured cabling, CCTV, biometric access control, and integrated ELV security'
+    ] 
+  },
+  { 
+    slug: 'civil-engineering', 
+    title: 'Civil Engineering', 
+    short: 'Water, transport, drainage, and infrastructure for sustainable developments.', 
+    intro: 'We plan and engineer civil systems that make rural, urban, and industrial developments reliable, resilient, and environmentally compliant.', 
+    icon: Droplets, 
+    points: [
+      'Water reticulation networks, dams, reservoirs, and irrigation design',
+      'Rural and urban bulk infrastructure development',
+      'Water and sewage treatment plants',
+      'Pump stations, rising mains, and hydraulic infrastructure',
+      'Geotechnical investigations, drainage, and groundwater condition surveys',
+      'Road design, access corridors, and transport infrastructure'
+    ] 
+  },
+  { 
+    slug: 'structural-engineering', 
+    title: 'Structural Engineering', 
+    short: 'Resilient frameworks for buildings, storage, utilities, and transport grids.', 
+    intro: 'We engineer durable structural frameworks and assessments with strict focus on load capacity, longevity, safety, and code compliance.', 
+    icon: Building2, 
+    points: [
+      'Steel structures, transmission grids, cellular towers, and mast frames',
+      'Storage structures including industrial silos and bulk storage tanks',
+      'Liquid-retaining structures, concrete reservoirs, and settling basins',
+      'Road and railway bridge structures',
+      'Site investigations, structural integrity assessments, and retrofits',
+      'Single- and multi-storey commercial, industrial, and residential frames'
+    ] 
+  },
+  { 
+    slug: 'project-management', 
+    title: 'Project Management', 
+    short: 'Rigorous control from initiation and feasibility through final handover.', 
+    intro: 'We coordinate scope, timelines, procurement, contracts, and site execution so projects move forward with transparency and confidence.', 
+    icon: ClipboardCheck, 
+    points: [
+      'Project initiation, risk appraisal, and feasibility studies',
+      'Scope, schedule, cost, quality, and environmental management',
+      'Procurement strategy and comprehensive tender documentation',
+      'Contractor adjudication and contract administration (FIDIC / JBCC)',
+      'On-site supervision, progress monitoring, and quality assurance',
+      'Commissioning, snagging management, and final handover coordination'
+    ] 
+  },
+  { 
+    slug: 'bim-technology', 
+    title: 'BIM Technology', 
+    short: 'Coordinated digital models and LOD 600 information for precise delivery.', 
+    intro: 'We deploy advanced Building Information Modeling (BIM) to coordinate multidisciplinary designs, eliminate site clashes, and deliver asset-ready data.', 
+    icon: Cpu, 
+    points: [
+      '3D multidisciplinary design coordination and spatial clash detection',
+      'LOD 100 through LOD 600 digital model development',
+      '4D construction scheduling and 5D cost estimation integration',
+      'BIM execution plans (BEP) and information management standards',
+      'As-built digital twin modeling for facility operations and asset management',
+      'Code compliance verification and thermal/energy simulation support'
+    ] 
+  },
+];
+
+const deliverySteps = [
+  { step: '01', title: 'Feasibility & Strategy', desc: 'Initial site appraisal, regulatory code review, risk evaluation, and multidisciplinary conceptual planning.', icon: Compass },
+  { step: '02', title: 'Multidisciplinary Design & BIM', desc: 'Integrated MEP, civil, and structural design using LOD 600 spatial clash detection and energy simulation.', icon: Layers },
+  { step: '03', title: 'Procurement & Contract Controls', desc: 'Detailed tender documentation, contractor adjudication, and transparent contract administration.', icon: FileCheck2 },
+  { step: '04', title: 'Supervision & Handover', desc: 'On-site quality monitoring, commissioning, snag resolution, and final asset-ready handover documentation.', icon: ShieldCheck }
 ];
 
 function ServiceCard({ service, image }) {
   const Icon = service.icon;
-  return <article className="ohm-service-page-card">
-    <div className="ohm-service-page-icon">{image ? <img src={image} alt="" width="72" height="64" /> : <Icon size={34} strokeWidth={1.2} />}</div>
-    <p className="ohm-kicker">EXPLORE THE CAPABILITY</p>
-    <h2>{service.title}</h2>
-    <p>{service.short}</p>
-    <a className="ohm-text-link" href={`/${service.slug}/`}>View service <ArrowRight size={17} /></a>
-  </article>;
+  return (
+    <article className="ohm-service-page-card">
+      <div className="ohm-service-card-header">
+        <div className="ohm-service-page-icon">
+          {image ? <img src={image} alt={service.title} width="72" height="64" /> : <Icon size={36} strokeWidth={1.25} />}
+        </div>
+        <span className="ohm-capability-tag">CORE DISCIPLINE</span>
+      </div>
+      <p className="ohm-kicker">EXPLORE THE CAPABILITY</p>
+      <h2><a href={`/${service.slug}/`} style={{ color: 'inherit', textDecoration: 'none' }}>{service.title}</a></h2>
+      <p className="ohm-service-summary">{service.short}</p>
+      <ul className="ohm-service-highlights">
+        {service.points.slice(0, 4).map((pt) => (
+          <li key={pt}><Check size={15} /><span>{pt}</span></li>
+        ))}
+      </ul>
+      <a className="ohm-text-link" href={`/${service.slug}/`}>View full capability details <ArrowRight size={17} /></a>
+    </article>
+  );
 }
 
 export default function ServicesPage({ slug = 'services' }) {
   const images = window.ohmThemeData?.serviceImages || {};
   const selected = services.find((service) => service.slug === slug);
+
   if (selected) {
     const Icon = selected.icon;
-    return <main className="ohm-services-page ohm-service-detail">
-      <section className="ohm-service-detail-hero"><div className="ohm-container"><a className="ohm-back-link" href="/services/"><ArrowLeft size={17} /> All services</a><p className="ohm-kicker">OHM CORE ENGINEERING / SERVICE</p><h1>{selected.title}</h1><p className="ohm-service-detail-lede">{selected.intro}</p></div></section>
-      <section className="ohm-service-detail-body ohm-container"><div className="ohm-detail-icon"><Icon size={52} strokeWidth={1.1} /></div><div><p className="ohm-kicker">CAPABILITY OVERVIEW</p><h2>Designed for dependable project delivery.</h2><p className="ohm-detail-copy">{selected.short} Our work is coordinated with the wider project team to meet cost, time, quality, safety, and compliance goals.</p><ul className="ohm-service-points">{selected.points.map((point) => <li key={point}><Check size={17} />{point}</li>)}</ul></div></section>
-      <section className="ohm-service-next"><div className="ohm-container"><p className="ohm-kicker">CONTINUE EXPLORING</p><div className="ohm-service-next-grid">{services.filter((service) => service.slug !== selected.slug).slice(0, 2).map((service) => <a key={service.slug} href={`/${service.slug}/`}><span>{service.title}</span><ArrowRight size={20} /></a>)}</div></div></section>
-    </main>;
+    return (
+      <main className="ohm-services-page ohm-service-detail">
+        <section className="ohm-service-detail-hero">
+          <div className="ohm-container">
+            <a className="ohm-back-link" href="/services/"><ArrowLeft size={17} /> All engineering services</a>
+            <p className="ohm-kicker">OHM CORE ENGINEERING / DISCIPLINE</p>
+            <h1>{selected.title}</h1>
+            <p className="ohm-service-detail-lede">{selected.intro}</p>
+          </div>
+        </section>
+
+        <section className="ohm-service-detail-body ohm-container">
+          <div className="ohm-detail-sidebar">
+            <div className="ohm-detail-icon"><Icon size={56} strokeWidth={1.1} /></div>
+            <div className="ohm-detail-badge">
+              <strong>100% Code Compliant</strong>
+              <span>Designed to international & local Zimbabwean engineering standards.</span>
+            </div>
+          </div>
+          <div>
+            <p className="ohm-kicker">CAPABILITY OVERVIEW</p>
+            <h2>Engineered for safety, longevity, and performance.</h2>
+            <p className="ohm-detail-copy">
+              {selected.short} Our engineering team operates as an integrated unit, coordinating calculations, drawings, specifications, and BIM models to ensure complete alignment across project phases.
+            </p>
+            
+            <h3 className="ohm-detail-subhead">Key Deliverables & Technical Scope</h3>
+            <ul className="ohm-service-points">
+              {selected.points.map((point) => (
+                <li key={point}><Check size={18} /><span>{point}</span></li>
+              ))}
+            </ul>
+
+            <div className="ohm-detail-consult-box">
+              <h3>Need technical consultation for {selected.title}?</h3>
+              <p>Our senior engineers are ready to review your project brief, feasibility requirements, or design specifications.</p>
+              <a className="ohm-button ohm-button-orange" href="/contact">Request technical proposal <ArrowRight size={17} /></a>
+            </div>
+          </div>
+        </section>
+
+        <section className="ohm-service-next">
+          <div className="ohm-container">
+            <p className="ohm-kicker">CONTINUE EXPLORING OTHER DISCIPLINES</p>
+            <div className="ohm-service-next-grid">
+              {services.filter((s) => s.slug !== selected.slug).slice(0, 2).map((s) => (
+                <a key={s.slug} href={`/${s.slug}/`}>
+                  <div>
+                    <span className="ohm-next-kicker">ENGINEERING CAPABILITY</span>
+                    <strong>{s.title}</strong>
+                  </div>
+                  <ArrowRight size={22} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+    );
   }
-  return <main className="ohm-services-page">
-    <section className="ohm-services-hero" style={{ backgroundImage: images.cover ? `url(${images.cover})` : undefined }}><div className="ohm-services-hero-overlay" /><div className="ohm-container"><p className="ohm-kicker">INTEGRATED ENGINEERING SERVICES</p><h1>Engineering that<br /><span>makes projects work.</span></h1><p>From building systems and infrastructure to structures, BIM, and project controls, OHM brings the right disciplines together from inception to handover.</p></div></section>
-    <section className="ohm-services-intro ohm-container"><div><p className="ohm-kicker">OUR CAPABILITIES</p><h2>One connected view of the project.</h2></div><p>OHM Core Engineering is a multidisciplinary consulting firm focused on Mechanical, Electrical, Civil, and Structural Engineering, supported by expert Project Management and BIM technology.</p></section>
-    <section className="ohm-services-page-grid ohm-container">{services.map((service) => <ServiceCard key={service.slug} service={service} image={images[service.slug]} />)}</section>
-    <section className="ohm-services-cta"><div className="ohm-container"><p className="ohm-kicker">FROM CONCEPT TO HANDOVER</p><h2>Let&apos;s coordinate the next stage of your project.</h2><a className="ohm-button ohm-button-orange" href="/contact">Talk to OHM <ArrowRight size={17} /></a></div></section>
-  </main>;
+
+  return (
+    <main className="ohm-services-page">
+      {/* Hero Section */}
+      <section className="ohm-services-hero" style={{ backgroundImage: images.cover ? `url(${images.cover})` : undefined }}>
+        <div className="ohm-services-hero-overlay" />
+        <div className="ohm-container">
+          <p className="ohm-kicker">INTEGRATED ENGINEERING SERVICES GROUP</p>
+          <h1>Engineering that<br /><span>makes projects work.</span></h1>
+          <p>From building systems and site civil works to heavy structures, BIM modeling, and project management controls, OHM delivers multidisciplinary precision from inception to final handover.</p>
+          
+          <div className="ohm-services-stats-bar">
+            <div className="ohm-services-stat-item"><strong>6</strong><span>Core Engineering Disciplines</span></div>
+            <div className="ohm-services-stat-item"><strong>LOD 600</strong><span>Advanced BIM Modeling Standard</span></div>
+            <div className="ohm-services-stat-item"><strong>Full Cycle</strong><span>Inception through Final Handover</span></div>
+            <div className="ohm-services-stat-item"><strong>100%</strong><span>Code & Safety Compliance</span></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro Section */}
+      <section className="ohm-services-intro ohm-container">
+        <div>
+          <p className="ohm-kicker">OUR CAPABILITIES</p>
+          <h2>One connected engineering partner.</h2>
+        </div>
+        <div>
+          <p>OHM Core Engineering is a dynamic multidisciplinary consulting firm delivering Mechanical, Electrical, Civil, and Structural Engineering, integrated with expert Project Management and advanced BIM coordination.</p>
+          <p className="ohm-intro-subtext">By coordinating all disciplines under one group, we eliminate design gaps, resolve structural and MEP clashes early, and keep projects strictly on schedule and within budget.</p>
+        </div>
+      </section>
+
+      {/* Capability Grid */}
+      <section className="ohm-services-page-grid ohm-container">
+        {services.map((service) => (
+          <ServiceCard key={service.slug} service={service} image={images[service.slug]} />
+        ))}
+      </section>
+
+      {/* Engineering Delivery Process Section */}
+      <section className="ohm-services-process">
+        <div className="ohm-container">
+          <div className="ohm-section-heading">
+            <div>
+              <p className="ohm-kicker">HOW WE DELIVER</p>
+              <h2>The OHM Engineering Framework.</h2>
+            </div>
+            <p>A systematic, transparent approach that connects feasibility, multidisciplinary design, procurement, and site execution.</p>
+          </div>
+          <div className="ohm-process-grid">
+            {deliverySteps.map((step) => {
+              const StepIcon = step.icon;
+              return (
+                <article key={step.step} className="ohm-process-card">
+                  <div className="ohm-process-step-header">
+                    <span className="ohm-process-number">{step.step}</span>
+                    <StepIcon size={28} strokeWidth={1.25} />
+                  </div>
+                  <h3>{step.title}</h3>
+                  <p>{step.desc}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Quality Commitment Section */}
+      <section className="ohm-services-quality">
+        <div className="ohm-container ohm-quality-grid">
+          <div>
+            <p className="ohm-kicker">QUALITY & RESPONSIBILITY</p>
+            <h2>Built around performance, safety, and sustainability.</h2>
+          </div>
+          <div className="ohm-quality-list">
+            <div className="ohm-quality-item">
+              <ShieldCheck size={26} />
+              <div>
+                <h4>Strict Code Compliance</h4>
+                <p>All designs strictly comply with international building codes, national regulations, and local Zimbabwean statutory requirements.</p>
+              </div>
+            </div>
+            <div className="ohm-quality-item">
+              <Compass size={26} />
+              <div>
+                <h4>Energy Efficiency & Sustainability</h4>
+                <p>We design low-carbon, energy-efficient infrastructure and HVAC systems that reduce long-term operational footprint.</p>
+              </div>
+            </div>
+            <div className="ohm-quality-item">
+              <Layers size={26} />
+              <div>
+                <h4>LOD 600 BIM Coordination</h4>
+                <p>Digital twin models detect spatial clashes prior to fabrication, saving costs and preventing site delays.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="ohm-services-cta">
+        <div className="ohm-container">
+          <p className="ohm-kicker">FROM CONCEPT TO HANDOVER</p>
+          <h2>Let&apos;s coordinate the next stage of your project.</h2>
+          <p className="ohm-cta-desc">Whether you are at feasibility, detailed design, procurement, or site construction, our senior engineers are ready to assist.</p>
+          <div className="ohm-cta-actions">
+            <a className="ohm-button ohm-button-orange" href="/contact">Talk to OHM <ArrowRight size={17} /></a>
+            <a className="ohm-button ohm-button-navy" href="mailto:engineering@ohmcore.co.zw">Email Engineering Team</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }

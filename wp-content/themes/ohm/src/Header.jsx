@@ -38,6 +38,7 @@ const isItemActive = (itemUrl) => {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [isStuck, setIsStuck] = useState(false);
   const items = (window.ohmThemeData?.menuItems?.length ? window.ohmThemeData.menuItems : fallbackItems).map(item => {
     if ((item.url === '#' || item.url === '') && item.title?.toLowerCase() === 'home') {
       return { ...item, url: '/' };
@@ -45,6 +46,13 @@ export default function Header() {
     return item;
   });
   const logoUrl = window.ohmThemeData?.logoUrl || '/wp-content/uploads/2026/07/ohm-core-engineering.webp';
+
+  useEffect(() => {
+    const updateStickyState = () => setIsStuck(window.scrollY > 45);
+    updateStickyState();
+    window.addEventListener('scroll', updateStickyState, { passive: true });
+    return () => window.removeEventListener('scroll', updateStickyState);
+  }, []);
 
   useEffect(() => {
     const closeOnEscape = (event) => {
@@ -71,7 +79,7 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="ohm-header-row">
+      <div className={`ohm-header-row ${isStuck ? 'is-stuck' : ''}`}>
         <a className="ohm-brand-panel" href="/" aria-label="OHM Core Engineering home">
           <img src={logoUrl} alt="OHM Core Engineering" width="172" height="49" />
         </a>
@@ -98,17 +106,7 @@ export default function Header() {
         <button className="ohm-drawer-close" type="button" aria-label="Close menu" onClick={() => setOpen(false)}><X size={25} /></button>
         <div className="ohm-drawer-content">
           <p className="ohm-drawer-kicker">OHM CORE ENGINEERING</p>
-          <h2>Quick contact info</h2>
-          <p className="ohm-drawer-intro">Integrated engineering solutions designed for performance, safety, sustainability, and dependable delivery.</p>
-          <div className="ohm-drawer-contact">
-            <span><Clock3 size={18} /><span>Mon - Fri 8:00 - 17:00</span></span>
-            <span><MapPin size={18} /><span>Harare, Zimbabwe</span></span>
-            <a href="tel:+263000000000"><Phone size={18} /><span>+263 (0) 000 000 000</span></a>
-            <a href="mailto:info@ohmcore.co.zw"><Mail size={18} /><span>info@ohmcore.co.zw</span></a>
-          </div>
-          <div className="ohm-drawer-socials" aria-label="Social media">
-            {socials.map((social) => <a key={social.label} href="#" aria-label={social.label}>{social.mark}</a>)}
-          </div>
+
           <div className="ohm-drawer-explore">
             <p className="ohm-drawer-kicker">EXPLORE</p>
             <nav aria-label="Mobile primary navigation">
@@ -124,6 +122,18 @@ export default function Header() {
                 </a>
               ))}
             </nav>
+          </div>
+
+          <h2>Quick contact info</h2>
+          <p className="ohm-drawer-intro">Integrated engineering solutions designed for performance, safety, sustainability, and dependable delivery.</p>
+          <div className="ohm-drawer-contact">
+            <span><Clock3 size={18} /><span>Mon - Fri 8:00 - 17:00</span></span>
+            <span><MapPin size={18} /><span>Harare, Zimbabwe</span></span>
+            <a href="tel:+263000000000"><Phone size={18} /><span>+263 (0) 000 000 000</span></a>
+            <a href="mailto:info@ohmcore.co.zw"><Mail size={18} /><span>info@ohmcore.co.zw</span></a>
+          </div>
+          <div className="ohm-drawer-socials" aria-label="Social media">
+            {socials.map((social) => <a key={social.label} href="#" aria-label={social.label}>{social.mark}</a>)}
           </div>
           <p className="ohm-drawer-hint">Tap outside or press Esc to close</p>
         </div>

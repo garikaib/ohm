@@ -71,10 +71,7 @@ button {
 }
 
 .ohm-header-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: none !important;
 }
 
 .ohm-desktop-nav {
@@ -98,7 +95,7 @@ button {
 .ohm-menu-toggle {
   width: 70px;
   flex: 0 0 70px;
-  display: grid;
+  display: grid !important;
   place-items: center;
   border: 0;
   color: #fff;
@@ -428,8 +425,7 @@ button {
   .ohm-site-header { height: 115px; position: sticky; top: -45px; box-shadow: 0 8px 24px rgba(0, 22, 89, 0.06); }
   .ohm-header-row { height: 70px; align-items: flex-end; }
   .ohm-brand-panel { height: 70px !important; margin-top: 0 !important; margin-bottom: 0 !important; }
-  .ohm-header-main, .ohm-menu-toggle { height: 70px; }
-  .ohm-menu-toggle { display: none !important; }
+  .ohm-menu-toggle { height: 70px; }
 }
 
 .ohm-hero-outline { position: absolute; z-index: 1; top: 29%; left: max(10vw, calc((100vw - 1300px) / 2 + 0px)); width: 791px; max-width: 58vw; height: auto; opacity: .55; pointer-events: none; }
@@ -633,32 +629,158 @@ button {
 
 /* Animated mobile navigation drawer */
 .ohm-menu-open { overflow: hidden; }
-.ohm-mobile-backdrop { display: none; }
-.ohm-mobile-drawer { display: none; }
-@media (max-width: 990px) {
-  .ohm-header-main { display: none !important; }
-  .ohm-mobile-backdrop { display: block; position: fixed; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: rgba(5, 12, 30, .62); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s ease; z-index: 80; }
-  .ohm-mobile-backdrop.is-open { opacity: 1; visibility: visible; }
-  .ohm-mobile-drawer { display: block; position: fixed; top: 0; right: 0; bottom: 0; width: min(88vw, 430px); overflow-y: auto; background: #091229; color: #fff; transform: translateX(102%); transition: transform .45s cubic-bezier(.22, .61, .36, 1); z-index: 90; box-shadow: -18px 0 50px rgba(0,0,0,.25); }
-  .ohm-mobile-drawer.is-open { transform: translateX(0); }
-  .ohm-drawer-close { position: absolute; top: 20px; right: 25px; display: grid; place-items: center; width: 70px; height: 70px; border: 0; background: #ff5a14; color: #fff; cursor: pointer; transition: background .2s ease, transform .2s ease; }
-  .ohm-drawer-close:hover, .ohm-drawer-close:focus-visible { background: #ff7134; transform: rotate(4deg); }
-  .ohm-drawer-content { padding: 112px 31px 34px; animation: ohm-drawer-content-in .55s .08s both; }
-  .ohm-drawer-kicker { margin: 0 0 19px; color: #ff5a14; font-size: 11px; font-weight: 700; letter-spacing: .16em; }
-  .ohm-drawer-content h2 { margin: 0 0 15px; color: #fff; font-size: 24px; line-height: 1.15; }
-  .ohm-drawer-intro { max-width: 315px; margin: 0 0 34px; color: #aebbd4; font-size: 16px; line-height: 1.58; }
-  .ohm-drawer-contact { display: grid; gap: 22px; }
-  .ohm-drawer-contact > * { display: grid; grid-template-columns: 21px 1fr; gap: 11px; align-items: start; color: #b7c2d7; font-size: 15px; line-height: 1.55; text-decoration: none; }
-  .ohm-drawer-contact svg { margin-top: 2px; color: #fff; }
-  .ohm-drawer-socials { display: flex; margin: 35px 0 39px; border: 1px solid rgba(174,187,212,.22); }
-  .ohm-drawer-socials a { display: grid; place-items: center; width: 58px; height: 57px; color: #fff; border-right: 1px solid rgba(174,187,212,.22); font-weight: 700; text-decoration: none; transition: color .2s ease, background .2s ease; }
-  .ohm-drawer-socials a:last-child { border-right: 0; }
-  .ohm-drawer-socials a:hover, .ohm-drawer-socials a:focus-visible { background: #ff5a14; color: #fff; }
-  .ohm-drawer-explore { border-top: 1px solid rgba(174,187,212,.16); padding-top: 34px; }
-  .ohm-drawer-explore nav { display: grid; }
-  .ohm-drawer-explore nav a { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; color: #fff; font-size: 19px; text-decoration: none; transition: color .2s ease, padding-left .2s ease; }
-  .ohm-drawer-explore nav a.is-active, .ohm-drawer-explore nav a:hover, .ohm-drawer-explore nav a:focus-visible { padding-left: 5px; color: #ff5a14; }
-  .ohm-drawer-hint { margin: 30px 0 0; color: #71819e; font-size: 11px; letter-spacing: .05em; }
+
+.ohm-mobile-backdrop {
+  display: block;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: rgba(5, 12, 30, .62);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s ease, visibility .35s ease;
+  z-index: 99998;
+}
+.ohm-mobile-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ohm-mobile-drawer {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(88vw, 430px);
+  overflow-y: auto;
+  background: #091229;
+  color: #fff;
+  transform: translateX(102%);
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1);
+  z-index: 99999;
+  box-shadow: -18px 0 50px rgba(0,0,0,.25);
+}
+.ohm-mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.ohm-drawer-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border: 0;
+  background: #ff5a14;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+.ohm-drawer-close:hover, .ohm-drawer-close:focus-visible {
+  background: #ff7134;
+  transform: rotate(4deg);
+}
+
+.ohm-drawer-content {
+  padding: 112px 31px 34px;
+}
+.ohm-mobile-drawer.is-open .ohm-drawer-content {
+  animation: ohm-drawer-content-in .55s .08s both;
+}
+
+.ohm-drawer-kicker {
+  margin: 0 0 19px;
+  color: #ff5a14;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+.ohm-drawer-content h2 {
+  margin: 0 0 15px;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1.15;
+}
+.ohm-drawer-intro {
+  max-width: 315px;
+  margin: 0 0 34px;
+  color: #aebbd4;
+  font-size: 16px;
+  line-height: 1.58;
+}
+.ohm-drawer-contact {
+  display: grid;
+  gap: 22px;
+}
+.ohm-drawer-contact > * {
+  display: grid;
+  grid-template-columns: 21px 1fr;
+  gap: 11px;
+  align-items: start;
+  color: #b7c2d7;
+  font-size: 15px;
+  line-height: 1.55;
+  text-decoration: none;
+}
+.ohm-drawer-contact svg {
+  margin-top: 2px;
+  color: #fff;
+}
+.ohm-drawer-socials {
+  display: flex;
+  margin: 35px 0 39px;
+  border: 1px solid rgba(174,187,212,.22);
+}
+.ohm-drawer-socials a {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 57px;
+  color: #fff;
+  border-right: 1px solid rgba(174,187,212,.22);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .2s ease, background .2s ease;
+}
+.ohm-drawer-socials a:last-child {
+  border-right: 0;
+}
+.ohm-drawer-socials a:hover, .ohm-drawer-socials a:focus-visible {
+  background: #ff5a14;
+  color: #fff;
+}
+.ohm-drawer-explore {
+  border-top: 1px solid rgba(174,187,212,.16);
+  padding-top: 34px;
+}
+.ohm-drawer-explore nav {
+  display: grid;
+}
+.ohm-drawer-explore nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: #fff;
+  font-size: 19px;
+  text-decoration: none;
+  transition: color .2s ease, padding-left .2s ease;
+}
+.ohm-drawer-explore nav a.is-active, .ohm-drawer-explore nav a:hover, .ohm-drawer-explore nav a:focus-visible {
+  padding-left: 5px;
+  color: #ff5a14;
+}
+.ohm-drawer-hint {
+  margin: 30px 0 0;
+  color: #71819e;
+  font-size: 11px;
+  letter-spacing: .05em;
 }
 @keyframes ohm-drawer-content-in { from { opacity: 0; transform: translateX(22px); } to { opacity: 1; transform: translateX(0); } }
 @media (prefers-reduced-motion: reduce) { .ohm-mobile-drawer, .ohm-mobile-backdrop, .ohm-drawer-content { transition: none; animation: none; } }
@@ -1236,3 +1358,14 @@ button {
 .ohm-blog-pagination button:disabled { cursor: not-allowed; opacity: .35; }
 @keyframes ohm-blog-card-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .ohm-blog-card { animation: none; } }
+
+
+/* Compact, complete sticky primary navigation */
+@media (min-width: 701px) {
+  .ohm-header-row { position: relative; top: auto; height: 64px; align-items: center; box-shadow: 0 5px 18px rgba(0, 22, 89, 0.06); }
+  .ohm-header-row.is-stuck { position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 70; }
+  .ohm-brand-panel { height: 64px !important; }
+  .ohm-brand-panel img { width: 155px; height: auto; }
+  .ohm-header-main, .ohm-menu-toggle { height: 64px; }
+  .ohm-site-header { height: 109px; }
+}

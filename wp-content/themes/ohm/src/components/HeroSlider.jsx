@@ -75,7 +75,7 @@ export default function HeroSlider() {
         const isActive = active === index;
         return (
           <div 
-            key={slide.image} 
+            key={slide.id || slide.image || index} 
             className={`ohm-hero-slide ${isActive ? 'is-active' : ''}`}
             role="group"
             aria-roledescription="slide"
@@ -135,7 +135,7 @@ export default function HeroSlider() {
       <div className="ohm-hero-dots" role="tablist" aria-label="Slides select">
         {slides.map((slide, index) => (
           <button 
-            key={slide.image} 
+            key={slide.id || slide.image || index} 
             role="tab"
             aria-selected={active === index}
             aria-label={`Go to slide ${index + 1}`}

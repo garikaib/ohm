@@ -12,31 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Check if the Vite dev server is running.
  */
 function ohm_is_vite_dev() {
-	static $is_dev = null;
-	if ( null !== $is_dev ) {
-		return $is_dev;
-	}
-
-	if ( defined( 'OHM_VITE_DEV' ) ) {
-		$is_dev = OHM_VITE_DEV;
-		return $is_dev;
-	}
-
-	// Inside DDEV/Docker, the host is host.docker.internal. On local machine, it's 127.0.0.1.
-	$host = 'host.docker.internal';
-	if ( ! gethostbyname( $host ) || gethostbyname( $host ) === $host ) {
-		$host = '127.0.0.1';
-	}
-
-	$connection = @fsockopen( $host, 5173, $errno, $errstr, 0.05 );
-	if ( $connection ) {
-		fclose( $connection );
-		$is_dev = true;
-	} else {
-		$is_dev = false;
-	}
-
-	return $is_dev;
+	return false;
 }
 
 /**
@@ -225,8 +201,11 @@ add_action(
                     'contact' => ohm_get_attachment_url_by_slug( 'ohm-contact' ),
                     'team' => ohm_get_attachment_url_by_slug( 'ohm-team' ),
                 ),
-				'logoUrl'    => ohm_get_attachment_url_by_slug( 'ohm-core-engineering', 'webp' ),
-				'slides'     => array(
+				'currentHeaderImage' => is_singular() ? get_post_meta( get_queried_object_id(), '_ohm_header_image', true ) : '',
+				'pageHeaderImages'   => class_exists( 'Ohm_Page_Headers_Module' ) ? Ohm_Page_Headers_Module::get_global_headers() : array(),
+				'socials'            => class_exists( 'Ohm_Socials_Module' ) ? Ohm_Socials_Module::get_socials() : array(),
+				'logoUrl'            => ohm_get_attachment_url_by_slug( 'ohm-core-engineering', 'webp' ),
+				'slides'     => class_exists( 'Ohm_Slider_Module' ) ? Ohm_Slider_Module::get_slides() : array(
 					array(
 						'image'   => ohm_get_attachment_url_by_slug( 'hero-build' ),
 						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-build', 'png' ),

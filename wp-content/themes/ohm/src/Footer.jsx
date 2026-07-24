@@ -13,107 +13,119 @@ const fallbackItems = [
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const menuItems = window.ohmThemeData?.menuItems?.length ? window.ohmThemeData.menuItems : fallbackItems;
+  const contacts = window.ohmThemeData?.contacts || {
+    primary_phone: '+263 78 301 7009',
+    secondary_phone: '+263 71 569 6201',
+    sales_email: 'sales@ohmcore.co.zw',
+    engineering_email: 'engineering@ohmcore.co.zw',
+    short_address: '8 Favershame Rd, Malbereign, Harare',
+    operating_hours: 'Mon - Fri: 8:00 - 17:00',
+  };
+
+  const cleanPhone = (phone) => (phone || '').replace(/\s+/g, '');
 
   return (
     <footer id="contact" className="ohm-footer">
-      <div className="ohm-footer-promo">
-        <div className="ohm-container ohm-footer-promo-inner">
-          <div>
-            <p className="ohm-kicker">OHM CORE ENGINEERING</p>
+      {/* Banner / CTA line */}
+      <div className="ohm-footer-banner">
+        <div className="ohm-container ohm-footer-banner-inner">
+          <div className="ohm-footer-banner-title">
+            <span className="ohm-kicker-dot"></span>
+            <span className="ohm-kicker-text">OHM CORE ENGINEERING</span>
             <h2>Let&apos;s build what matters.</h2>
           </div>
-          <a className="ohm-button ohm-button-orange" href="/contact">
-            Contact us <ArrowUpRight size={17} />
+          <a className="ohm-button ohm-button-orange ohm-footer-cta-btn" href="/contact">
+            <span>Contact us</span>
+            <ArrowUpRight size={16} />
           </a>
         </div>
       </div>
 
-      <div className="ohm-container ohm-footer-grid">
-        {/* Col 1: Brand & Overview */}
-        <div className="ohm-footer-brand">
-          <h3>OHM CORE ENGINEERING</h3>
-          <p>
-            Integrated mechanical, electrical, civil, structural, BIM, and project-management solutions from inception through final handover.
-          </p>
-          <div className="ohm-footer-brand-badge">
-            <span>FULL LIFECYCLE CONSULTING</span>
+      {/* Main Compact Content Row */}
+      <div className="ohm-footer-main">
+        <div className="ohm-container ohm-footer-main-grid">
+          
+          {/* Brand block */}
+          <div className="ohm-footer-brand">
+            <div className="ohm-footer-logo-title">
+              <h3>OHM CORE ENGINEERING</h3>
+              <span className="ohm-badge-pill">FULL LIFECYCLE</span>
+            </div>
+            <p>
+              Integrated mechanical, electrical, civil, structural, BIM, and project-management solutions.
+            </p>
           </div>
-        </div>
 
-        {/* Col 2: Quick Navigation */}
-        <div className="ohm-footer-col">
-          <h4>Explore</h4>
-          <nav className="ohm-footer-links">
-            {menuItems.map((item) => (
-              <a key={item.id} href={item.url || '#'}>
-                <span>{item.title}</span>
-                <ArrowUpRight size={13} />
-              </a>
-            ))}
-          </nav>
-        </div>
+          {/* Quick Links */}
+          <div className="ohm-footer-nav-col">
+            <h4 className="ohm-footer-heading">Explore</h4>
+            <nav className="ohm-footer-nav-links">
+              {menuItems.map((item) => (
+                <a key={item.id} href={item.url || '#'} className="ohm-footer-nav-item">
+                  <span>{item.title}</span>
+                  <ArrowUpRight size={12} className="ohm-nav-arrow" />
+                </a>
+              ))}
+            </nav>
+          </div>
 
-        {/* Col 3: Direct Lines */}
-        <div className="ohm-footer-col">
-          <h4>Direct Lines</h4>
-          <div className="ohm-footer-contact-group">
-            <div className="ohm-footer-contact-item">
-              <Phone size={15} />
-              <div>
-                <small>PRIMARY PHONE</small>
-                <a href="tel:+263783017009">+263 78 301 7009</a>
-              </div>
-            </div>
-            <div className="ohm-footer-contact-item">
-              <Phone size={15} />
-              <div>
-                <small>SECONDARY PHONE</small>
-                <a href="tel:+263715696201">+263 71 569 6201</a>
-              </div>
-            </div>
-            <div className="ohm-footer-contact-item">
-              <Mail size={15} />
-              <div>
-                <small>SALES ENQUIRIES</small>
-                <a href="mailto:sales@ohmcore.co.zw">sales@ohmcore.co.zw</a>
-              </div>
-            </div>
-            <div className="ohm-footer-contact-item">
-              <Mail size={15} />
-              <div>
-                <small>ENGINEERING TEAM</small>
-                <a href="mailto:engineering@ohmcore.co.zw">engineering@ohmcore.co.zw</a>
-              </div>
+          {/* Contact Details Grid */}
+          <div className="ohm-footer-contact-col">
+            <h4 className="ohm-footer-heading">Direct Contact</h4>
+            <div className="ohm-footer-contact-grid">
+              {Array.isArray(contacts.phones) && contacts.phones.map((phoneNum, idx) => (
+                <a key={`phone-${idx}`} href={`tel:${cleanPhone(phoneNum)}`} className="ohm-contact-card">
+                  <Phone size={14} />
+                  <div>
+                    <small>{idx === 0 ? 'PRIMARY PHONE' : `PHONE #${idx + 1}`}</small>
+                    <span>{phoneNum}</span>
+                  </div>
+                </a>
+              ))}
+              {Array.isArray(contacts.emails) && contacts.emails.map((emailAddr, idx) => (
+                <a key={`email-${idx}`} href={`mailto:${emailAddr}`} className="ohm-contact-card">
+                  <Mail size={14} />
+                  <div>
+                    <small>{idx === 0 ? 'SALES ENQUIRIES' : `EMAIL #${idx + 1}`}</small>
+                    <span>{emailAddr}</span>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
-        </div>
 
-        {/* Col 4: Location & Hours */}
-        <div className="ohm-footer-col">
-          <h4>Office & Hours</h4>
-          <div className="ohm-footer-contact-group">
-            <div className="ohm-footer-contact-item">
-              <MapPin size={15} />
-              <div>
-                <small>HEAD OFFICE</small>
-                <span>8 Favershame Road,<br />Malbereign, Harare, Zimbabwe</span>
+          {/* Location & Hours */}
+          <div className="ohm-footer-office-col">
+            <h4 className="ohm-footer-heading">Office & Hours</h4>
+            <div className="ohm-footer-info-group">
+              <div className="ohm-info-card">
+                <MapPin size={14} />
+                <div>
+                  <small>HEAD OFFICE</small>
+                  <span>{contacts.short_address}</span>
+                </div>
               </div>
-            </div>
-            <div className="ohm-footer-contact-item">
-              <Clock3 size={15} />
-              <div>
-                <small>OPERATING HOURS</small>
-                <span>Mon - Fri: 8:00 - 17:00</span>
+              <div className="ohm-info-card">
+                <Clock3 size={14} />
+                <div>
+                  <small>OPERATING HOURS</small>
+                  <span>{contacts.operating_hours}</span>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
-      <div className="ohm-container ohm-footer-bottom">
-        <span>© {currentYear} OHM Core Engineering. All rights reserved.</span>
-        <span>Designing dreams, building realities.</span>
+      {/* Bottom Bar */}
+      <div className="ohm-footer-bottom">
+        <div className="ohm-container ohm-footer-bottom-inner">
+          <span>© {currentYear} OHM Core Engineering. All rights reserved.</span>
+          <span className="ohm-footer-tagline">Designing dreams, building realities.</span>
+        </div>
       </div>
     </footer>
   );
 }
+

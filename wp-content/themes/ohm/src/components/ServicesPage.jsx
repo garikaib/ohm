@@ -5,109 +5,109 @@ const services = [
   { 
     slug: 'mechanical-engineering', 
     title: 'Mechanical Engineering', 
-    short: 'Reliable building systems engineered for comfort, safety, and operational efficiency.', 
-    intro: 'We design robust mechanical systems for complex modern buildings, industrial plants, and specialised commercial facilities.', 
+    short: 'Smart, energy-efficient building systems engineered for occupant comfort, climate resilience, and safety.', 
+    intro: 'We design high-performance mechanical systems for commercial buildings, healthcare facilities, and industrial plants across Zimbabwe and the region.', 
     icon: Settings2, 
     points: [
-      'Heating, ventilation, air conditioning, and refrigeration (HVAC&R)',
-      'Hot and cold water plumbing, sanitary drainage, and greywater recycling',
-      'Fire protection, suppression, sprinklers, standpipes, and gaseous systems',
-      'Reverse osmosis, water treatment, and boiler plants',
+      'HVAC&R design focused on indoor air quality, thermal comfort, and energy savings',
+      'Plumbing, sanitary drainage, water treatment, and greywater recycling',
+      'Fire protection, automatic sprinklers, standpipes, and gas suppression systems',
+      'Industrial steam, reverse osmosis, LP gas, and boiler plant design',
       'Fuel service station infrastructure and LP gas systems',
-      'Passenger and goods lifts, escalators, and vertical transportation'
+      'Vertical transportation: elevators, goods lifts, and escalators'
     ] 
   },
   { 
     slug: 'electrical-engineering', 
     title: 'Electrical Engineering', 
-    short: 'Safe, resilient electrical and ELV systems designed for continuous operation.', 
-    intro: 'Our electrical team delivers efficient power, lighting, surge protection, and communications systems with safety and operational continuity at the core.', 
+    short: 'Safe, resilient electrical grids and backup power systems designed for continuous operation.', 
+    intro: 'Our electrical team plans robust power distribution, standby energy generation, lighting, and security systems with total reliability at the core.', 
     icon: Lightbulb, 
     points: [
-      'Low-voltage (LV) power distribution & switchgear design',
-      'Standby generators, automatic transfer switches (ATS), and UPS systems',
-      'Interior, exterior, architectural LED, and emergency egress lighting',
+      'Low-voltage (LV) power distribution, switchgear design, and power factor correction',
+      'Standby diesel generators, ATS panel controls, and solar hybrid backup systems',
+      'Architectural interior, exterior, LED street, and emergency egress lighting',
       'Earthing, bonding, surge protection, and lightning protection grids',
-      'Fire alarm, smoke detection, and voice evacuation systems',
-      'Structured cabling, CCTV, biometric access control, and integrated ELV security'
+      'Addressable fire alarms, smoke detection, and voice evacuation systems',
+      'Structured IP cabling, CCTV surveillance, biometric access control, and ELV security'
     ] 
   },
   { 
     slug: 'civil-engineering', 
     title: 'Civil Engineering', 
-    short: 'Water, transport, drainage, and infrastructure for sustainable developments.', 
-    intro: 'We plan and engineer civil systems that make rural, urban, and industrial developments reliable, resilient, and environmentally compliant.', 
+    short: 'Sustainable water networks, bulk infrastructure, roads, and drainage built for lasting impact.', 
+    intro: 'We plan and engineer civil infrastructure that makes urban, rural, and industrial developments resilient, connected, and environmentally sound.', 
     icon: Droplets, 
     points: [
-      'Water reticulation networks, dams, reservoirs, and irrigation design',
-      'Rural and urban bulk infrastructure development',
-      'Water and sewage treatment plants',
-      'Pump stations, rising mains, and hydraulic infrastructure',
-      'Geotechnical investigations, drainage, and groundwater condition surveys',
-      'Road design, access corridors, and transport infrastructure'
+      'Water reticulation networks, dams, reservoirs, and agricultural irrigation design',
+      'Bulk municipal and rural water & sewer infrastructure',
+      'Water purification and sewage treatment plant design',
+      'High-capacity pump stations, rising mains, and hydraulic modeling',
+      'Geotechnical surveys, site drainage, and groundwater management',
+      'Road design, pavement design, access corridors, and transport networks'
     ] 
   },
   { 
     slug: 'structural-engineering', 
     title: 'Structural Engineering', 
-    short: 'Resilient frameworks for buildings, storage, utilities, and transport grids.', 
-    intro: 'We engineer durable structural frameworks and assessments with strict focus on load capacity, longevity, safety, and code compliance.', 
+    short: 'High-strength frameworks for commercial towers, industrial silos, storage tanks, and bridges.', 
+    intro: 'We engineer durable structural systems with strict focus on load capacity, structural integrity, longevity, and Zimbabwean code compliance.', 
     icon: Building2, 
     points: [
-      'Steel structures, transmission grids, cellular towers, and mast frames',
-      'Storage structures including industrial silos and bulk storage tanks',
-      'Liquid-retaining structures, concrete reservoirs, and settling basins',
-      'Road and railway bridge structures',
-      'Site investigations, structural integrity assessments, and retrofits',
-      'Single- and multi-storey commercial, industrial, and residential frames'
+      'Structural steel design, transmission grids, cellular towers, and mast structures',
+      'Bulk storage structures including industrial silos and agricultural storage tanks',
+      'Liquid-retaining reinforced concrete reservoirs and settling basins',
+      'Highway and railway bridge structural design',
+      'Structural integrity audits, load testing, condition surveys, and retrofits',
+      'Multi-storey commercial, industrial, and residential building frameworks'
     ] 
   },
   { 
     slug: 'project-management', 
     title: 'Project Management', 
-    short: 'Rigorous control from initiation and feasibility through final handover.', 
-    intro: 'We coordinate scope, timelines, procurement, contracts, and site execution so projects move forward with transparency and confidence.', 
+    short: 'Disciplined control over scope, budget, contracts (FIDIC/JBCC), and site supervision.', 
+    intro: 'We guide your project from early feasibility through procurement, contractor management, and site supervision—keeping timelines clear and budgets protected.', 
     icon: ClipboardCheck, 
     points: [
-      'Project initiation, risk appraisal, and feasibility studies',
-      'Scope, schedule, cost, quality, and environmental management',
-      'Procurement strategy and comprehensive tender documentation',
-      'Contractor adjudication and contract administration (FIDIC / JBCC)',
-      'On-site supervision, progress monitoring, and quality assurance',
-      'Commissioning, snagging management, and final handover coordination'
+      'Project initiation, risk appraisal, and technical feasibility studies',
+      'Scope, schedule, cost, quality, and environmental risk controls',
+      'Procurement strategy, bill of quantities (BOQ), and tender documentation',
+      'Contractor adjudication and contract administration (FIDIC / JBCC / NEC)',
+      'On-site quality supervision, progress tracking, and clerk of works',
+      'Commissioning, snag resolution, and final asset handover'
     ] 
   },
   { 
     slug: 'bim-technology', 
-    title: 'BIM Technology', 
-    short: 'Coordinated digital models and LOD 600 information for precise delivery.', 
-    intro: 'We deploy advanced Building Information Modeling (BIM) to coordinate multidisciplinary designs, eliminate site clashes, and deliver asset-ready data.', 
+    title: 'BIM & Digital Twins', 
+    short: 'LOD 600 spatial coordination and 3D digital twin models that eliminate site clashes.', 
+    intro: 'We deploy advanced Building Information Modeling (BIM) to coordinate all engineering disciplines in 3D—eliminating site rework before fabrication starts.', 
     icon: Cpu, 
     points: [
-      '3D multidisciplinary design coordination and spatial clash detection',
+      '3D multidisciplinary spatial clash detection and resolution',
       'LOD 100 through LOD 600 digital model development',
-      '4D construction scheduling and 5D cost estimation integration',
-      'BIM execution plans (BEP) and information management standards',
-      'As-built digital twin modeling for facility operations and asset management',
-      'Code compliance verification and thermal/energy simulation support'
+      '4D construction scheduling and 5D cost integration',
+      'BIM Execution Plans (BEP) and information management standards',
+      'As-built digital twin modeling for facility management',
+      'Code compliance verification and thermal/energy simulation'
     ] 
   },
 ];
 
 const serviceProfiles = {
-  'mechanical-engineering': { focus: 'Comfort, safety, and reliable building performance.', positioning: 'Mechanical systems that work quietly, efficiently, and safely.', body: 'From HVAC&R and water services to fire protection, boiler plants, and vertical transportation, we coordinate the systems that make buildings usable and resilient.', outcomes: ['Comfortable, healthy internal environments', 'Efficient water, energy, and plant operation', 'Coordinated fire and life-safety systems'], stages: ['Concept and load studies', 'Detailed system design', 'Tender and construction support'] },
-  'electrical-engineering': { focus: 'Power continuity, safety, and intelligent building services.', positioning: 'Electrical infrastructure designed for confidence under demand.', body: 'We plan power distribution, standby generation, lighting, protection, and ELV systems as one coordinated network—supporting safe operation from first energisation through everyday use.', outcomes: ['Resilient power and backup strategies', 'Clear, efficient lighting and emergency systems', 'Connected security and communications infrastructure'], stages: ['Demand and resilience assessment', 'Distribution and systems design', 'Testing, commissioning, and handover'] },
-  'civil-engineering': { focus: 'Infrastructure that connects places and supports communities.', positioning: 'Water, movement, and drainage engineered for the long term.', body: 'Our civil engineering work joins site conditions, water resources, transport, drainage, and environmental requirements into infrastructure that is practical to build and dependable to operate.', outcomes: ['Reliable water and wastewater networks', 'Resilient roads, drainage, and access corridors', 'Infrastructure aligned with site and environmental conditions'], stages: ['Investigations and feasibility', 'Infrastructure planning and design', 'Construction oversight and completion'] },
-  'structural-engineering': { focus: 'Strength, durability, and confidence in the built frame.', positioning: 'Structures resolved around load, use, and longevity.', body: 'We design and assess structural systems for buildings, industrial facilities, storage, utilities, and transport infrastructure—balancing safety, material efficiency, constructability, and future performance.', outcomes: ['Clear load paths and robust structural systems', 'Durable steel and concrete solutions', 'Practical assessments, strengthening, and retrofit advice'], stages: ['Site and condition assessment', 'Analysis, design, and documentation', 'Construction review and certification support'] },
-  'project-management': { focus: 'Decisions, controls, and delivery from brief to handover.', positioning: 'A clearer route from project intent to built reality.', body: 'We bring scope, programme, cost, procurement, contracts, quality, and site execution into one transparent management framework so the project team can make informed decisions early.', outcomes: ['Visible risks, responsibilities, and decisions', 'Controlled procurement and contract administration', 'Orderly commissioning, snagging, and handover'], stages: ['Initiation and feasibility', 'Procurement and delivery controls', 'Supervision and close-out'] },
-  'bim-technology': { focus: 'Better coordination through better information.', positioning: 'BIM that turns design coordination into delivery confidence.', body: 'We use coordinated digital models and information standards to identify clashes early, support programme and cost decisions, and produce asset-ready information for operations after handover.', outcomes: ['Fewer multidisciplinary clashes and site surprises', 'Structured LOD 100–600 information', 'Digital twins that remain useful after completion'], stages: ['Information requirements and BEP', 'Model coordination and design reviews', 'As-built handover and asset information'] }
+  'mechanical-engineering': { focus: 'Occupant comfort, indoor air quality, and low operating costs.', positioning: 'Mechanical systems designed to run quietly, efficiently, and reliably.', body: 'From HVAC climate controls and clean water systems to fire suppression, boiler plants, and elevators, we coordinate the mechanical backbone that makes your building safe and comfortable.', outcomes: ['Healthy internal air quality and climate control', 'Significantly lower energy and water bills', 'Fully compliant life-safety and fire protection systems'], stages: ['Feasibility & heat load analysis', 'Detailed MEP system design', 'Tender & construction management'] },
+  'electrical-engineering': { focus: 'Power continuity, energy efficiency, and intelligent security.', positioning: 'Electrical networks engineered for complete confidence under demand.', body: 'We plan main power distribution, backup generators, solar integration, lighting, and security as one seamless network—keeping your operations running without interruption.', outcomes: ['Uninterrupted backup power & generator strategies', 'Energy-efficient LED lighting & emergency systems', 'Connected CCTV, access control, and fire alarms'], stages: ['Power demand & load assessment', 'Distribution & switchgear design', 'Supervision, testing & commissioning'] },
+  'civil-engineering': { focus: 'Infrastructure that connects communities and protects water resources.', positioning: 'Water, drainage, and transport engineered for long-term endurance.', body: 'Our civil engineering team combines environmental data, site conditions, water resources, and transport requirements into practical infrastructure that is cost-effective to construct and reliable to operate.', outcomes: ['Dependable bulk water reticulation & sewer networks', 'Resilient storm drainage and road access corridors', 'Environmentally sound water treatment facilities'], stages: ['Site surveys & geotechnical testing', 'Infrastructure design & modeling', 'Construction oversight & handover'] },
+  'structural-engineering': { focus: 'Structural strength, material efficiency, and lasting integrity.', positioning: 'Frameworks resolved around safety, load demands, and constructability.', body: 'We design structural systems for commercial towers, industrial facilities, storage tanks, and transport infrastructure—balancing safety, structural efficiency, and long-term durability.', outcomes: ['Clear load paths and robust structural integrity', 'Optimized steel and reinforced concrete designs', 'Independent structural audits and retrofit solutions'], stages: ['Structural appraisal & load analysis', 'Detailed structural calculations & CAD/BIM', 'Site inspections & structural certification'] },
+  'project-management': { focus: 'Clear decisions, budget protection, and smooth delivery.', positioning: 'A direct, transparent path from project brief to built reality.', body: 'We bring scope, timelines, procurement, contracts (FIDIC/JBCC), and site supervision into one transparent framework so you can make informed decisions with total confidence.', outcomes: ['Transparent risk management & cost controls', 'Fair contractor adjudication & contract management', 'Orderly commissioning, snagging, and final handover'], stages: ['Initiation & feasibility appraisal', 'Procurement & contract administration', 'On-site supervision & final close-out'] },
+  'bim-technology': { focus: 'Catching clashes on screen—not on the construction site.', positioning: 'BIM modeling that transforms design coordination into site confidence.', body: 'We build coordinated 3D digital models across all disciplines to eliminate spatial clashes, streamline construction schedules, and produce asset-ready digital twins for facility managers.', outcomes: ['Zero multidisciplinary clashes on site', 'Structured LOD 100–600 model deliverables', 'Asset-ready digital twins for facility management'], stages: ['BIM Execution Plan (BEP) setup', '3D Model clash detection & reviews', 'As-built digital twin handover'] }
 };
 
 const deliverySteps = [
-  { step: '01', title: 'Feasibility & Strategy', desc: 'Initial site appraisal, regulatory code review, risk evaluation, and multidisciplinary conceptual planning.', icon: Compass },
-  { step: '02', title: 'Multidisciplinary Design & BIM', desc: 'Integrated MEP, civil, and structural design using LOD 600 spatial clash detection and energy simulation.', icon: Layers },
-  { step: '03', title: 'Procurement & Contract Controls', desc: 'Detailed tender documentation, contractor adjudication, and transparent contract administration.', icon: FileCheck2 },
-  { step: '04', title: 'Supervision & Handover', desc: 'On-site quality monitoring, commissioning, snag resolution, and final asset-ready handover documentation.', icon: ShieldCheck }
+  { step: '01', title: 'Feasibility & Briefing', desc: 'Detailed site appraisal, regulatory code review, risk evaluation, and conceptual engineering strategy.', icon: Compass },
+  { step: '02', title: 'Multidisciplinary Design & BIM', desc: 'Integrated MEP, civil, and structural design coordinated in 3D using LOD 600 clash detection.', icon: Layers },
+  { step: '03', title: 'Procurement & Contracts', desc: 'Comprehensive tender documentation, bill of quantities (BOQ), contractor adjudication, and FIDIC/JBCC contract administration.', icon: FileCheck2 },
+  { step: '04', title: 'Supervision & Handover', desc: 'On-site quality monitoring, testing, commissioning, snag resolution, and final asset handover.', icon: ShieldCheck }
 ];
 
 function ServiceCard({ service, image }) {
@@ -134,6 +134,7 @@ function ServiceCard({ service, image }) {
 }
 
 export default function ServicesPage({ slug = 'services' }) {
+  const pageHeaders = window.ohmThemeData?.pageHeaderImages || {};
   const images = window.ohmThemeData?.serviceImages || {};
   const detailImages = window.ohmThemeData?.detailImages || {};
   const selected = services.find((service) => service.slug === slug);
@@ -141,7 +142,7 @@ export default function ServicesPage({ slug = 'services' }) {
   if (selected) {
     const Icon = selected.icon;
     const profile = serviceProfiles[selected.slug];
-    const detailImage = detailImages[selected.slug];
+    const detailImage = pageHeaders[selected.slug] || window.ohmThemeData?.currentHeaderImage || detailImages[selected.slug];
     return (
       <main className="ohm-services-page ohm-service-detail">
         <section className="ohm-service-detail-hero" style={{ backgroundImage: detailImage ? `url(${detailImage})` : undefined }}>
@@ -195,10 +196,12 @@ export default function ServicesPage({ slug = 'services' }) {
     );
   }
 
+  const coverImage = pageHeaders['services'] || window.ohmThemeData?.currentHeaderImage || images.cover;
+
   return (
     <main className="ohm-services-page">
       {/* Hero Section */}
-      <section className="ohm-services-hero" style={{ backgroundImage: images.cover ? `url(${images.cover})` : undefined }}>
+      <section className="ohm-services-hero" style={{ backgroundImage: coverImage ? `url(${coverImage})` : undefined }}>
         <div className="ohm-services-hero-overlay" />
         <div className="ohm-container">
           <p className="ohm-kicker">INTEGRATED ENGINEERING SERVICES GROUP</p>

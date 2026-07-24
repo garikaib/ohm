@@ -95,7 +95,7 @@ export default function SinglePostPage({ slug }) {
           <a href="/blog/" className="ohm-back-to-blog">
             <ArrowLeft size={16} /> BACK TO JOURNAL
           </a>
-          <h1>{post.title.rendered}</h1>
+          <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
           <div className="ohm-post-hero-meta">
             <span><User size={15} /> By {getAuthorName(post)}</span>
             <span><FolderOpen size={15} /> in {getCategoryName(post)}</span>
@@ -161,7 +161,7 @@ export default function SinglePostPage({ slug }) {
                 <a key={rPost.id} href={`/${rPost.slug}/`} className="recent-post-item">
                   <img src={getFeaturedImage(rPost)} alt="" />
                   <div className="recent-post-info">
-                    <h5>{rPost.title.rendered}</h5>
+                    <h5 dangerouslySetInnerHTML={{ __html: rPost.title.rendered }} />
                     <span>{formatDate(rPost.date)}</span>
                   </div>
                 </a>

@@ -3,47 +3,208 @@ import { ArrowRight, Check, Clock3, Mail, MapPin, Phone, ShieldCheck } from 'luc
 
 const content = {
   about: {
-    eyebrow: 'ABOUT OHM CORE ENGINEERING',
-    title: <>Engineering with<br /><span>purpose.</span></>,
-    intro: 'A dynamic multidisciplinary consulting firm focused on the systems, structures, infrastructure, and project decisions that move communities forward.',
+    eyebrow: 'WHO WE ARE',
+    title: <>Built to solve<br /><span>complex challenges.</span></>,
+    intro: 'We are a multidisciplinary consulting team that turns ambitious architectural and infrastructure briefs into safe, efficient, and long-lasting reality.',
     imageKey: 'about',
   },
   team: {
-    eyebrow: 'HOW WE WORK',
-    title: <>Experience that<br /><span>works together.</span></>,
-    intro: 'OHM brings complementary engineering experience into one coordinated project team - connecting technical disciplines, site realities, and delivery goals.',
+    eyebrow: 'OUR PEOPLE & CULTURE',
+    title: <>Great engineering is<br /><span>a team effort.</span></>,
+    intro: 'Behind every successful project is a team of engineers, project managers, and BIM specialists who collaborate closely with you from day one.',
     imageKey: 'team',
   },
 };
 
 function CompanyHero({ page, image }) {
-  return <section className="ohm-company-hero" style={{ backgroundImage: image ? `url(${image})` : undefined }}><div className="ohm-company-hero-overlay" /><div className="ohm-container"><p className="ohm-kicker">{page.eyebrow}</p><h1>{page.title}</h1><p>{page.intro}</p></div></section>;
+  return (
+    <section className="ohm-company-hero" style={{ backgroundImage: image ? `url(${image})` : undefined }}>
+      <div className="ohm-company-hero-overlay" />
+      <div className="ohm-container ohm-company-hero-content">
+        <p className="ohm-kicker">{page.eyebrow}</p>
+        <h1>{page.title}</h1>
+        <p>{page.intro}</p>
+      </div>
+    </section>
+  );
 }
 
 function AboutPage({ images }) {
   const page = content.about;
-  return <main className="ohm-company-page"><CompanyHero page={page} image={images.about} />
-    <section className="ohm-company-intro ohm-container"><div><p className="ohm-kicker">WHO WE ARE</p><h2>One team.<br />Many disciplines.</h2></div><div><p>OHM Core Engineering delivers Mechanical, Electrical, Civil, and Structural Engineering, supported by expert Project Management and BIM technology.</p><p>Our work spans commercial, industrial, healthcare, and residential sectors, with every solution shaped around safety, efficiency, compliance, and dependable delivery.</p></div></section>
-    <section className="ohm-values"><div className="ohm-container ohm-values-grid"><article><span>01</span><h3>Our vision</h3><p>To achieve steady, hands-on growth from project inception to final handover, becoming a trusted engineering leader.</p></article><article><span>02</span><h3>Our mission</h3><p>To deliver high-quality multidisciplinary engineering solutions that meet cost, time, quality, and safety goals.</p></article><article><span>03</span><h3>Our commitment</h3><p>To deliver safe, energy-efficient, code-compliant designs that remain on schedule and within budget.</p></article></div></section>
-    <section className="ohm-approach ohm-container"><div><p className="ohm-kicker">OUR APPROACH</p><h2>Precision, coordination, responsibility.</h2></div><div className="ohm-approach-list">{['Understand the brief and project context', 'Coordinate disciplines through practical design and BIM', 'Control scope, time, cost, quality, and risk', 'Support delivery through supervision, commissioning, and handover'].map((item) => <div key={item}><Check size={18} />{item}</div>)}</div></section>
-  </main>;
+  return (
+    <main className="ohm-company-page">
+      <CompanyHero page={page} image={images.about} />
+      <section className="ohm-company-intro ohm-container">
+        <div>
+          <p className="ohm-kicker">OUR STORY & CAPABILITY</p>
+          <h2>A single, unified team<br />for all disciplines.</h2>
+        </div>
+        <div>
+          <p>OHM Core Engineering brings Mechanical, Electrical, Civil, and Structural Engineering under one roof, backed by senior Project Management and advanced LOD 600 BIM capabilities.</p>
+          <p>We work across commercial hubs, industrial plants, healthcare facilities, and residential developments—ensuring every solution is safe, code-compliant, energy-efficient, and delivered strictly on schedule.</p>
+        </div>
+      </section>
+      <section className="ohm-values">
+        <div className="ohm-container ohm-values-grid">
+          <article>
+            <span>01</span>
+            <h3>Our Vision</h3>
+            <p>To lead multidisciplinary engineering in Zimbabwe and the region by earning client trust through hands-on quality and dependable execution.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Our Mission</h3>
+            <p>To design resilient systems and structures that elevate project value, protect budgets, and make a lasting positive impact on communities.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Our Commitment</h3>
+            <p>Zero compromises on safety or statutory compliance, with transparent communication from initial feasibility to site handover.</p>
+          </article>
+        </div>
+      </section>
+      <section className="ohm-approach ohm-container">
+        <div>
+          <p className="ohm-kicker">HOW WE OPERATE</p>
+          <h2>Precision. Collaboration. Accountability.</h2>
+        </div>
+        <div className="ohm-approach-list">
+          {[
+            'Deeply understand your project brief, constraints, and timeline goals',
+            'Coordinate all engineering disciplines early through LOD 600 digital models',
+            'Active risk management, procurement control, and budget alignment',
+            'Dedicated on-site supervision, testing, commissioning, and smooth handover'
+          ].map((item) => (
+            <div key={item}><Check size={18} />{item}</div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
 }
 
 function TeamPage({ images }) {
   const page = content.team;
-  return <main className="ohm-company-page"><CompanyHero page={page} image={images.team} />
-    <section className="ohm-company-intro ohm-container"><div><p className="ohm-kicker">THE OHM MODEL</p><h2>Expertise is stronger when it is connected.</h2></div><div><p>We are building a team culture around practical engineering judgment, clear communication, and accountability from design through delivery.</p><p>Rather than presenting a collection of isolated specialists, OHM works as a coordinated group: disciplines share information early, resolve interfaces deliberately, and stay focused on the client&apos;s real project outcomes.</p></div></section>
-    <section className="ohm-team-principles"><div className="ohm-container"><p className="ohm-kicker">EXPERIENCE THAT DELIVERS</p><div className="ohm-team-principle-grid"><article><ShieldCheck size={34} /><h3>Technical depth</h3><p>Experience across building services, utilities, structures, infrastructure, and project controls.</p></article><article><ArrowRight size={34} /><h3>Connected delivery</h3><p>Multidisciplinary coordination that reduces gaps between design intent, procurement, site work, and handover.</p></article><article><Check size={34} /><h3>Responsible outcomes</h3><p>Safe, efficient, code-compliant solutions designed around time, cost, quality, and long-term performance.</p></article></div></div></section>
-  </main>;
+  return (
+    <main className="ohm-company-page">
+      <CompanyHero page={page} image={images.team} />
+      <section className="ohm-company-intro ohm-container">
+        <div>
+          <p className="ohm-kicker">THE OHM COLLABORATION MODEL</p>
+          <h2>Engineering is stronger when experts work together.</h2>
+        </div>
+        <div>
+          <p>We foster a culture built on practical engineering judgment, proactive problem solving, and genuine client partnership from concept through delivery.</p>
+          <p>Instead of working in isolated silos, our mechanical, electrical, civil, and structural engineers collaborate side-by-side with our BIM team and project managers—eliminating design gaps before they reach the site.</p>
+        </div>
+      </section>
+      <section className="ohm-team-principles">
+        <div className="ohm-container">
+          <p className="ohm-kicker">WHY CLIENTS CHOOSE US</p>
+          <div className="ohm-team-principle-grid">
+            <article>
+              <ShieldCheck size={34} />
+              <h3>Multidisciplinary Depth</h3>
+              <p>Senior technical leadership across MEP building services, civil infrastructure, structural frameworks, and project controls.</p>
+            </article>
+            <article>
+              <ArrowRight size={34} />
+              <h3>Seamless Coordination</h3>
+              <p>Integrated workflows that bridge design intent, procurement strategy, FIDIC/JBCC contract administration, and site execution.</p>
+            </article>
+            <article>
+              <Check size={34} />
+              <h3>Responsible Delivery</h3>
+              <p>Code-compliant, energy-efficient solutions focused on performance, long-term durability, and client peace of mind.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }
 
 function ContactPage({ images }) {
-  return <main className="ohm-contact-page"><section className="ohm-contact-hero" style={{ backgroundImage: images.contact ? `url(${images.contact})` : undefined }}><div className="ohm-company-hero-overlay" /><div className="ohm-container"><p className="ohm-kicker">START A CONVERSATION</p><h1>Let&apos;s make<br /><span>the next move.</span></h1><p>Tell us what you are planning, designing, or delivering. We will help you understand the right engineering path forward.</p></div></section><section className="ohm-contact-body ohm-container"><div><p className="ohm-kicker">CONTACT OHM</p><h2>Bring us the brief.</h2><p>Whether you are at feasibility, design, procurement, construction, or handover, our team can help coordinate the next stage.</p><div className="ohm-contact-details"><div><Phone size={21} /><span><a href="tel:+263783017009" style={{ color: 'inherit', textDecoration: 'none' }}>+263 78 301 7009</a><br /><a href="tel:+263715696201" style={{ color: 'inherit', textDecoration: 'none' }}>+263 71 569 6201</a></span></div><div><Mail size={21} /><span><a href="mailto:sales@ohmcore.co.zw" style={{ color: 'inherit', textDecoration: 'none' }}>sales@ohmcore.co.zw</a><br /><a href="mailto:engineering@ohmcore.co.zw" style={{ color: 'inherit', textDecoration: 'none' }}>engineering@ohmcore.co.zw</a></span></div><div><MapPin size={21} /><span>8 Favershame Road,<br />Malbereign, Harare, Zimbabwe</span></div><div><Clock3 size={21} /><span>Mon - Fri, 8:00 - 17:00</span></div></div></div><form className="ohm-contact-form" method="post"><label>Name<input type="text" name="name" /></label><label>Email<input type="email" name="email" /></label><label>How can we help?<textarea name="message" rows="5" /></label><button className="ohm-button ohm-button-orange" type="submit">Send enquiry <ArrowRight size={17} /></button></form></section></main>;
+  const contacts = window.ohmThemeData?.contacts || {
+    office_address: '8 Favershame Road, Malbereign, Harare, Zimbabwe',
+    operating_hours: 'Mon - Fri, 8:00 - 17:00',
+  };
+  const cleanPhone = (phone) => (phone || '').replace(/\s+/g, '');
+
+  return (
+    <main className="ohm-contact-page">
+      <section className="ohm-contact-hero" style={{ backgroundImage: images.contact ? `url(${images.contact})` : undefined }}>
+        <div className="ohm-company-hero-overlay" />
+        <div className="ohm-container">
+          <p className="ohm-kicker">GET IN TOUCH WITH OHM CORE</p>
+          <h1>Let&apos;s build<br /><span>something remarkable.</span></h1>
+          <p>Whether you need a preliminary feasibility study, MEP design review, structural assessment, or full project management, our engineering team in Harare is ready to help.</p>
+        </div>
+      </section>
+      <section className="ohm-contact-body ohm-container">
+        <div>
+          <p className="ohm-kicker">DIRECT TECHNICAL CONSULTATION</p>
+          <h2>Bring us your brief.</h2>
+          <p>We work closely with property developers, architects, contractors, and project managers across Zimbabwe. Reach out to discuss your upcoming project or request a technical proposal.</p>
+          <div className="ohm-contact-details">
+            <div>
+              <Phone size={21} />
+              <span>
+                {Array.isArray(contacts.phones) && contacts.phones.map((p, idx) => {
+                  const val = typeof p === 'object' ? p.value : p;
+                  return (
+                    <React.Fragment key={`phone-${idx}`}>
+                      <a href={`tel:${cleanPhone(val)}`} style={{ color: 'inherit', textDecoration: 'none' }}>{val}</a>
+                      {idx < contacts.phones.length - 1 && <br />}
+                    </React.Fragment>
+                  );
+                })}
+              </span>
+            </div>
+            <div>
+              <Mail size={21} />
+              <span>
+                {Array.isArray(contacts.emails) && contacts.emails.map((e, idx) => {
+                  const val = typeof e === 'object' ? e.value : e;
+                  return (
+                    <React.Fragment key={`email-${idx}`}>
+                      <a href={`mailto:${val}`} style={{ color: 'inherit', textDecoration: 'none' }}>{val}</a>
+                      {idx < contacts.emails.length - 1 && <br />}
+                    </React.Fragment>
+                  );
+                })}
+              </span>
+            </div>
+            <div>
+              <MapPin size={21} />
+              <span>{contacts.office_address}</span>
+            </div>
+            <div>
+              <Clock3 size={21} />
+              <span>{contacts.operating_hours}</span>
+            </div>
+          </div>
+        </div>
+        <form className="ohm-contact-form" method="post">
+          <label>Full Name<input type="text" name="name" placeholder="e.g. Tendai Moyo" required /></label>
+          <label>Email Address<input type="email" name="email" placeholder="name@company.co.zw" required /></label>
+          <label>Tell us about your project brief<textarea name="message" rows="5" placeholder="Share your location, project stage (feasibility, design, construction), and key engineering requirements..." required /></label>
+          <button className="ohm-button ohm-button-orange" type="submit">Send Enquiry <ArrowRight size={17} /></button>
+        </form>
+      </section>
+    </main>
+  );
 }
 
 export default function CompanyPages({ slug }) {
-  const images = window.ohmThemeData?.companyImages || {};
-  if (slug === 'about') return <AboutPage images={images} />;
-  if (slug === 'team') return <TeamPage images={images} />;
-  return <ContactPage images={images} />;
+  const pageHeaders = window.ohmThemeData?.pageHeaderImages || {};
+  const fallbackImages = window.ohmThemeData?.companyImages || {};
+  const currentOverride = window.ohmThemeData?.currentHeaderImage;
+
+  // Per-page editor metabox override comes first if present, followed by pageHeaders slug setting, then fallback
+  const getHeaderImg = (pageSlug) => currentOverride || pageHeaders[pageSlug] || fallbackImages[pageSlug];
+
+  if (slug === 'about') return <AboutPage images={{ about: getHeaderImg('about') }} />;
+  if (slug === 'team') return <TeamPage images={{ team: getHeaderImg('team') }} />;
+  return <ContactPage images={{ contact: getHeaderImg('contact') }} />;
 }

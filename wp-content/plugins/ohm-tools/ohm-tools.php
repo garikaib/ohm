@@ -80,10 +80,11 @@ function ohm_tools_render_admin_page() {
 add_action(
 	'admin_enqueue_scripts',
 	function ( $hook ) {
-		// Only load assets on our plugin page to avoid conflict with other admin views.
 		if ( 'toplevel_page_ohm-tools' !== $hook ) {
 			return;
 		}
+		// Enqueue WP Media scripts for image selection modal.
+		wp_enqueue_media();
 
 		$plugin_url = plugin_dir_url( __FILE__ );
 		$plugin_dir = plugin_dir_path( __FILE__ );
@@ -113,6 +114,7 @@ add_action(
 			'ohmToolsData',
 			array(
 				'nonce'      => wp_create_nonce( 'wp_rest' ),
+				'restUrl'    => esc_url_raw( rest_url( 'ohm/v1/' ) ),
 				'adminEmail' => get_option( 'admin_email' ),
 			)
 		);

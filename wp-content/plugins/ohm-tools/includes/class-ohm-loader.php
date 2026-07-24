@@ -46,7 +46,10 @@ if ( ! class_exists( 'Ohm_Loader' ) ) {
 		 * Load core utilities.
 		 */
 		private function load_dependencies() {
-			// Placeholders for utilities/helpers.
+			require_once plugin_dir_path( __FILE__ ) . 'class-ohm-contacts-module.php';
+			require_once plugin_dir_path( __FILE__ ) . 'class-ohm-slider-module.php';
+			require_once plugin_dir_path( __FILE__ ) . 'class-ohm-page-headers-module.php';
+			require_once plugin_dir_path( __FILE__ ) . 'class-ohm-socials-module.php';
 		}
 
 		/**

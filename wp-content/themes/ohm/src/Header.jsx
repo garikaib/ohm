@@ -72,10 +72,8 @@ export default function Header() {
     <header className={`ohm-site-header ${isStuck ? 'has-stuck-nav' : ''} ${open ? 'is-menu-open' : ''}`}>
       <div className="ohm-utility-bar">
         <div className="ohm-utility-contact">
-          <a href="tel:+263783017009" aria-label="Primary Phone"><Phone size={17} strokeWidth={1.7} /><span>+263 78 301 7009</span></a>
-          <a href="tel:+263715696201" aria-label="Secondary Phone"><Phone size={17} strokeWidth={1.7} /><span>+263 71 569 6201</span></a>
-          <a href="mailto:sales@ohmcore.co.zw" aria-label="Sales Email"><Mail size={17} strokeWidth={1.7} /><span>sales@ohmcore.co.zw</span></a>
-          <a href="mailto:engineering@ohmcore.co.zw" aria-label="Engineering Email"><Mail size={17} strokeWidth={1.7} /><span>engineering@ohmcore.co.zw</span></a>
+          <a href="tel:+263783017009" aria-label="Phone"><Phone size={17} strokeWidth={1.7} /><span>+263 78 301 7009</span></a>
+          <a href="mailto:sales@ohmcore.co.zw" aria-label="Email"><Mail size={17} strokeWidth={1.7} /><span>sales@ohmcore.co.zw</span></a>
           <span><Clock3 size={17} strokeWidth={1.7} /><span>Mon - Fri 8:00 - 17:00</span></span>
         </div>
         <div className="ohm-utility-socials" aria-label="Social media">

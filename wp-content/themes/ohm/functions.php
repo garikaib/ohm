@@ -204,6 +204,14 @@ add_action(
 				'currentUrl' => home_url( $_SERVER['REQUEST_URI'] ),
 				'pageSlug'     => is_singular() ? get_post_field( 'post_name', get_queried_object_id() ) : ( is_home() ? 'blog' : '' ),
 				'isSinglePost' => is_single() && 'post' === get_post_type(),
+                'detailImages' => array(
+                    'mechanical-engineering' => wp_get_attachment_url( 67 ),
+                    'electrical-engineering' => wp_get_attachment_url( 68 ),
+                    'civil-engineering' => wp_get_attachment_url( 69 ),
+                    'structural-engineering' => wp_get_attachment_url( 70 ),
+                    'project-management' => wp_get_attachment_url( 71 ),
+                    'bim-technology' => wp_get_attachment_url( 72 ),
+                ),
                 'serviceImages' => array(
                     'cover' => ohm_get_attachment_url_by_slug( 'ohm-services-cover' ),
                     'mechanical-engineering' => ohm_get_attachment_url_by_slug( 'ohm-mechanical-engineering', 'png' ),

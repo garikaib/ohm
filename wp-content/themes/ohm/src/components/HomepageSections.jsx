@@ -13,7 +13,7 @@ const services = [
 const sectors = [
   { title: 'Commercial', text: 'Coordinated building services, electrical systems, structures, and BIM for workplaces, retail, and public-facing facilities.' },
   { title: 'Industrial', text: 'Robust utilities, process support, backup power, storage structures, and bulk civil infrastructure for demanding operations.' },
-  { title: 'Healthcare', text: 'Safe, resilient building systems and compliant infrastructure designed around continuity, cleanroom safety, and occupant wellbeing.' },
+  { title: 'Healthcare', text: 'Safe, resilient building systems and compliant infrastructure designed around continuity, safety, and occupant wellbeing.' },
   { title: 'Residential', text: 'Practical mechanical, electrical, civil, and structural engineering for single- and multi-storey developments.' },
 ];
 
@@ -31,7 +31,7 @@ export default function HomepageSections() {
         <div className="ohm-container ohm-intro-grid">
           <div>
             <p className="ohm-kicker">INTEGRATED ENGINEERING SERVICES GROUP</p>
-            <h2>Engineering with purpose.<br /><span>Building for tomorrow.</span></h2>
+            <h2>Integrated engineering.<br /><span>From inception to handover.</span></h2>
           </div>
           <div className="ohm-intro-copy">
             <p>OHM Core Engineering is a dynamic multidisciplinary consulting firm delivering mechanical, electrical, civil, structural, BIM, and project-management solutions from inception through final handover.</p>
@@ -49,7 +49,7 @@ export default function HomepageSections() {
               <p className="ohm-kicker">WHAT WE DO</p>
               <h2><a href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>Engineering services</a></h2>
             </div>
-            <p>One coordinated team for the building systems, structures, infrastructure, and controls that make projects work.</p>
+            <p>One coordinated team for mechanical, electrical, civil, structural, BIM, and project-management delivery.</p>
           </div>
           <div className="ohm-service-grid">
             {services.map(({ slug, icon: Icon, title, text }) => (
@@ -70,7 +70,7 @@ export default function HomepageSections() {
         <div className="ohm-feature-panel">
           <div className="ohm-feature-mark"><HardHat size={48} strokeWidth={1.1} /></div>
           <p className="ohm-kicker">FROM CONCEPT TO HANDOVER</p>
-          <h2>Precision at every stage of the project.</h2>
+          <h2>Clear coordination at every project stage.</h2>
           <p>We combine hands-on technical expertise with advanced LOD 600 BIM coordination to deliver safe, energy-efficient, code-compliant designs that remain strictly on schedule and within budget.</p>
           <a className="ohm-button ohm-button-orange" href="/contact">Start a conversation <ArrowRight size={17} /></a>
         </div>
@@ -100,7 +100,7 @@ export default function HomepageSections() {
           <div className="ohm-section-heading">
             <div>
               <p className="ohm-kicker">OUR COMMITMENT</p>
-              <h2>The pillars of OHM engineering.</h2>
+              <h2>The OHM engineering standard.</h2>
             </div>
             <p>Results-driven consulting designed around technical rigor, safety, and client accountability.</p>
           </div>
@@ -112,7 +112,7 @@ export default function HomepageSections() {
                   <div className="ohm-pillar-icon"><PillarIcon size={32} strokeWidth={1.25} /></div>
                   <h3>{pillar.title}</h3>
                   <p>{pillar.text}</p>
-                  <span className="ohm-pillar-check"><CheckCircle2 size={16} /> Verified Quality</span>
+                  <span className="ohm-pillar-check"><CheckCircle2 size={16} /> Quality, time & safety goals</span>
                 </div>
               );
             })}
@@ -126,9 +126,9 @@ export default function HomepageSections() {
           <div className="ohm-section-heading">
             <div>
               <p className="ohm-kicker">WHERE WE WORK</p>
-              <h2>Engineering for the environments you operate in.</h2>
+              <h2>Built around the sector you operate in.</h2>
             </div>
-            <p>We adapt our multidisciplinary expertise to the performance, compliance, and operational demands of each sector.</p>
+            <p>Our multidisciplinary capability adapts to the performance, compliance, and operational demands of commercial, industrial, healthcare, and residential projects.</p>
           </div>
           <div className="ohm-sector-list">
             {sectors.map((sector, index) => (

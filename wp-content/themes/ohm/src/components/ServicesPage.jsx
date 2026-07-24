@@ -94,6 +94,15 @@ const services = [
   },
 ];
 
+const serviceProfiles = {
+  'mechanical-engineering': { focus: 'Comfort, safety, and reliable building performance.', positioning: 'Mechanical systems that work quietly, efficiently, and safely.', body: 'From HVAC&R and water services to fire protection, boiler plants, and vertical transportation, we coordinate the systems that make buildings usable and resilient.', outcomes: ['Comfortable, healthy internal environments', 'Efficient water, energy, and plant operation', 'Coordinated fire and life-safety systems'], stages: ['Concept and load studies', 'Detailed system design', 'Tender and construction support'] },
+  'electrical-engineering': { focus: 'Power continuity, safety, and intelligent building services.', positioning: 'Electrical infrastructure designed for confidence under demand.', body: 'We plan power distribution, standby generation, lighting, protection, and ELV systems as one coordinated network—supporting safe operation from first energisation through everyday use.', outcomes: ['Resilient power and backup strategies', 'Clear, efficient lighting and emergency systems', 'Connected security and communications infrastructure'], stages: ['Demand and resilience assessment', 'Distribution and systems design', 'Testing, commissioning, and handover'] },
+  'civil-engineering': { focus: 'Infrastructure that connects places and supports communities.', positioning: 'Water, movement, and drainage engineered for the long term.', body: 'Our civil engineering work joins site conditions, water resources, transport, drainage, and environmental requirements into infrastructure that is practical to build and dependable to operate.', outcomes: ['Reliable water and wastewater networks', 'Resilient roads, drainage, and access corridors', 'Infrastructure aligned with site and environmental conditions'], stages: ['Investigations and feasibility', 'Infrastructure planning and design', 'Construction oversight and completion'] },
+  'structural-engineering': { focus: 'Strength, durability, and confidence in the built frame.', positioning: 'Structures resolved around load, use, and longevity.', body: 'We design and assess structural systems for buildings, industrial facilities, storage, utilities, and transport infrastructure—balancing safety, material efficiency, constructability, and future performance.', outcomes: ['Clear load paths and robust structural systems', 'Durable steel and concrete solutions', 'Practical assessments, strengthening, and retrofit advice'], stages: ['Site and condition assessment', 'Analysis, design, and documentation', 'Construction review and certification support'] },
+  'project-management': { focus: 'Decisions, controls, and delivery from brief to handover.', positioning: 'A clearer route from project intent to built reality.', body: 'We bring scope, programme, cost, procurement, contracts, quality, and site execution into one transparent management framework so the project team can make informed decisions early.', outcomes: ['Visible risks, responsibilities, and decisions', 'Controlled procurement and contract administration', 'Orderly commissioning, snagging, and handover'], stages: ['Initiation and feasibility', 'Procurement and delivery controls', 'Supervision and close-out'] },
+  'bim-technology': { focus: 'Better coordination through better information.', positioning: 'BIM that turns design coordination into delivery confidence.', body: 'We use coordinated digital models and information standards to identify clashes early, support programme and cost decisions, and produce asset-ready information for operations after handover.', outcomes: ['Fewer multidisciplinary clashes and site surprises', 'Structured LOD 100–600 information', 'Digital twins that remain useful after completion'], stages: ['Information requirements and BEP', 'Model coordination and design reviews', 'As-built handover and asset information'] }
+};
+
 const deliverySteps = [
   { step: '01', title: 'Feasibility & Strategy', desc: 'Initial site appraisal, regulatory code review, risk evaluation, and multidisciplinary conceptual planning.', icon: Compass },
   { step: '02', title: 'Multidisciplinary Design & BIM', desc: 'Integrated MEP, civil, and structural design using LOD 600 spatial clash detection and energy simulation.', icon: Layers },
@@ -126,13 +135,16 @@ function ServiceCard({ service, image }) {
 
 export default function ServicesPage({ slug = 'services' }) {
   const images = window.ohmThemeData?.serviceImages || {};
+  const detailImages = window.ohmThemeData?.detailImages || {};
   const selected = services.find((service) => service.slug === slug);
 
   if (selected) {
     const Icon = selected.icon;
+    const profile = serviceProfiles[selected.slug];
+    const detailImage = detailImages[selected.slug];
     return (
       <main className="ohm-services-page ohm-service-detail">
-        <section className="ohm-service-detail-hero">
+        <section className="ohm-service-detail-hero" style={{ backgroundImage: detailImage ? `url(${detailImage})` : undefined }}>
           <div className="ohm-container">
             <a className="ohm-back-link" href="/services/"><ArrowLeft size={17} /> All engineering services</a>
             <p className="ohm-kicker">OHM CORE ENGINEERING / DISCIPLINE</p>
@@ -141,33 +153,25 @@ export default function ServicesPage({ slug = 'services' }) {
           </div>
         </section>
 
+        <section className="ohm-service-detail-overview">
+          <div className="ohm-container ohm-detail-overview-grid">
+            <div className="ohm-detail-overview-mark"><Icon size={58} strokeWidth={1.1} /><span>{profile.focus}</span></div>
+            <div><p className="ohm-kicker">THE OHM APPROACH</p><h2>{profile.positioning}</h2><p className="ohm-detail-copy">{profile.body}</p></div>
+          </div>
+        </section>
+
         <section className="ohm-service-detail-body ohm-container">
           <div className="ohm-detail-sidebar">
-            <div className="ohm-detail-icon"><Icon size={56} strokeWidth={1.1} /></div>
-            <div className="ohm-detail-badge">
-              <strong>100% Code Compliant</strong>
-              <span>Designed to international & local Zimbabwean engineering standards.</span>
-            </div>
+            <div className="ohm-detail-badge"><strong>Integrated delivery</strong><span>Coordinated with OHM’s wider engineering, BIM, and project-management capability.</span></div>
+            <div className="ohm-detail-stage-list"><p className="ohm-kicker">PROJECT JOURNEY</p>{profile.stages.map((stage, index) => <div key={stage}><span>0{index + 1}</span>{stage}</div>)}</div>
           </div>
           <div>
-            <p className="ohm-kicker">CAPABILITY OVERVIEW</p>
-            <h2>Engineered for safety, longevity, and performance.</h2>
-            <p className="ohm-detail-copy">
-              {selected.short} Our engineering team operates as an integrated unit, coordinating calculations, drawings, specifications, and BIM models to ensure complete alignment across project phases.
-            </p>
-            
-            <h3 className="ohm-detail-subhead">Key Deliverables & Technical Scope</h3>
-            <ul className="ohm-service-points">
-              {selected.points.map((point) => (
-                <li key={point}><Check size={18} /><span>{point}</span></li>
-              ))}
-            </ul>
-
-            <div className="ohm-detail-consult-box">
-              <h3>Need technical consultation for {selected.title}?</h3>
-              <p>Our senior engineers are ready to review your project brief, feasibility requirements, or design specifications.</p>
-              <a className="ohm-button ohm-button-orange" href="/contact">Request technical proposal <ArrowRight size={17} /></a>
-            </div>
+            <p className="ohm-kicker">CAPABILITY SCOPE</p>
+            <h2>What this discipline brings to the project.</h2>
+            <div className="ohm-detail-outcomes">{profile.outcomes.map((outcome) => <div key={outcome}><Check size={18} /><span>{outcome}</span></div>)}</div>
+            <h3 className="ohm-detail-subhead">Technical deliverables</h3>
+            <ul className="ohm-service-points">{selected.points.map((point) => <li key={point}><Check size={18} /><span>{point}</span></li>)}</ul>
+            <div className="ohm-detail-consult-box"><h3>Need technical consultation for {selected.title}?</h3><p>Share your brief, feasibility requirements, or design information and we will help define the right next step.</p><a className="ohm-button ohm-button-orange" href="/contact">Request technical proposal <ArrowRight size={17} /></a></div>
           </div>
         </section>
 
@@ -205,7 +209,7 @@ export default function ServicesPage({ slug = 'services' }) {
             <div className="ohm-services-stat-item"><strong>6</strong><span>Core Engineering Disciplines</span></div>
             <div className="ohm-services-stat-item"><strong>LOD 600</strong><span>Advanced BIM Modeling Standard</span></div>
             <div className="ohm-services-stat-item"><strong>Full Cycle</strong><span>Inception through Final Handover</span></div>
-            <div className="ohm-services-stat-item"><strong>100%</strong><span>Code & Safety Compliance</span></div>
+            <div className="ohm-services-stat-item"><strong>CODE</strong><span>Compliance-led design and delivery</span></div>
           </div>
         </div>
       </section>

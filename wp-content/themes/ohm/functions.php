@@ -328,3 +328,21 @@ add_filter(
 		return 'Invalid login credentials.';
 	}
 );
+
+
+/**
+ * Force the Blog landing page through the React application.
+ * The parent block theme otherwise resolves its default query archive template.
+ */
+add_filter(
+	'template_include',
+	function ( $template ) {
+		if ( is_page( 'blog' ) ) {
+			$react_template = get_stylesheet_directory() . '/page-blog.php';
+			if ( file_exists( $react_template ) ) {
+				return $react_template;
+			}
+		}
+		return $template;
+	}
+);

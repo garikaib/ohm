@@ -135,7 +135,7 @@ export default function BlogPage() {
               {posts.map((post) => {
                 const dateObj = formatDate(post.date);
                 return (
-                  <article key={post.id} className="ohm-blog-card">
+                  <article key={post.id} className={`ohm-blog-card ${post === posts[0] ? 'ohm-blog-card-featured' : ''}`}>
                     <div className="ohm-blog-card-image">
                       <a href={`/${post.slug}/`}>
                         <img src={getFeaturedImage(post)} alt={post.title.rendered} loading="lazy" />
@@ -175,6 +175,12 @@ export default function BlogPage() {
 
         {/* Sidebar Column */}
         <aside className="ohm-blog-sidebar-col">
+          <div className="ohm-sidebar-author">
+            <p className="ohm-sidebar-eyebrow">OHM JOURNAL</p>
+            <h3>Practical insight for better project decisions.</h3>
+            <p>Perspectives from the connected disciplines behind safer, more efficient, and more resilient places.</p>
+          </div>
+
           {/* Search Widget */}
           <div className="ohm-sidebar-widget">
             <h4 className="widget-title">Search Journal</h4>
@@ -214,6 +220,13 @@ export default function BlogPage() {
             </ul>
           </div>
 
+          <div className="ohm-sidebar-widget">
+            <h4 className="widget-title">Topics</h4>
+            <div className="ohm-sidebar-tags">
+              {['BIM & digital delivery', 'MEP systems', 'Infrastructure', 'Project management', 'Sustainability', 'Safety & compliance'].map((tag) => <button key={tag} type="button" onClick={() => setSearchQuery(tag)}>{tag}</button>)}
+            </div>
+          </div>
+
           {/* Recent Posts Widget */}
           <div className="ohm-sidebar-widget">
             <h4 className="widget-title">Recent Articles</h4>
@@ -228,6 +241,10 @@ export default function BlogPage() {
                 </a>
               ))}
             </div>
+          </div>
+          <div className="ohm-sidebar-follow">
+            <h4 className="widget-title">Follow OHM</h4>
+            <div><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="TikTok">♪</a><a href="#" aria-label="WhatsApp">◔</a><a href="#" aria-label="X">𝕏</a></div>
           </div>
         </aside>
       </section>

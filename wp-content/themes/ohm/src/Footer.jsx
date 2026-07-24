@@ -16,7 +16,7 @@ export default function Footer() {
     <div className="ohm-container ohm-footer-grid">
       <div className="ohm-footer-brand"><h3>OHM CORE ENGINEERING</h3><p>Integrated mechanical, electrical, civil, structural, BIM, and project-management solutions from inception through handover.</p></div>
       <div><h4>Explore</h4><nav className="ohm-footer-links">{menuItems.map((item) => <a key={item.id} href={item.url || '#'}>{item.title}<ArrowUpRight size={13} /></a>)}</nav></div>
-      <div><h4>Contact</h4><ul className="ohm-contact-list"><li><Phone size={16} />+263 (0) 000 000 000</li><li><Mail size={16} />info@ohmcore.co.zw</li><li><MapPin size={16} />32 Northampton Cres, Harare, Zimbabwe</li><li><Clock3 size={16} />Mon - Fri 8:00 - 17:00</li></ul></div>
+      <div><h4>Contact</h4><ul className="ohm-contact-list"><li><Phone size={16} /><a href="tel:+263783017009" style={{ color: 'inherit', textDecoration: 'none' }}>+263 78 301 7009</a></li><li><Phone size={16} /><a href="tel:+263715696201" style={{ color: 'inherit', textDecoration: 'none' }}>+263 71 569 6201</a></li><li><Mail size={16} /><a href="mailto:sales@ohmcore.co.zw" style={{ color: 'inherit', textDecoration: 'none' }}>sales@ohmcore.co.zw</a></li><li><Mail size={16} /><a href="mailto:engineering@ohmcore.co.zw" style={{ color: 'inherit', textDecoration: 'none' }}>engineering@ohmcore.co.zw</a></li><li><MapPin size={16} />8 Favershame Road, Malbereign, Harare, Zimbabwe</li><li><Clock3 size={16} />Mon - Fri 8:00 - 17:00</li></ul></div>
     </div>
     <div className="ohm-container ohm-footer-bottom"><span>© {currentYear} OHM Core Engineering. All rights reserved.</span><span>Designing dreams, building realities.</span></div>
   </footer>;

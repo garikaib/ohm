@@ -402,9 +402,9 @@ button {
 
 /* Reference-style utility bar and header row */
 .ohm-site-header { height: 131px; display: block; }
-.ohm-utility-bar { height: 53px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; border-bottom: 1px solid #e7e7e7; background: #fff; color: var(--ohm-navy); font-size: 14px; }
+.ohm-utility-bar { height: 45px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; border-bottom: 1px solid #e7e7e7; background: #fff; color: var(--ohm-navy); font-size: 13px; }
 .ohm-utility-contact, .ohm-utility-socials { display: flex; align-items: center; }
-.ohm-utility-contact { gap: 28px; }
+.ohm-utility-contact { gap: 20px; }
 .ohm-utility-contact a, .ohm-utility-contact > span { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; }
 .ohm-utility-contact a:hover, .ohm-utility-socials a:hover { color: var(--ohm-orange); }
 .ohm-utility-socials { gap: 21px; font-weight: 700; font-size: 16px; }

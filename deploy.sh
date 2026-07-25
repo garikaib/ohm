@@ -55,19 +55,35 @@ echo -e "\n${COLOR_ORANGE}[4/5] Exporting local database and importing to produc
 ddev wp db export - | ssh "${REMOTE_USER}@${REMOTE_HOST}" "sudo mysql ${DB_NAME}"
 echo -e "${COLOR_GREEN}✓ Database imported successfully.${COLOR_RESET}"
 
-# 5. Run WP-CLI URL search-replace and fix file permissions
-echo -e "\n${COLOR_ORANGE}[5/5] Running WP-CLI URL search-replace and permissions fix...${COLOR_RESET}"
+# 5. Run WP-CLI URL search-replace, update admin password, and fix file permissions
+echo -e "\n${COLOR_ORANGE}[5/5] Running WP-CLI URL search-replace, securing admin password, and fixing permissions...${COLOR_RESET}"
+
+PROD_SECRET_FILE="/home/garikaib/Documents/zimprices_email/secrets/ohmcore_prod.json"
+PROD_ADMIN_PASS=""
+PROD_ADMIN_USER="garikaib"
+
+if [ -f "${PROD_SECRET_FILE}" ]; then
+    PROD_ADMIN_PASS=$(jq -r '.admin_password // empty' "${PROD_SECRET_FILE}" 2>/dev/null || true)
+    PROD_ADMIN_USER=$(jq -r '.admin_username // "garikaib"' "${PROD_SECRET_FILE}" 2>/dev/null || echo "garikaib")
+fi
+
+if [ -z "${PROD_ADMIN_PASS}" ]; then
+    PROD_ADMIN_PASS=$(openssl rand -base64 24)
+    echo -e "${COLOR_ORANGE}Note: Generated random secure password for production admin '${PROD_ADMIN_USER}'${COLOR_RESET}"
+fi
+
 ssh "${REMOTE_USER}@${REMOTE_HOST}" "
     sudo wp --allow-root --path=${REMOTE_PATH} search-replace '${LOCAL_URL}' '${PROD_URL}' --all-tables && \
     sudo wp --allow-root --path=${REMOTE_PATH} search-replace 'http://ohm.ddev.site' '${PROD_URL}' --all-tables && \
     sudo wp --allow-root --path=${REMOTE_PATH} search-replace '//ohm.ddev.site' '//ohmcore.co.zw' --all-tables && \
     sudo wp --allow-root --path=${REMOTE_PATH} option update siteurl '${PROD_URL}' && \
     sudo wp --allow-root --path=${REMOTE_PATH} option update home '${PROD_URL}' && \
+    sudo wp --allow-root --path=${REMOTE_PATH} user update '${PROD_ADMIN_USER}' --user_pass='${PROD_ADMIN_PASS}' && \
     sudo chown -R www-data:www-data ${REMOTE_PATH} && \
     sudo find ${REMOTE_PATH} -type d -exec chmod 755 {} \; && \
     sudo find ${REMOTE_PATH} -type f -exec chmod 644 {} \;
 "
-echo -e "${COLOR_GREEN}✓ URLs updated and permissions restored.${COLOR_RESET}"
+echo -e "${COLOR_GREEN}✓ URLs updated, production admin password secured, and permissions restored.${COLOR_RESET}"
 
 echo -e "\n${COLOR_GREEN}====================================================${COLOR_RESET}"
 echo -e "${COLOR_GREEN}   DEPLOYMENT COMPLETED SUCCESSFULLY TO ${PROD_URL}   ${COLOR_RESET}"

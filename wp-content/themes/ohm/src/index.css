@@ -2400,49 +2400,55 @@ button {
 .ohm-services-cta h2 { max-width: 700px; margin-bottom: 20px; font-size: clamp(40px, 5vw, 68px); }
 .ohm-cta-desc { max-width: 570px; margin: 0 0 26px; color: rgba(255,255,255,.84); font-size: 17px; line-height: 1.55; }
 .ohm-cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 1024px) {
+  .ohm-services-intro { gap: 40px; }
+  .ohm-detail-overview-grid, .ohm-service-detail-body { gap: 60px; grid-template-columns: 1fr 1fr; }
+  .ohm-detail-outcomes { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 800px) {
   .ohm-services-hero { min-height: 0; padding: 0; }
-  .ohm-services-hero > .ohm-container { padding-top: 72px; padding-bottom: 44px; }
+  .ohm-services-hero > .ohm-container { padding-top: 56px; padding-bottom: 36px; }
   .ohm-services-stats-grid { grid-template-columns: repeat(2, 1fr); }
   .ohm-services-stat-item:nth-child(2) { border-right: 0; }
-  .ohm-services-intro, .ohm-services-process .ohm-section-heading, .ohm-quality-grid { grid-template-columns: 1fr; gap: 30px; }
-  .ohm-services-page-grid { grid-template-columns: 1fr; }
+  .ohm-services-stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,.15); }
+  .ohm-services-stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.15); border-right: 0; }
+  .ohm-services-intro, .ohm-services-process .ohm-section-heading, .ohm-quality-grid { grid-template-columns: 1fr; gap: 24px; padding-top: 48px; padding-bottom: 48px; }
+  .ohm-services-page-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 64px; }
+  .ohm-service-page-card { padding: 28px 24px; }
+  .ohm-service-page-card h2 { font-size: 26px; }
   .ohm-process-grid { grid-template-columns: repeat(2, 1fr); }
+  .ohm-detail-overview-grid, .ohm-service-detail-body { grid-template-columns: 1fr; gap: 36px; padding-top: 48px; padding-bottom: 56px; }
+  .ohm-detail-overview-mark span, .ohm-detail-badge, .ohm-detail-stage-list { max-width: none; }
+  .ohm-detail-outcomes { grid-template-columns: 1fr; gap: 12px; margin: 24px 0 36px; }
+  .ohm-detail-outcomes > div { min-height: 0; }
+  .ohm-detail-sidebar { gap: 32px; }
+  .ohm-service-detail-hero .ohm-back-link { margin-bottom: 32px; }
+  .ohm-service-detail-hero { padding: 48px 0 56px; }
+  .ohm-service-next-grid { grid-template-columns: 1fr; }
+  .ohm-service-next { padding: 48px 0 56px; }
+  .ohm-services-process { padding: 56px 0 64px; }
+  .ohm-services-quality { padding: 56px 0; }
+  .ohm-services-cta { padding: 56px 0; }
 }
+
 @media (max-width: 520px) {
   .ohm-services-hero { min-height: 0; }
+  .ohm-services-stats-grid { grid-template-columns: 1fr; }
+  .ohm-services-stat-item { border-right: 0 !important; border-bottom: 1px solid rgba(255,255,255,.15); padding: 14px 16px; min-height: 0; }
+  .ohm-services-stat-item:last-child { border-bottom: 0; }
   .ohm-process-grid { grid-template-columns: 1fr; }
-  .ohm-services-stat-item { padding: 15px; }
+  .ohm-service-page-card { padding: 22px 18px; }
+  .ohm-service-page-card h2 { font-size: 22px; }
+  .ohm-service-card-header { margin-bottom: 18px; }
+  .ohm-service-summary { font-size: 14px; margin-bottom: 18px; }
+  .ohm-service-highlights { padding-top: 16px; margin-bottom: 20px; font-size: 13px; gap: 10px; }
+  .ohm-detail-consult-box { padding: 22px 18px; margin-top: 36px; }
+  .ohm-detail-consult-box h3 { font-size: 20px; }
+  .ohm-cta-actions { flex-direction: column; width: 100%; }
+  .ohm-cta-actions .ohm-button { width: 100%; justify-content: center; text-align: center; }
+  .ohm-service-next-grid a { padding: 20px 18px; font-size: 18px; }
 }
-
-
-/* Premium service detail pages */
-.ohm-service-detail-hero { padding: 70px 0 86px; background: #f3f5f8; }
-.ohm-service-detail-hero .ohm-back-link { margin-bottom: 64px; }
-.ohm-service-detail-hero h1 { max-width: 930px; font-size: clamp(52px, 8vw, 112px); letter-spacing: -.045em; }
-.ohm-service-detail-overview { padding: 92px 0 88px; background: #fff; }
-.ohm-detail-overview-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 100px; align-items: start; }
-.ohm-detail-overview-mark { display: grid; gap: 20px; color: var(--ohm-orange); }
-.ohm-detail-overview-mark span { max-width: 250px; color: var(--ohm-gray); font-size: 16px; line-height: 1.5; }
-.ohm-detail-overview-grid h2 { max-width: 720px; margin: 0 0 20px; font-size: clamp(42px, 5vw, 72px); line-height: .96; letter-spacing: -.035em; }
-.ohm-service-detail-body { grid-template-columns: .75fr 1.25fr; gap: 100px; padding-top: 86px; padding-bottom: 108px; }
-.ohm-detail-sidebar { display: grid; align-content: start; gap: 52px; }
-.ohm-detail-badge { max-width: 300px; padding: 22px 0; border-top: 2px solid var(--ohm-orange); border-bottom: 1px solid #dfe3e9; }
-.ohm-detail-badge strong { display: block; margin-bottom: 8px; color: var(--ohm-navy); font-size: 19px; }
-.ohm-detail-badge span { display: block; color: var(--ohm-gray); font-size: 14px; line-height: 1.5; }
-.ohm-detail-stage-list { display: grid; gap: 0; max-width: 300px; }
-.ohm-detail-stage-list .ohm-kicker { margin-bottom: 8px; }
-.ohm-detail-stage-list > div { display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px solid #e3e6eb; color: var(--ohm-navy); font-size: 14px; }
-.ohm-detail-stage-list > div span { color: var(--ohm-orange); font-size: 11px; font-weight: 700; }
-.ohm-service-detail-body h2 { max-width: 700px; font-size: clamp(40px, 4.6vw, 66px); letter-spacing: -.03em; }
-.ohm-detail-outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 32px 0 48px; }
-.ohm-detail-outcomes > div { display: grid; gap: 20px; min-height: 142px; padding: 17px; border: 1px solid #e0e5eb; color: var(--ohm-navy); font-size: 14px; line-height: 1.4; }
-.ohm-detail-outcomes svg { color: var(--ohm-orange); }
-.ohm-detail-subhead { margin: 0 0 20px; font-size: 20px; }
-.ohm-detail-consult-box { margin-top: 56px; padding: 31px; background: var(--ohm-navy); color: #fff; }
-.ohm-detail-consult-box h3 { margin: 0 0 10px; color: #fff; font-size: 24px; }
-.ohm-detail-consult-box p { max-width: 540px; margin: 0 0 22px; color: #c9d2e2; font-size: 15px; line-height: 1.55; }
-@media (max-width: 800px) { .ohm-detail-overview-grid, .ohm-service-detail-body { grid-template-columns: 1fr; gap: 42px; } .ohm-detail-outcomes { grid-template-columns: 1fr; } .ohm-service-detail-hero .ohm-back-link { margin-bottom: 42px; } }
 
 
 .ohm-service-detail-hero { position: relative; overflow: hidden; background-color: #0a1229; background-size: cover; background-position: center; color: #fff; }

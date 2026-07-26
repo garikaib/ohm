@@ -25,12 +25,12 @@ if ( ! class_exists( 'Ohm_Page_Headers_Module' ) ) {
 				'team'                   => ohm_get_attachment_url_by_slug( 'ohm-team' ),
 				'contact'                => ohm_get_attachment_url_by_slug( 'ohm-contact' ),
 				'services'               => ohm_get_attachment_url_by_slug( 'ohm-services-cover' ),
-				'mechanical-engineering' => wp_get_attachment_url( 67 ) ? wp_get_attachment_url( 67 ) : ohm_get_attachment_url_by_slug( 'ohm-mechanical-engineering', 'png' ),
-				'electrical-engineering' => wp_get_attachment_url( 68 ) ? wp_get_attachment_url( 68 ) : ohm_get_attachment_url_by_slug( 'ohm-electrical-engineering', 'png' ),
-				'civil-engineering'      => wp_get_attachment_url( 69 ) ? wp_get_attachment_url( 69 ) : ohm_get_attachment_url_by_slug( 'ohm-civil-engineering', 'png' ),
-				'structural-engineering' => wp_get_attachment_url( 70 ) ? wp_get_attachment_url( 70 ) : ohm_get_attachment_url_by_slug( 'ohm-structural-engineering', 'png' ),
-				'project-management'     => wp_get_attachment_url( 71 ) ? wp_get_attachment_url( 71 ) : ohm_get_attachment_url_by_slug( 'ohm-project-management', 'png' ),
-				'bim-technology'         => wp_get_attachment_url( 72 ) ? wp_get_attachment_url( 72 ) : ohm_get_attachment_url_by_slug( 'hero-build' ),
+				'mechanical-engineering' => ohm_get_attachment_url_by_slug( 'ohm-service-header-mechanical' ),
+				'electrical-engineering' => ohm_get_attachment_url_by_slug( 'ohm-service-header-electrical' ),
+				'civil-engineering'      => ohm_get_attachment_url_by_slug( 'ohm-service-header-civil' ),
+				'structural-engineering' => ohm_get_attachment_url_by_slug( 'ohm-service-header-structural' ),
+				'project-management'     => ohm_get_attachment_url_by_slug( 'ohm-service-header-project-management' ),
+				'bim-technology'         => ohm_get_attachment_url_by_slug( 'ohm-service-header-bim-technology' ),
 				'blog'                   => ohm_get_attachment_url_by_slug( 'hero-build' ),
 			);
 		}

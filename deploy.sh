@@ -73,17 +73,19 @@ if [ -z "${PROD_ADMIN_PASS}" ]; then
 fi
 
 ssh "${REMOTE_USER}@${REMOTE_HOST}" "
-    sudo wp --allow-root --path=${REMOTE_PATH} search-replace '${LOCAL_URL}' '${PROD_URL}' --all-tables && \
-    sudo wp --allow-root --path=${REMOTE_PATH} search-replace 'http://ohm.ddev.site' '${PROD_URL}' --all-tables && \
-    sudo wp --allow-root --path=${REMOTE_PATH} search-replace '//ohm.ddev.site' '//ohmcore.co.zw' --all-tables && \
+    sudo wp --allow-root --path=${REMOTE_PATH} search-replace '${LOCAL_URL}' '${PROD_URL}' --all-tables --precise && \
+    sudo wp --allow-root --path=${REMOTE_PATH} search-replace 'http://ohm.ddev.site' '${PROD_URL}' --all-tables --precise && \
+    sudo wp --allow-root --path=${REMOTE_PATH} search-replace '//ohm.ddev.site' '//ohmcore.co.zw' --all-tables --precise && \
+    sudo wp --allow-root --path=${REMOTE_PATH} search-replace 'ohm.ddev.site' 'ohmcore.co.zw' --all-tables --precise && \
     sudo wp --allow-root --path=${REMOTE_PATH} option update siteurl '${PROD_URL}' && \
     sudo wp --allow-root --path=${REMOTE_PATH} option update home '${PROD_URL}' && \
+    sudo wp --allow-root --path=${REMOTE_PATH} cache flush && \
     sudo wp --allow-root --path=${REMOTE_PATH} user update '${PROD_ADMIN_USER}' --user_pass='${PROD_ADMIN_PASS}' && \
     sudo chown -R www-data:www-data ${REMOTE_PATH} && \
     sudo find ${REMOTE_PATH} -type d -exec chmod 755 {} \; && \
     sudo find ${REMOTE_PATH} -type f -exec chmod 644 {} \;
 "
-echo -e "${COLOR_GREEN}✓ URLs updated, production admin password secured, and permissions restored.${COLOR_RESET}"
+echo -e "${COLOR_GREEN}✓ URLs search-replaced, cache flushed, production admin password secured, and permissions restored.${COLOR_RESET}"
 
 echo -e "\n${COLOR_GREEN}====================================================${COLOR_RESET}"
 echo -e "${COLOR_GREEN}   DEPLOYMENT COMPLETED SUCCESSFULLY TO ${PROD_URL}   ${COLOR_RESET}"

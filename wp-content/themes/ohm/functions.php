@@ -181,12 +181,12 @@ add_action(
 				'pageSlug'     => is_singular() ? get_post_field( 'post_name', get_queried_object_id() ) : ( is_home() ? 'blog' : '' ),
 				'isSinglePost' => is_single() && 'post' === get_post_type(),
                 'detailImages' => array(
-                    'mechanical-engineering' => wp_get_attachment_url( 67 ),
-                    'electrical-engineering' => wp_get_attachment_url( 68 ),
-                    'civil-engineering' => wp_get_attachment_url( 69 ),
-                    'structural-engineering' => wp_get_attachment_url( 70 ),
-                    'project-management' => wp_get_attachment_url( 71 ),
-                    'bim-technology' => wp_get_attachment_url( 72 ),
+                    'mechanical-engineering' => ohm_get_attachment_url_by_slug( 'ohm-service-header-mechanical' ),
+                    'electrical-engineering' => ohm_get_attachment_url_by_slug( 'ohm-service-header-electrical' ),
+                    'civil-engineering' => ohm_get_attachment_url_by_slug( 'ohm-service-header-civil' ),
+                    'structural-engineering' => ohm_get_attachment_url_by_slug( 'ohm-service-header-structural' ),
+                    'project-management' => ohm_get_attachment_url_by_slug( 'ohm-service-header-project-management' ),
+                    'bim-technology' => ohm_get_attachment_url_by_slug( 'ohm-service-header-bim-technology' ),
                 ),
                 'serviceImages' => array(
                     'cover' => ohm_get_attachment_url_by_slug( 'ohm-services-cover' ),

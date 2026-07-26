@@ -44,25 +44,54 @@ function AboutPage({ images }) {
           <p>We work across commercial hubs, industrial plants, healthcare facilities, and residential developments—ensuring every solution is safe, code-compliant, energy-efficient, and delivered strictly on schedule.</p>
         </div>
       </section>
+      
+      {/* Premium Animated Vision, Mission & Commitment Cards */}
       <section className="ohm-values">
-        <div className="ohm-container ohm-values-grid">
-          <article>
-            <span>01</span>
-            <h3>Our Vision</h3>
-            <p>To lead multidisciplinary engineering in Zimbabwe and the region by earning client trust through hands-on quality and dependable execution.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Our Mission</h3>
-            <p>To design resilient systems and structures that elevate project value, protect budgets, and make a lasting positive impact on communities.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Our Commitment</h3>
-            <p>Zero compromises on safety or statutory compliance, with transparent communication from initial feasibility to site handover.</p>
-          </article>
+        <div className="ohm-container">
+          <div className="ohm-values-header">
+            <p className="ohm-kicker">GUIDING PRINCIPLES</p>
+            <h2>Purpose-driven engineering excellence.</h2>
+          </div>
+          <div className="ohm-values-grid">
+            <article className="ohm-value-card">
+              <div className="ohm-value-card-top">
+                <span className="ohm-value-num">01</span>
+                <div className="ohm-value-icon">
+                  <ShieldCheck size={28} />
+                </div>
+              </div>
+              <h3>Our Vision</h3>
+              <p>To lead multidisciplinary engineering in Zimbabwe and the region by earning client trust through hands-on quality, innovative digital tools, and dependable execution.</p>
+              <div className="ohm-value-accent" />
+            </article>
+
+            <article className="ohm-value-card">
+              <div className="ohm-value-card-top">
+                <span className="ohm-value-num">02</span>
+                <div className="ohm-value-icon">
+                  <ArrowRight size={28} />
+                </div>
+              </div>
+              <h3>Our Mission</h3>
+              <p>To design resilient systems and structures that elevate project value, protect client budgets, and make a lasting positive impact on local communities.</p>
+              <div className="ohm-value-accent" />
+            </article>
+
+            <article className="ohm-value-card">
+              <div className="ohm-value-card-top">
+                <span className="ohm-value-num">03</span>
+                <div className="ohm-value-icon">
+                  <Check size={28} />
+                </div>
+              </div>
+              <h3>Our Commitment</h3>
+              <p>Zero compromises on safety or statutory compliance, with transparent multidisciplinary communication from initial feasibility through to final site handover.</p>
+              <div className="ohm-value-accent" />
+            </article>
+          </div>
         </div>
       </section>
+
       <section className="ohm-approach ohm-container">
         <div>
           <p className="ohm-kicker">HOW WE OPERATE</p>

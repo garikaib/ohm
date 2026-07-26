@@ -164,16 +164,15 @@ export default function SocialsTool() {
                     required
                   />
                 </div>
-                <div className="flex-1 relative">
+                <div className="flex-1">
                   <input
                     type="text"
                     value={item.url}
                     onChange={(e) => handleSocialChange(idx, 'url', e.target.value)}
                     placeholder="URL (e.g. https://facebook.com/ohmcore or #)"
-                    className="w-full px-3.5 py-2 pl-9 bg-white border border-slate-200 rounded-lg text-xs font-mono text-slate-700 focus:outline-none focus:border-orange-500"
+                    className="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:border-orange-500"
                     required
                   />
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-3" />
                 </div>
               </div>
 

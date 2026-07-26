@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Clock3, Save, CheckCircle2, AlertCircle, RefreshCw, Plus, Trash2, GripVertical } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock3, Save, CheckCircle2, AlertCircle, RefreshCw, Plus, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
 
 export default function ContactsTool() {
   const [contacts, setContacts] = useState({
@@ -69,6 +69,18 @@ export default function ContactsTool() {
     }));
   };
 
+  const movePhone = (index, direction) => {
+    setContacts((prev) => {
+      const updated = [...prev.phones];
+      const targetIndex = direction === 'up' ? index - 1 : index + 1;
+      if (targetIndex < 0 || targetIndex >= updated.length) return prev;
+      const temp = updated[index];
+      updated[index] = updated[targetIndex];
+      updated[targetIndex] = temp;
+      return { ...prev, phones: updated };
+    });
+  };
+
   // Handlers for Email List
   const handleEmailChange = (index, value) => {
     setContacts((prev) => {
@@ -90,6 +102,18 @@ export default function ContactsTool() {
       ...prev,
       emails: prev.emails.filter((_, i) => i !== index),
     }));
+  };
+
+  const moveEmail = (index, direction) => {
+    setContacts((prev) => {
+      const updated = [...prev.emails];
+      const targetIndex = direction === 'up' ? index - 1 : index + 1;
+      if (targetIndex < 0 || targetIndex >= updated.length) return prev;
+      const temp = updated[index];
+      updated[index] = updated[targetIndex];
+      updated[targetIndex] = temp;
+      return { ...prev, emails: updated };
+    });
   };
 
   const handleFieldChange = (e) => {
@@ -205,9 +229,28 @@ export default function ContactsTool() {
                 key={idx}
                 className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-xs ohm-tools-card-item"
               >
-                <GripVertical className="w-4 h-4 text-slate-300 shrink-0" />
-                <span className="text-xs font-bold text-slate-400 w-14 uppercase">
-                  {idx === 0 ? 'Primary' : `#${idx + 1}`}
+                <div className="flex flex-col gap-0.5 shrink-0">
+                  <button
+                    type="button"
+                    disabled={idx === 0}
+                    onClick={() => movePhone(idx, 'up')}
+                    className="p-1 text-slate-400 hover:text-orange-500 disabled:opacity-20 disabled:hover:text-slate-400 transition-colors"
+                    title="Move Up"
+                  >
+                    <ArrowUp className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    disabled={idx === contacts.phones.length - 1}
+                    onClick={() => movePhone(idx, 'down')}
+                    className="p-1 text-slate-400 hover:text-orange-500 disabled:opacity-20 disabled:hover:text-slate-400 transition-colors"
+                    title="Move Down"
+                  >
+                    <ArrowDown className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <span className="text-xs font-bold text-slate-500 w-10 uppercase text-center bg-slate-100 py-1 rounded-md">
+                  #{idx + 1}
                 </span>
                 <div className="flex-1">
                   <input
@@ -259,9 +302,28 @@ export default function ContactsTool() {
                 key={idx}
                 className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-xs ohm-tools-card-item"
               >
-                <GripVertical className="w-4 h-4 text-slate-300 shrink-0" />
-                <span className="text-xs font-bold text-slate-400 w-14 uppercase">
-                  {idx === 0 ? 'Primary' : `#${idx + 1}`}
+                <div className="flex flex-col gap-0.5 shrink-0">
+                  <button
+                    type="button"
+                    disabled={idx === 0}
+                    onClick={() => moveEmail(idx, 'up')}
+                    className="p-1 text-slate-400 hover:text-orange-500 disabled:opacity-20 disabled:hover:text-slate-400 transition-colors"
+                    title="Move Up"
+                  >
+                    <ArrowUp className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    disabled={idx === contacts.emails.length - 1}
+                    onClick={() => moveEmail(idx, 'down')}
+                    className="p-1 text-slate-400 hover:text-orange-500 disabled:opacity-20 disabled:hover:text-slate-400 transition-colors"
+                    title="Move Down"
+                  >
+                    <ArrowDown className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <span className="text-xs font-bold text-slate-500 w-10 uppercase text-center bg-slate-100 py-1 rounded-md">
+                  #{idx + 1}
                 </span>
                 <div className="flex-1">
                   <input

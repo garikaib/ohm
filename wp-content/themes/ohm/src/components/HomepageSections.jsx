@@ -47,7 +47,7 @@ export default function HomepageSections() {
           <div className="ohm-section-heading">
             <div>
               <p className="ohm-kicker">OUR DISCIPLINES</p>
-              <h2><a href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>What we build together</a></h2>
+              <h2><a href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>Our Engineering Services</a></h2>
             </div>
             <p>Six specialized engineering capabilities, seamlessly coordinated under one dedicated consulting team.</p>
           </div>
@@ -153,7 +153,7 @@ export default function HomepageSections() {
           <div>
             <p>We bring your vision to life through rigorous engineering, smart energy choices, and disciplined project management—delivering reliable results on schedule and within budget.</p>
             <div className="ohm-promise-actions">
-              <a className="ohm-button ohm-button-navy" href="/contact">Talk to an Engineer <ArrowRight size={17} /></a>
+              <a className="ohm-button ohm-button-navy" href="/contact">Get in touch with us <ArrowRight size={17} /></a>
               <a className="ohm-button ohm-button-orange" href="/services">Explore All Services</a>
             </div>
           </div>

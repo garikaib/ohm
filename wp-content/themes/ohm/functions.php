@@ -204,6 +204,7 @@ add_action(
 				'currentHeaderImage' => is_singular() ? get_post_meta( get_queried_object_id(), '_ohm_header_image', true ) : '',
 				'pageHeaderImages'   => class_exists( 'Ohm_Page_Headers_Module' ) ? Ohm_Page_Headers_Module::get_global_headers() : array(),
 				'socials'            => class_exists( 'Ohm_Socials_Module' ) ? Ohm_Socials_Module::get_socials() : array(),
+				'contacts'           => class_exists( 'Ohm_Contacts_Module' ) ? Ohm_Contacts_Module::get_contacts() : array(),
 				'logoUrl'            => ohm_get_attachment_url_by_slug( 'ohm-core-engineering', 'webp' ),
 				'slides'     => class_exists( 'Ohm_Slider_Module' ) ? Ohm_Slider_Module::get_slides() : array(
 					array(
@@ -211,21 +212,21 @@ add_action(
 						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-build', 'png' ),
 						'eyebrow' => 'INTEGRATED ENGINEERING SERVICES',
 						'title'   => 'ENGINEERING BETTER TOMORROWS',
-						'body'    => 'Multidisciplinary engineering solutions designed for safe, efficient, and dependable project delivery.',
+						'body'    => 'Integrated mechanical, electrical, civil, structural, BIM, and project-management expertise for safe, efficient delivery.',
 					),
 					array(
 						'image'   => ohm_get_attachment_url_by_slug( 'hero-schedule' ),
 						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-schedule', 'png' ),
 						'eyebrow' => 'FROM CONCEPT TO HANDOVER',
 						'title'   => 'BUILT FOR PERFORMANCE',
-						'body'    => 'We bring mechanical, electrical, civil, structural, BIM, and project-management expertise together under one team.',
+						'body'    => 'One coordinated team connects building systems, infrastructure, and project controls from inception through final handover.',
 					),
 					array(
 						'image'   => ohm_get_attachment_url_by_slug( 'hero-foundations' ),
 						'overlay' => ohm_get_attachment_url_by_slug( 'hero-outline-foundations', 'png' ),
 						'eyebrow' => 'SAFE. EFFICIENT. COMPLIANT.',
 						'title'   => 'DESIGNING DREAMS',
-						'body'    => 'Energy-efficient, code-compliant designs that keep projects on schedule and within budget.',
+						'body'    => 'Safe, energy-efficient, code-compliant engineering that keeps projects aligned with quality, time, cost, and safety goals.',
 					),
 				),
 			)

@@ -147,41 +147,49 @@ function ContactPage({ images }) {
           <h2>Bring us your brief.</h2>
           <p>We work closely with property developers, architects, contractors, and project managers across Zimbabwe. Reach out to discuss your upcoming project or request a technical proposal.</p>
           <div className="ohm-contact-details">
-            <div>
-              <Phone size={21} />
-              <span>
+            <div className="ohm-contact-detail-card">
+              <div className="ohm-contact-icon-wrapper"><Phone size={20} /></div>
+              <div className="ohm-contact-detail-text">
+                <span className="ohm-contact-detail-label">Direct Phone</span>
                 {Array.isArray(contacts.phones) && contacts.phones.map((p, idx) => {
                   const val = typeof p === 'object' ? p.value : p;
                   return (
                     <React.Fragment key={`phone-${idx}`}>
-                      <a href={`tel:${cleanPhone(val)}`} style={{ color: 'inherit', textDecoration: 'none' }}>{val}</a>
+                      <a href={`tel:${cleanPhone(val)}`}>{val}</a>
                       {idx < contacts.phones.length - 1 && <br />}
                     </React.Fragment>
                   );
                 })}
-              </span>
+              </div>
             </div>
-            <div>
-              <Mail size={21} />
-              <span>
+            <div className="ohm-contact-detail-card">
+              <div className="ohm-contact-icon-wrapper"><Mail size={20} /></div>
+              <div className="ohm-contact-detail-text">
+                <span className="ohm-contact-detail-label">Email Inquiries</span>
                 {Array.isArray(contacts.emails) && contacts.emails.map((e, idx) => {
                   const val = typeof e === 'object' ? e.value : e;
                   return (
                     <React.Fragment key={`email-${idx}`}>
-                      <a href={`mailto:${val}`} style={{ color: 'inherit', textDecoration: 'none' }}>{val}</a>
+                      <a href={`mailto:${val}`}>{val}</a>
                       {idx < contacts.emails.length - 1 && <br />}
                     </React.Fragment>
                   );
                 })}
-              </span>
+              </div>
             </div>
-            <div>
-              <MapPin size={21} />
-              <span>{contacts.office_address}</span>
+            <div className="ohm-contact-detail-card">
+              <div className="ohm-contact-icon-wrapper"><MapPin size={20} /></div>
+              <div className="ohm-contact-detail-text">
+                <span className="ohm-contact-detail-label">Office Address</span>
+                <span>{contacts.office_address}</span>
+              </div>
             </div>
-            <div>
-              <Clock3 size={21} />
-              <span>{contacts.operating_hours}</span>
+            <div className="ohm-contact-detail-card">
+              <div className="ohm-contact-icon-wrapper"><Clock3 size={20} /></div>
+              <div className="ohm-contact-detail-text">
+                <span className="ohm-contact-detail-label">Operating Hours</span>
+                <span>{contacts.operating_hours}</span>
+              </div>
             </div>
           </div>
         </div>

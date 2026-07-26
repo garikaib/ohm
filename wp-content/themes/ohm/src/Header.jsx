@@ -178,20 +178,40 @@ export default function Header() {
             </nav>
           </div>
 
-          <h2>Quick contact info</h2>
-          <p className="ohm-drawer-intro">Integrated engineering solutions designed for performance, safety, sustainability, and dependable delivery.</p>
-          <div className="ohm-drawer-contact">
-            <span><Clock3 size={18} /><span>{contacts.operating_hours}</span></span>
-            <span><MapPin size={18} /><span>{contacts.office_address}</span></span>
-            {Array.isArray(contacts.phones) && contacts.phones.map((p, idx) => {
-              const val = typeof p === 'object' ? p.value : p;
-              return <a key={`m-phone-${idx}`} href={`tel:${cleanPhone(val)}`}><Phone size={18} /><span>{val}</span></a>;
-            })}
-            {Array.isArray(contacts.emails) && contacts.emails.map((e, idx) => {
-              const val = typeof e === 'object' ? e.value : e;
-              return <a key={`m-email-${idx}`} href={`mailto:${val}`}><Mail size={18} /><span>{val}</span></a>;
-            })}
+          <div className="ohm-drawer-contact-card-box">
+            <p className="ohm-drawer-kicker">GET IN TOUCH WITH US</p>
+            <p className="ohm-drawer-intro">Integrated multidisciplinary consulting. Direct contact with our engineering team in Harare.</p>
+            
+            <div className="ohm-drawer-contact-grid">
+              {Array.isArray(contacts.phones) && contacts.phones.map((p, idx) => {
+                const val = typeof p === 'object' ? p.value : p;
+                return (
+                  <a key={`m-phone-${idx}`} href={`tel:${cleanPhone(val)}`} className="ohm-drawer-contact-item ohm-drawer-phone-item">
+                    <span className="ohm-drawer-icon-box"><Phone size={15} /></span>
+                    <span className="ohm-drawer-contact-val">{val}</span>
+                  </a>
+                );
+              })}
+              {Array.isArray(contacts.emails) && contacts.emails.map((e, idx) => {
+                const val = typeof e === 'object' ? e.value : e;
+                return (
+                  <a key={`m-email-${idx}`} href={`mailto:${val}`} className="ohm-drawer-contact-item ohm-drawer-email-item">
+                    <span className="ohm-drawer-icon-box"><Mail size={15} /></span>
+                    <span className="ohm-drawer-contact-val">{val}</span>
+                  </a>
+                );
+              })}
+              <div className="ohm-drawer-contact-item ohm-drawer-info-item">
+                <span className="ohm-drawer-icon-box"><MapPin size={15} /></span>
+                <span className="ohm-drawer-contact-val">{contacts.short_address || contacts.office_address}</span>
+              </div>
+              <div className="ohm-drawer-contact-item ohm-drawer-info-item">
+                <span className="ohm-drawer-icon-box"><Clock3 size={15} /></span>
+                <span className="ohm-drawer-contact-val">{contacts.operating_hours}</span>
+              </div>
+            </div>
           </div>
+
           <div className="ohm-drawer-socials" aria-label="Social media">
             {dynamicSocials.map((social, idx) => (
               <a key={`drw-soc-${idx}`} href={social.url || '#'} aria-label={social.platform || 'Social'}>

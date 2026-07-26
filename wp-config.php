@@ -8,20 +8,20 @@
  */
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8' );
+define( 'DB_CHARSET', getenv( 'DB_CHARSET' ) ?: 'utf8' );
 
 /** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '' );
+define( 'DB_COLLATE', getenv( 'DB_COLLATE' ) ?: '' );
 
 /** Authentication Unique Keys and Salts. */
-define( 'AUTH_KEY', 'wtDJSLpBqOfUcbJQBUUUxlublzOtvDwXnusnfxdlrEgGdJENJsZziulUSdHJoQAe' );
-define( 'SECURE_AUTH_KEY', 'lJjtgXnywChusWyZEcPXwCdAXfTPsnmghdMTaVDgUHlHdfwHFiLVxyeHlDHTBTkK' );
-define( 'LOGGED_IN_KEY', 'oQLGYLrQGEAiZQgBYjrdlIECPiyGhaToLmEBYdzNhqdFnJdRfKqHTDHnWBNIugHr' );
-define( 'NONCE_KEY', 'hWhJRbgAWkJfiRGOSrICidsZcixGLVCQxjbkntMKNcNleAbTYaRRMzAPjlwryRAu' );
-define( 'AUTH_SALT', 'qMLGmgobMuRRkWCKcLmZpyHVQtQDWjPvnWgofsrQjpZLSdMuREgKVgtEJWUYWmib' );
-define( 'SECURE_AUTH_SALT', 'NYDGowXDVcRDOEMqByzubXIoJiIzBKtArgCnrkGaHvxLAjFyTqhcsdXMTWkuqeII' );
-define( 'LOGGED_IN_SALT', 'jrynzDaNrTykwJVuxsMmDJoCclGYKGgGGhlfamrWWOPpccdCwrZaquBPpDsIUxRG' );
-define( 'NONCE_SALT', 'OmeNcSqnrxbWORFarGnqAnMnUAnyLIMdRsOEmnkWzNooVXozOMkjOfhQSbXGTDse' );
+define( 'AUTH_KEY', 'AaTsRgJtblhEAwodvEXpjXFoPKLicDLwoCDqPsegHvfFXxgvGgozpQzNfcqshXqO' );
+define( 'SECURE_AUTH_KEY', 'dTvlQUGVpKseBJqEufEXfPoGaQCHbslPDTIbmegiqChQksrzWnkrliyJbVllEytW' );
+define( 'LOGGED_IN_KEY', 'zuWggTxWkoOQRPHZpsBbnihHfHYewplteqjuYGaptCiWSZlMZcFkGyZRAyJnHMIw' );
+define( 'NONCE_KEY', 'yyOygDrliJDyJxyMISvGsjRZCEdnpnECuogbCVWRkIPYseHuAFDNjYejZhWtbxYD' );
+define( 'AUTH_SALT', 'HXVodUYLucalmFSYYldywJTSCekPTtawawBSJLEdYtdZEJOKPQwjbOiKpAcrFfji' );
+define( 'SECURE_AUTH_SALT', 'VbtsWtAWpZMmkrAWebbDAeSPxqtRVHgZUGjXGIwNrbdXVyVQNehCumvQhMkiMieM' );
+define( 'LOGGED_IN_SALT', 'yiFcTAhMyABAzvHjTyjhNczNDOCxBcfJhtSmIWAaJgVxMkEiXgQVKSCirUPKKZgC' );
+define( 'NONCE_SALT', 'pIVwWWxAWIaQUYmqgxetUJJAeFRqXYwSFjDSXWTNckdMqCeQzkKReCXMWLfBhjsY' );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
@@ -30,11 +30,11 @@ define( 'NONCE_SALT', 'OmeNcSqnrxbWORFarGnqAnMnUAnyLIMdRsOEmnkWzNooVXozOMkjOfhQS
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
-defined( 'ABSPATH' ) || define( 'ABSPATH', dirname( __FILE__ ) . '/' );
+defined( 'ABSPATH' ) || define( 'ABSPATH', __DIR__ . '/' );
 
 // Include for settings managed by ddev.
 $ddev_settings = __DIR__ . '/wp-config-ddev.php';
-if ( ! defined( 'DB_USER' ) && getenv( 'IS_DDEV_PROJECT' ) == 'true' && is_readable( $ddev_settings ) ) {
+if ( ! defined( 'DB_USER' ) && getenv( 'IS_DDEV_PROJECT' ) === 'true' && is_readable( $ddev_settings ) ) {
 	require_once( $ddev_settings );
 }
 

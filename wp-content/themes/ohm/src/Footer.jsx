@@ -77,7 +77,6 @@ export default function Footer() {
                 <a key={`phone-${idx}`} href={`tel:${cleanPhone(phoneNum)}`} className="ohm-contact-card">
                   <Phone size={14} />
                   <div>
-                    <small>{idx === 0 ? 'PRIMARY PHONE' : `PHONE #${idx + 1}`}</small>
                     <span>{phoneNum}</span>
                   </div>
                 </a>
@@ -86,7 +85,6 @@ export default function Footer() {
                 <a key={`email-${idx}`} href={`mailto:${emailAddr}`} className="ohm-contact-card">
                   <Mail size={14} />
                   <div>
-                    <small>{idx === 0 ? 'SALES ENQUIRIES' : `EMAIL #${idx + 1}`}</small>
                     <span>{emailAddr}</span>
                   </div>
                 </a>

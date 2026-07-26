@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, Check, ClipboardCheck, Cpu, Droplets, Lightbulb, Settings2, Building2, ShieldCheck, Compass, Layers, FileCheck2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ClipboardCheck, Cpu, Droplets, Lightbulb, Settings2, Building2, ShieldCheck, Compass, Layers, FileCheck2, Phone, Mail } from 'lucide-react';
 
 const services = [
   { 
@@ -110,25 +110,33 @@ const deliverySteps = [
   { step: '04', title: 'Supervision & Handover', desc: 'On-site quality monitoring, testing, commissioning, snag resolution, and final asset handover.', icon: ShieldCheck }
 ];
 
-function ServiceCard({ service, image }) {
+function ServiceCard({ service, image, index }) {
   const Icon = service.icon;
   return (
-    <article className="ohm-service-page-card">
+    <article className="ohm-service-page-card" style={{ animationDelay: `${(index || 0) * 0.12}s` }}>
       <div className="ohm-service-card-header">
         <div className="ohm-service-page-icon">
-          {image ? <img src={image} alt={service.title} width="72" height="64" /> : <Icon size={36} strokeWidth={1.25} />}
+          {image ? <img src={image} alt={service.title} width="72" height="64" /> : <Icon size={38} strokeWidth={1.2} />}
         </div>
-        <span className="ohm-capability-tag">CORE DISCIPLINE</span>
+        <div className="ohm-service-card-meta">
+          <span className="ohm-service-index-badge">0{index + 1}</span>
+          <span className="ohm-capability-tag">CORE DISCIPLINE</span>
+        </div>
       </div>
       <p className="ohm-kicker">EXPLORE THE CAPABILITY</p>
       <h2><a href={`/${service.slug}/`} style={{ color: 'inherit', textDecoration: 'none' }}>{service.title}</a></h2>
       <p className="ohm-service-summary">{service.short}</p>
       <ul className="ohm-service-highlights">
         {service.points.slice(0, 4).map((pt) => (
-          <li key={pt}><Check size={15} /><span>{pt}</span></li>
+          <li key={pt}><Check size={16} /><span>{pt}</span></li>
         ))}
       </ul>
-      <a className="ohm-text-link" href={`/${service.slug}/`}>View full capability details <ArrowRight size={17} /></a>
+      <div className="ohm-service-card-footer">
+        <a className="ohm-text-link" href={`/${service.slug}/`}>
+          <span>View full capability details</span>
+          <ArrowRight size={17} />
+        </a>
+      </div>
     </article>
   );
 }
@@ -204,11 +212,41 @@ export default function ServicesPage({ slug = 'services' }) {
       <section className="ohm-services-hero" style={{ backgroundImage: coverImage ? `url(${coverImage})` : undefined }}>
         <div className="ohm-services-hero-overlay" />
         <div className="ohm-container">
-          <p className="ohm-kicker">INTEGRATED ENGINEERING SERVICES GROUP</p>
-          <h1>Engineering that<br /><span>makes projects work.</span></h1>
-          <p>From building systems and site civil works to heavy structures, BIM modeling, and project management controls, OHM delivers multidisciplinary precision from inception to final handover.</p>
-          
-          <div className="ohm-services-stats-bar">
+          <div className="ohm-services-hero-content-wrap">
+            <div>
+              <p className="ohm-kicker">INTEGRATED ENGINEERING SERVICES GROUP</p>
+              <h1>Engineering that<br /><span>makes projects work.</span></h1>
+              <p className="ohm-services-hero-desc">From building systems and site civil works to heavy structures, BIM modeling, and project management controls, OHM delivers multidisciplinary precision from inception to final handover.</p>
+            </div>
+
+            {/* Premium Floating Contact Badge */}
+            {Array.isArray(window.ohmThemeData?.contacts?.phones) && window.ohmThemeData.contacts.phones.length > 0 && (
+              <div className="ohm-hero-contact-badge">
+                <div className="ohm-hero-contact-badge-header">
+                  <span className="ohm-hero-badge-pulse" />
+                  <span className="ohm-hero-badge-title">Get in touch with us</span>
+                </div>
+                <div className="ohm-hero-contact-badge-list">
+                  {window.ohmThemeData.contacts.phones.map((phone, idx) => (
+                    <a key={`hero-phone-${idx}`} href={`tel:${(phone || '').replace(/\s+/g, '')}`} className="ohm-hero-phone-chip">
+                      <span className="ohm-phone-icon-box"><Phone size={13} /></span>
+                      <span className="ohm-phone-number-text">{phone}</span>
+                    </a>
+                  ))}
+                  {Array.isArray(window.ohmThemeData?.contacts?.emails) && window.ohmThemeData.contacts.emails[0] && (
+                    <a href={`mailto:${window.ohmThemeData.contacts.emails[0]}`} className="ohm-hero-email-chip">
+                      <Mail size={13} />
+                      <span>{window.ohmThemeData.contacts.emails[0]}</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="ohm-services-stats-bar">
+          <div className="ohm-container ohm-services-stats-grid">
             <div className="ohm-services-stat-item"><strong>6</strong><span>Core Engineering Disciplines</span></div>
             <div className="ohm-services-stat-item"><strong>LOD 600</strong><span>Advanced BIM Modeling Standard</span></div>
             <div className="ohm-services-stat-item"><strong>Full Cycle</strong><span>Inception through Final Handover</span></div>
@@ -231,8 +269,8 @@ export default function ServicesPage({ slug = 'services' }) {
 
       {/* Capability Grid */}
       <section className="ohm-services-page-grid ohm-container">
-        {services.map((service) => (
-          <ServiceCard key={service.slug} service={service} image={images[service.slug]} />
+        {services.map((service, index) => (
+          <ServiceCard key={service.slug} service={service} image={images[service.slug]} index={index} />
         ))}
       </section>
 

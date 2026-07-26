@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Check, Clock3, Mail, MapPin, Phone, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Check, Clock3, Eye, Handshake, Mail, MapPin, Phone, ShieldCheck, Target } from 'lucide-react';
 
 const content = {
   about: {
@@ -57,7 +57,7 @@ function AboutPage({ images }) {
               <div className="ohm-value-card-top">
                 <span className="ohm-value-num">01</span>
                 <div className="ohm-value-icon">
-                  <ShieldCheck size={28} />
+                  <Eye size={26} strokeWidth={2} />
                 </div>
               </div>
               <h3>Our Vision</h3>
@@ -69,7 +69,7 @@ function AboutPage({ images }) {
               <div className="ohm-value-card-top">
                 <span className="ohm-value-num">02</span>
                 <div className="ohm-value-icon">
-                  <ArrowRight size={28} />
+                  <Target size={26} strokeWidth={2} />
                 </div>
               </div>
               <h3>Our Mission</h3>
@@ -81,7 +81,7 @@ function AboutPage({ images }) {
               <div className="ohm-value-card-top">
                 <span className="ohm-value-num">03</span>
                 <div className="ohm-value-icon">
-                  <Check size={28} />
+                  <Handshake size={26} strokeWidth={2} />
                 </div>
               </div>
               <h3>Our Commitment</h3>
@@ -93,18 +93,58 @@ function AboutPage({ images }) {
       </section>
 
       <section className="ohm-approach ohm-container">
-        <div>
+        <div className="ohm-approach-title-col">
           <p className="ohm-kicker">HOW WE OPERATE</p>
-          <h2>Precision. Collaboration. Accountability.</h2>
+          <h2>Precision.<br /><span>Collaboration.</span><br />Accountability.</h2>
+          <p className="ohm-approach-desc">Our 4-stage operational framework guarantees strict alignment across design intent, LOD modeling, safety standards, and project delivery.</p>
+
+          {/* Desktop-Only Operational Metric Badge & Direct Contact CTA */}
+          <div className="ohm-approach-desktop-extras">
+            <div className="ohm-approach-stat-card">
+              <div className="ohm-approach-stat-num">100%</div>
+              <div className="ohm-approach-stat-text">
+                <strong>Statutory & Safety Compliance</strong>
+                <span>Rigorous QA/QC testing and FIDIC/JBCC contract governance across all 4 delivery stages.</span>
+              </div>
+            </div>
+            <a href="/contact/" className="ohm-button ohm-button-orange ohm-approach-cta">
+              Discuss Your Project Scope <ArrowRight size={16} />
+            </a>
+          </div>
         </div>
         <div className="ohm-approach-list">
           {[
-            'Deeply understand your project brief, constraints, and timeline goals',
-            'Coordinate all engineering disciplines early through LOD 600 digital models',
-            'Active risk management, procurement control, and budget alignment',
-            'Dedicated on-site supervision, testing, commissioning, and smooth handover'
+            {
+              step: '01',
+              title: 'Brief & Feasibility Analysis',
+              desc: 'Deeply understand your project brief, site constraints, budget limits, and timeline goals from day one.'
+            },
+            {
+              step: '02',
+              title: 'LOD 600 Digital Coordination',
+              desc: 'Coordinate all engineering disciplines early through advanced 3D LOD 600 digital twin models to eliminate spatial clashes.'
+            },
+            {
+              step: '03',
+              title: 'Active Risk & Budget Control',
+              desc: 'Proactive risk management, FIDIC/JBCC contract administration, procurement control, and strict budget alignment.'
+            },
+            {
+              step: '04',
+              title: 'Site Supervision & Handover',
+              desc: 'Dedicated on-site supervision, rigorous QA/QC testing, commissioning, and a smooth, fully-documented handover.'
+            }
           ].map((item) => (
-            <div key={item}><Check size={18} />{item}</div>
+            <div key={item.step} className="ohm-approach-item">
+              <div className="ohm-approach-step">{item.step}</div>
+              <div className="ohm-approach-body">
+                <div className="ohm-approach-header">
+                  <h3>{item.title}</h3>
+                  <div className="ohm-approach-check"><Check size={16} /></div>
+                </div>
+                <p>{item.desc}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>

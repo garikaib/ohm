@@ -943,10 +943,154 @@ button {
   .ohm-value-card { min-height: auto; padding: 28px 24px; }
 }
 
-.ohm-approach { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding-top: 115px; padding-bottom: 115px; }
-.ohm-approach-list { align-self: end; border-top: 1px solid #dfe1e5; }
-.ohm-approach-list div { display: flex; align-items: center; gap: 15px; padding: 22px 0; border-bottom: 1px solid #dfe1e5; color: var(--ohm-navy); font-size: 17px; }
-.ohm-approach-list svg, .ohm-team-principle-grid svg { color: var(--ohm-orange); }
+.ohm-approach { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 80px; padding-top: 110px; padding-bottom: 120px; align-items: start; }
+.ohm-approach-title-col h2 span { color: var(--ohm-orange); }
+.ohm-approach-desc { margin-top: 20px; color: var(--ohm-gray); font-size: 17px; line-height: 1.6; max-width: 480px; margin-bottom: 36px; }
+
+/* Desktop Extras on Left Column */
+.ohm-approach-desktop-extras {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 460px;
+}
+
+.ohm-approach-stat-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 22px 24px;
+  background: var(--ohm-navy);
+  color: #ffffff;
+  border-radius: 6px;
+  border-left: 4px solid var(--ohm-orange);
+  box-shadow: 0 12px 30px rgba(0, 22, 89, 0.12);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.ohm-approach-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 22, 89, 0.18);
+}
+
+.ohm-approach-stat-num {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--ohm-orange);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.ohm-approach-stat-text strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.ohm-approach-stat-text span {
+  display: block;
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.ohm-approach-cta {
+  width: fit-content;
+  border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .ohm-approach-desktop-extras { display: none; }
+}
+
+/* Operational Framework Cards */
+.ohm-approach-list { display: flex; flex-direction: column; gap: 16px; border-top: 0; }
+
+.ohm-approach-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 20px;
+  padding: 24px 28px;
+  background: #ffffff;
+  border: 1fr solid #e2e8f0;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid var(--ohm-navy);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 22, 89, 0.03);
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.ohm-approach-item:hover {
+  transform: translateX(8px);
+  border-left-color: var(--ohm-orange);
+  border-color: rgba(255, 94, 20, 0.3);
+  box-shadow: 0 14px 30px rgba(0, 22, 89, 0.08);
+  background: #fafbfc;
+}
+
+.ohm-approach-step {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ohm-orange);
+  letter-spacing: 1px;
+  padding-top: 2px;
+}
+
+.ohm-approach-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ohm-approach-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ohm-approach-header h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--ohm-navy);
+  transition: color 0.25s ease;
+}
+
+.ohm-approach-item:hover .ohm-approach-header h3 {
+  color: var(--ohm-navy);
+}
+
+.ohm-approach-check {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 94, 20, 0.1);
+  color: var(--ohm-orange);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.ohm-approach-item:hover .ohm-approach-check {
+  background: var(--ohm-orange);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.ohm-approach-body p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .ohm-approach { grid-template-columns: 1fr; gap: 40px; padding-top: 60px; padding-bottom: 70px; }
+  .ohm-approach-item { grid-template-columns: 36px 1fr; gap: 14px; padding: 20px 20px; }
+}
 .ohm-team-principles { background: var(--ohm-navy); color: #fff; }
 .ohm-team-principles .ohm-kicker { color: var(--ohm-orange); }
 .ohm-team-principle-grid { background: rgba(255,255,255,.25); }

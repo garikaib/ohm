@@ -1,5 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Calendar, FolderOpen, Search, User } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  Calendar, 
+  FolderOpen, 
+  Search, 
+  User, 
+  Clock, 
+  Grid, 
+  List, 
+  Sparkles, 
+  ChevronRight, 
+  BookOpen, 
+  Filter, 
+  X, 
+  Share2, 
+  Check 
+} from 'lucide-react';
 
 export default function BlogPage() {
   const [posts, setPosts] = useState([]);
@@ -11,11 +28,27 @@ export default function BlogPage() {
   const [activeSearch, setActiveSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  
+  // Mobile detection
+  const [isMobile, setIsMobile] = useState(false);
+  // Mobile UI States
+  const [activeFilterTab, setActiveFilterTab] = useState(null);
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Fetch posts based on filters
   useEffect(() => {
     setLoading(true);
-    let url = `/wp-json/wp/v2/posts?_embed&per_page=5&page=${currentPage}`;
+    let url = `/wp-json/wp/v2/posts?_embed&per_page=6&page=${currentPage}`;
     if (selectedCategory) {
       url += `&categories=${selectedCategory}`;
     }
@@ -68,6 +101,7 @@ export default function BlogPage() {
     e.preventDefault();
     setCurrentPage(1);
     setActiveSearch(searchQuery);
+    setShowSearchModal(false);
   };
 
   const getFeaturedImage = (post) => {
@@ -87,7 +121,7 @@ export default function BlogPage() {
 
   const getCategoryName = (post) => {
     const terms = post._embedded?.['wp:term']?.[0];
-    return terms && terms.length > 0 ? terms[0].name : 'Uncategorized';
+    return terms && terms.length > 0 ? terms[0].name : 'Engineering';
   };
 
   const getAuthorName = (post) => {
@@ -95,8 +129,245 @@ export default function BlogPage() {
     return author ? author.name : 'OHM Core';
   };
 
+  const calculateReadTime = (post) => {
+    const text = post.content?.rendered || post.excerpt?.rendered || '';
+    const words = text.replace(/<[^>]+>/g, '').split(/\s+/).length;
+    const minutes = Math.ceil(words / 180);
+    return `${minutes || 3} min read`;
+  };
+
+  const handleShare = (e, post) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = `${window.location.origin}/${post.slug}/`;
+    if (navigator.share) {
+      navigator.share({
+        title: post.title.rendered,
+        url: url
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url);
+      setCopiedId(post.id);
+      setTimeout(() => setCopiedId(null), 2000);
+    }
+  };
+
   const blogHeroImg = window.ohmThemeData?.pageHeaderImages?.['blog'] || window.ohmThemeData?.currentHeaderImage;
 
+  // =========================================================================
+  // 📱 MOBILE VIEW: Premium WordPress Grid Plugin ("The Grid") Style Layout
+  // =========================================================================
+  if (isMobile) {
+    const featuredPost = posts.length > 0 ? posts[0] : null;
+    const gridPosts = posts.length > 0 ? posts : [];
+
+    return (
+      <main className="ohm-blog-page-mobile">
+        <header className="ohm-m-editorial-header">
+          <div className="ohm-m-header-content">
+            <span className="ohm-m-header-sub">Ohm Core Engineering</span>
+            <h1>Insights & Journal</h1>
+            <p>Thought leadership at the intersection of engineering and innovation.</p>
+          </div>
+        </header>
+
+        {/* Mobile Grid Controls & Horizontal Filter Bar */}
+        <div className="ohm-m-controls-sticky">
+          <div className="ohm-m-filter-bar">
+            <button 
+              className={`ohm-m-filter-chip ${selectedCategory === null && !activeSearch ? 'is-active' : ''}`}
+              onClick={() => { setSelectedCategory(null); setActiveSearch(''); setSearchQuery(''); setCurrentPage(1); }}
+            >
+              All Articles
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                className={`ohm-m-filter-chip ${selectedCategory === cat.id ? 'is-active' : ''}`}
+                onClick={() => { setSelectedCategory(cat.id); setActiveSearch(''); setCurrentPage(1); }}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+
+          <div className="ohm-m-search-trigger-bar">
+            <button className="ohm-m-search-btn" onClick={() => setShowSearchModal(true)}>
+              <Search size={16} />
+              <span>{activeSearch ? `Search: "${activeSearch}"` : 'Search insights & topics...'}</span>
+            </button>
+            {activeSearch && (
+              <button className="ohm-m-clear-search" onClick={() => { setActiveSearch(''); setSearchQuery(''); }}>
+                <X size={16} />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile Grid Layout Container */}
+        <div className="ohm-m-grid-container">
+          {loading ? (
+            <div className="ohm-m-grid-skeleton">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className={`ohm-m-card-skeleton ${i === 0 ? 'is-hero' : ''}`}>
+                  <div className="sk-img" />
+                  <div className="sk-body">
+                    <div className="sk-line sk-cat" />
+                    <div className="sk-line sk-title" />
+                    <div className="sk-line sk-desc" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : posts.length === 0 ? (
+            <div className="ohm-m-empty">
+              <BookOpen size={40} />
+              <h3>No articles found</h3>
+              <p>We couldn't find anything matching your filters or search terms.</p>
+              <button 
+                className="ohm-button ohm-button-orange"
+                onClick={() => { setSelectedCategory(null); setActiveSearch(''); setSearchQuery(''); }}
+              >
+                Reset All Filters
+              </button>
+            </div>
+          ) : (
+            <div className="ohm-m-grid-masonry">
+              {gridPosts.map((post, idx) => {
+                const isHeroCard = idx === 0 && currentPage === 1 && !selectedCategory && !activeSearch;
+                const isSkinAlt = idx % 3 === 2; // Dynamic visual variety for "The Grid" effect
+                const dateObj = formatDate(post.date);
+                const category = getCategoryName(post);
+                const readTime = calculateReadTime(post);
+                const imgUrl = getFeaturedImage(post);
+
+                if (isHeroCard) {
+                  return (
+                    <article key={post.id} className="ohm-m-grid-card ohm-m-card-featured">
+                      <a href={`/${post.slug}/`} className="ohm-m-card-link">
+                        <div className="ohm-m-card-media">
+                          <img src={imgUrl} alt={post.title.rendered} loading="eager" />
+                          <div className="ohm-m-media-overlay" />
+                          <span className="ohm-m-badge-cat">{category}</span>
+                          <span className="ohm-m-badge-feat">Featured</span>
+                        </div>
+                        <div className="ohm-m-card-content">
+                          <div className="ohm-m-meta-top">
+                            <span className="ohm-m-date"><Calendar size={13} /> {dateObj.month} {dateObj.day}, {dateObj.year}</span>
+                            <span className="ohm-m-read"><Clock size={13} /> {readTime}</span>
+                          </div>
+                          <h2 className="ohm-m-card-title" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                          <p 
+                            className="ohm-m-card-excerpt" 
+                            dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 110) + '...' }} 
+                          />
+                          <div className="ohm-m-card-footer">
+                            <span className="ohm-m-read-more">
+                              Read Article <ChevronRight size={16} />
+                            </span>
+                            <button className="ohm-m-share-btn" onClick={(e) => handleShare(e, post)} aria-label="Share article">
+                              {copiedId === post.id ? <Check size={16} color="#ff5e14" /> : <Share2 size={16} />}
+                            </button>
+                          </div>
+                        </div>
+                      </a>
+                    </article>
+                  );
+                }
+
+                // Grid Card Variants ("The Grid" Wordpress Plugin style overlay vs card skin)
+                return (
+                  <article key={post.id} className={`ohm-m-grid-card ${isSkinAlt ? 'ohm-m-card-overlay-skin' : 'ohm-m-card-standard'}`}>
+                    <a href={`/${post.slug}/`} className="ohm-m-card-link">
+                      <div className="ohm-m-card-media">
+                        <img src={imgUrl} alt={post.title.rendered} loading="lazy" />
+                        <div className="ohm-m-media-overlay" />
+                        <span className="ohm-m-badge-cat">{category}</span>
+                      </div>
+                      <div className="ohm-m-card-content">
+                        <div className="ohm-m-meta-top">
+                          <span className="ohm-m-date">{dateObj.month} {dateObj.day}</span>
+                          <span className="ohm-m-dot">•</span>
+                          <span className="ohm-m-read">{readTime}</span>
+                        </div>
+                        <h3 className="ohm-m-card-title" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                        {!isSkinAlt && (
+                          <p 
+                            className="ohm-m-card-excerpt" 
+                            dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 75) + '...' }} 
+                          />
+                        )}
+                        <div className="ohm-m-card-footer">
+                          <span className="ohm-m-read-more">
+                            Explore <ArrowRight size={14} />
+                          </span>
+                          <button className="ohm-m-share-btn" onClick={(e) => handleShare(e, post)} aria-label="Share article">
+                            {copiedId === post.id ? <Check size={15} color="#ff5e14" /> : <Share2 size={15} />}
+                          </button>
+                        </div>
+                      </div>
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Mobile Pagination */}
+          {totalPages > 1 && (
+            <div className="ohm-m-pagination">
+              <button 
+                type="button" 
+                disabled={currentPage === 1} 
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              >
+                <ArrowLeft size={16} /> Prev
+              </button>
+              <span className="ohm-m-page-info">Page {currentPage} of {totalPages}</span>
+              <button 
+                type="button" 
+                disabled={currentPage === totalPages} 
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              >
+                Next <ArrowRight size={16} />
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile Search Modal Drawer */}
+        {showSearchModal && (
+          <div className="ohm-m-search-modal-backdrop">
+            <div className="ohm-m-search-modal">
+              <div className="ohm-m-modal-header">
+                <h3>Search Articles</h3>
+                <button type="button" onClick={() => setShowSearchModal(false)}><X size={20} /></button>
+              </div>
+              <form onSubmit={handleSearchSubmit} className="ohm-m-search-modal-form">
+                <div className="ohm-m-modal-input-wrap">
+                  <Search size={18} />
+                  <input
+                    type="text"
+                    placeholder="Search engineering topics, BIM, civil..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    autoFocus
+                  />
+                </div>
+                <button type="submit" className="ohm-button ohm-button-orange">
+                  Search Journal
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </main>
+    );
+  }
+
+  // =========================================================================
+  // 💻 DESKTOP VIEW: Clean, Unchanged Desktop Layout
+  // =========================================================================
   return (
     <main className="ohm-blog-page">
       {/* Blog Hero Banner */}
@@ -243,7 +514,7 @@ export default function BlogPage() {
           <div className="ohm-sidebar-widget">
             <h4 className="widget-title">Topics</h4>
             <div className="ohm-sidebar-tags">
-              {['BIM & digital delivery', 'MEP systems', 'Infrastructure', 'Project management', 'Sustainability', 'Safety & compliance'].map((tag) => <button key={tag} type="button" onClick={() => setSearchQuery(tag)}>{tag}</button>)}
+              {['BIM & digital delivery', 'MEP systems', 'Infrastructure', 'Project management', 'Sustainability', 'Safety & compliance'].map((tag) => <button key={tag} type="button" onClick={() => { setSearchQuery(tag); setActiveSearch(tag); setCurrentPage(1); }}>{tag}</button>)}
             </div>
           </div>
 

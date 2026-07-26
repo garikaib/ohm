@@ -246,15 +246,11 @@ add_action(
 			$ohm_favicon_32 = wp_get_attachment_url( 40 ); // Blue & White 32x32 (favicon-32x32-2.png)
 			$ohm_apple_icon = wp_get_attachment_url( 41 ); // Blue & White Apple Touch Icon (apple-touch-icon-1.png)
 			$ohm_site_icon  = wp_get_attachment_url( 42 ); // Blue & White Site Icon 512x512 (wp-site-icon-1.png)
-			$ohm_favicon_dark = wp_get_attachment_url( 37 ); // White & Orange fallback for dark mode 32x32
-			$ohm_apple_dark   = wp_get_attachment_url( 38 ); // White & Orange fallback for dark mode apple touch
 		?>
-		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( $ohm_favicon_32 ); ?>" data-ohm-favicon-light>
-		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( $ohm_favicon_dark ); ?>" data-ohm-favicon-dark disabled>
+		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( $ohm_favicon_32 ); ?>">
 		<link rel="icon" type="image/png" sizes="192x192" href="<?php echo esc_url( $ohm_site_icon ); ?>">
 		<link rel="icon" type="image/png" sizes="512x512" href="<?php echo esc_url( $ohm_site_icon ); ?>">
-		<link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url( $ohm_apple_icon ); ?>" data-ohm-apple-light>
-		<link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url( $ohm_apple_dark ); ?>" data-ohm-apple-dark disabled>
+		<link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url( $ohm_apple_icon ); ?>">
 		<script>
 			(function() {
 				const saved = localStorage.getItem('theme');
@@ -262,10 +258,6 @@ add_action(
 				const isDark = saved === 'dark' || (!saved && prefersDark);
 				if (isDark) document.documentElement.classList.add('dark');
 				else document.documentElement.classList.remove('dark');
-				document.querySelector('[data-ohm-favicon-light]').disabled = isDark;
-				document.querySelector('[data-ohm-favicon-dark]').disabled = !isDark;
-				document.querySelector('[data-ohm-apple-light]').disabled = isDark;
-				document.querySelector('[data-ohm-apple-dark]').disabled = !isDark;
 			})();
 		</script>
 		<?php

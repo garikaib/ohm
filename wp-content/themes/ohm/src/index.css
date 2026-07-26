@@ -881,19 +881,35 @@ button {
 .ohm-team-principle-grid p { color: #c8d0df; }
 .ohm-contact-hero { min-height: 560px; }
 .ohm-contact-body { display: grid; grid-template-columns: 1fr 1.05fr; gap: 80px; padding-top: 90px; padding-bottom: 110px; align-items: start; }
-.ohm-contact-body > div > p:not(.ohm-kicker) { max-width: 480px; color: var(--ohm-gray); font-size: 17px; line-height: 1.65; margin-bottom: 40px; }
-.ohm-contact-details { display: grid; gap: 24px; margin-top: 36px; color: var(--ohm-navy); }
-.ohm-contact-detail-card { display: flex; align-items: flex-start; gap: 18px; padding: 20px 24px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
-.ohm-contact-detail-card:hover { transform: translateY(-2px); border-color: rgba(255, 94, 20, 0.4); box-shadow: 0 10px 25px rgba(0, 22, 89, 0.06); }
-.ohm-contact-icon-wrapper { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 10px; background: rgba(255, 94, 20, 0.1); color: var(--ohm-orange); flex-shrink: 0; }
-.ohm-contact-detail-text { font-size: 15px; line-height: 1.5; font-weight: 600; color: var(--ohm-navy); }
-.ohm-contact-detail-label { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: var(--ohm-orange); text-transform: uppercase; margin-bottom: 4px; }
-.ohm-contact-form { display: grid; gap: 22px; padding: 44px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 15px 40px rgba(0, 22, 89, 0.06); }
-.ohm-contact-form label { display: grid; gap: 8px; color: var(--ohm-navy); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
-.ohm-contact-form input, .ohm-contact-form textarea { width: 100%; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px 16px; background: #f8fafc; color: var(--ohm-navy); font-size: 15px; outline: none; transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease; box-sizing: border-box; }
-.ohm-contact-form input:focus, .ohm-contact-form textarea:focus { border-color: var(--ohm-orange); background: #ffffff; box-shadow: 0 0 0 3px rgba(255, 94, 20, 0.15); }
-.ohm-contact-form button { margin-top: 8px; width: 100%; justify-content: center; border-radius: 10px; padding: 16px; font-size: 15px; font-weight: 700; }
-@media (max-width: 990px) { .ohm-company-hero, .ohm-contact-hero { min-height: 520px; padding: 80px 0; } .ohm-company-intro, .ohm-approach, .ohm-contact-body { grid-template-columns: 1fr; gap: 48px; padding-top: 60px; padding-bottom: 75px; } .ohm-values-grid, .ohm-team-principle-grid { grid-template-columns: 1fr; } .ohm-values article, .ohm-team-principle-grid article { min-height: 0; } .ohm-contact-form { padding: 30px 24px; } }
+.ohm-contact-body > div > p:not(.ohm-kicker) { max-width: 480px; color: var(--ohm-gray); font-size: 17px; line-height: 1.65; margin-bottom: 36px; }
+
+/* Numbered Contact Ledger */
+.ohm-ledger-container { border-top: 2px solid var(--ohm-navy); margin-top: 28px; }
+.ohm-ledger-row { display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid #e2e8f0; transition: padding-left 0.3s ease, background-color 0.3s ease; }
+.ohm-ledger-row:hover { padding-left: 8px; }
+.ohm-ledger-num { color: var(--ohm-orange); font-size: 13px; font-weight: 800; font-mono: true; letter-spacing: 0.05em; padding-top: 2px; }
+.ohm-ledger-content { display: flex; flex-direction: column; gap: 4px; }
+.ohm-ledger-label { color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.ohm-ledger-val { color: var(--ohm-navy); font-size: 16px; font-weight: 600; line-height: 1.5; }
+.ohm-ledger-val a { color: var(--ohm-navy); text-decoration: none; transition: color 0.2s ease; }
+.ohm-ledger-val a:hover { color: var(--ohm-orange); }
+.ohm-ledger-sep { margin: 0 8px; color: #cbd5e1; font-weight: 400; }
+
+/* Dark Project-Intake Panel */
+.ohm-intake-panel { background: var(--ohm-navy); color: #ffffff; padding: 48px; border-radius: 20px; border-left: 4px solid var(--ohm-orange); box-shadow: 0 25px 60px rgba(0, 22, 89, 0.18); position: relative; overflow: hidden; }
+.ohm-intake-panel::before { content: ""; position: absolute; top: 0; right: 0; width: 120px; height: 120px; background: radial-gradient(circle, rgba(255,94,20,0.15) 0%, rgba(0,22,89,0) 70%); pointer-events: none; }
+.ohm-intake-header { margin-bottom: 32px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 24px; }
+.ohm-intake-badge { display: inline-block; color: var(--ohm-orange); font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+.ohm-intake-header h3 { margin: 0 0 8px; font-size: 26px; font-weight: 800; color: #ffffff; letter-spacing: -0.02em; }
+.ohm-intake-header p { margin: 0; color: #94a3b8; font-size: 14px; line-height: 1.55; }
+.ohm-intake-form { display: grid; gap: 24px; }
+.ohm-intake-group { display: flex; flex-direction: column; gap: 8px; }
+.ohm-intake-group label { color: #cbd5e1; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.ohm-intake-group input, .ohm-intake-group textarea { width: 100%; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 10px; padding: 14px 18px; background: rgba(255, 255, 255, 0.05); color: #ffffff; font-size: 15px; outline: none; transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease; box-sizing: border-box; }
+.ohm-intake-group input::placeholder, .ohm-intake-group textarea::placeholder { color: #64748b; font-size: 14px; }
+.ohm-intake-group input:focus, .ohm-intake-group textarea:focus { border-color: var(--ohm-orange); background: rgba(255, 255, 255, 0.09); box-shadow: 0 0 0 3px rgba(255, 94, 20, 0.2); }
+.ohm-intake-submit { width: 100%; justify-content: center; padding: 18px; font-size: 15px; font-weight: 800; border-radius: 12px; margin-top: 8px; }
+@media (max-width: 990px) { .ohm-company-hero, .ohm-contact-hero { min-height: 520px; padding: 80px 0; } .ohm-company-intro, .ohm-approach, .ohm-contact-body { grid-template-columns: 1fr; gap: 48px; padding-top: 60px; padding-bottom: 75px; } .ohm-intake-panel { padding: 32px 24px; } }
 
 /* Premium motion layer */
 @keyframes ohm-fade-up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }

@@ -242,7 +242,7 @@ add_action(
 	'wp_head',
 	function () {
 		?>
-		<?php $ohm_favicon_light = wp_get_attachment_url( 40 ); $ohm_favicon_dark = wp_get_attachment_url( 37 ); $ohm_apple_light = wp_get_attachment_url( 41 ); $ohm_apple_dark = wp_get_attachment_url( 38 ); ?>
+		<?php $ohm_favicon_light = wp_get_attachment_url( 37 ); $ohm_favicon_dark = wp_get_attachment_url( 37 ); $ohm_apple_light = wp_get_attachment_url( 38 ); $ohm_apple_dark = wp_get_attachment_url( 38 ); ?>
 		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( $ohm_favicon_light ); ?>" data-ohm-favicon-light>
 		<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( $ohm_favicon_dark ); ?>" data-ohm-favicon-dark disabled>
 		<link rel="apple-touch-icon" href="<?php echo esc_url( $ohm_apple_light ); ?>" data-ohm-apple-light>

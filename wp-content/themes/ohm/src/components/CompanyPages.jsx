@@ -146,59 +146,90 @@ function ContactPage({ images }) {
           <p className="ohm-kicker">DIRECT TECHNICAL CONSULTATION</p>
           <h2>Bring us your brief.</h2>
           <p>We work closely with property developers, architects, contractors, and project managers across Zimbabwe. Reach out to discuss your upcoming project or request a technical proposal.</p>
-          <div className="ohm-contact-details">
-            <div className="ohm-contact-detail-card">
-              <div className="ohm-contact-icon-wrapper"><Phone size={20} /></div>
-              <div className="ohm-contact-detail-text">
-                <span className="ohm-contact-detail-label">Direct Phone</span>
-                {Array.isArray(contacts.phones) && contacts.phones.map((p, idx) => {
-                  const val = typeof p === 'object' ? p.value : p;
-                  return (
-                    <React.Fragment key={`phone-${idx}`}>
-                      <a href={`tel:${cleanPhone(val)}`}>{val}</a>
-                      {idx < contacts.phones.length - 1 && <br />}
-                    </React.Fragment>
-                  );
-                })}
+          <div className="ohm-ledger-container">
+            <div className="ohm-ledger-row">
+              <span className="ohm-ledger-num">01</span>
+              <div className="ohm-ledger-content">
+                <span className="ohm-ledger-label">DIRECT PHONE</span>
+                <div className="ohm-ledger-val">
+                  {Array.isArray(contacts.phones) && contacts.phones.map((p, idx) => {
+                    const val = typeof p === 'object' ? p.value : p;
+                    return (
+                      <React.Fragment key={`phone-${idx}`}>
+                        <a href={`tel:${cleanPhone(val)}`}>{val}</a>
+                        {idx < contacts.phones.length - 1 && <span className="ohm-ledger-sep">/</span>}
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-            <div className="ohm-contact-detail-card">
-              <div className="ohm-contact-icon-wrapper"><Mail size={20} /></div>
-              <div className="ohm-contact-detail-text">
-                <span className="ohm-contact-detail-label">Email Inquiries</span>
-                {Array.isArray(contacts.emails) && contacts.emails.map((e, idx) => {
-                  const val = typeof e === 'object' ? e.value : e;
-                  return (
-                    <React.Fragment key={`email-${idx}`}>
-                      <a href={`mailto:${val}`}>{val}</a>
-                      {idx < contacts.emails.length - 1 && <br />}
-                    </React.Fragment>
-                  );
-                })}
+
+            <div className="ohm-ledger-row">
+              <span className="ohm-ledger-num">02</span>
+              <div className="ohm-ledger-content">
+                <span className="ohm-ledger-label">EMAIL INQUIRIES</span>
+                <div className="ohm-ledger-val">
+                  {Array.isArray(contacts.emails) && contacts.emails.map((e, idx) => {
+                    const val = typeof e === 'object' ? e.value : e;
+                    return (
+                      <React.Fragment key={`email-${idx}`}>
+                        <a href={`mailto:${val}`}>{val}</a>
+                        {idx < contacts.emails.length - 1 && <span className="ohm-ledger-sep">/</span>}
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-            <div className="ohm-contact-detail-card">
-              <div className="ohm-contact-icon-wrapper"><MapPin size={20} /></div>
-              <div className="ohm-contact-detail-text">
-                <span className="ohm-contact-detail-label">Office Address</span>
-                <span>{contacts.office_address}</span>
+
+            <div className="ohm-ledger-row">
+              <span className="ohm-ledger-num">03</span>
+              <div className="ohm-ledger-content">
+                <span className="ohm-ledger-label">HARARE OFFICE</span>
+                <div className="ohm-ledger-val">
+                  <span>{contacts.office_address}</span>
+                </div>
               </div>
             </div>
-            <div className="ohm-contact-detail-card">
-              <div className="ohm-contact-icon-wrapper"><Clock3 size={20} /></div>
-              <div className="ohm-contact-detail-text">
-                <span className="ohm-contact-detail-label">Operating Hours</span>
-                <span>{contacts.operating_hours}</span>
+
+            <div className="ohm-ledger-row">
+              <span className="ohm-ledger-num">04</span>
+              <div className="ohm-ledger-content">
+                <span className="ohm-ledger-label">OPERATING HOURS</span>
+                <div className="ohm-ledger-val">
+                  <span>{contacts.operating_hours}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <form className="ohm-contact-form" method="post">
-          <label>Full Name<input type="text" name="name" placeholder="e.g. Tendai Moyo" required /></label>
-          <label>Email Address<input type="email" name="email" placeholder="name@company.co.zw" required /></label>
-          <label>Tell us about your project brief<textarea name="message" rows="5" placeholder="Share your location, project stage (feasibility, design, construction), and key engineering requirements..." required /></label>
-          <button className="ohm-button ohm-button-orange" type="submit">Send Enquiry <ArrowRight size={17} /></button>
-        </form>
+
+        {/* Right Column: Dark Structured Project-Intake Panel */}
+        <div className="ohm-intake-panel">
+          <div className="ohm-intake-header">
+            <span className="ohm-intake-badge">PROJECT INTAKE</span>
+            <h3>Technical Consultation Brief</h3>
+            <p>Submit your project scope, location, and engineering requirements below for direct review by our senior engineers.</p>
+          </div>
+          <form className="ohm-intake-form" method="post">
+            <div className="ohm-intake-group">
+              <label>FULL NAME</label>
+              <input type="text" name="name" placeholder="e.g. Tendai Moyo" required />
+            </div>
+            <div className="ohm-intake-group">
+              <label>EMAIL ADDRESS</label>
+              <input type="email" name="email" placeholder="name@company.co.zw" required />
+            </div>
+            <div className="ohm-intake-group">
+              <label>PROJECT BRIEF & SCOPE</label>
+              <textarea name="message" rows="5" placeholder="Include location, project stage (feasibility, design, construction), and primary disciplines required (MEP, Civil, Structural, BIM)..." required />
+            </div>
+            <button className="ohm-button ohm-button-orange ohm-intake-submit" type="submit">
+              Submit Project Brief <ArrowRight size={17} />
+            </button>
+          </form>
+        </div>
       </section>
     </main>
   );
